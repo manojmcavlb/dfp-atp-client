@@ -1,7 +1,6 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-
-import { authenticationService } from '../../_services';
+import { authenticationService } from '../services';
 
 export const PrivateRoute = ({ component: Component, roles, ...rest }) => (
     <Route {...rest} render={props => {
@@ -10,9 +9,8 @@ export const PrivateRoute = ({ component: Component, roles, ...rest }) => (
             // not logged in so redirect to login page with the return url
             return <Redirect to={{ pathname: '/login', state: { from: props.location } }} />
         }
-        // console.log("roles:", roles)
-        // console.log("currentUser:", currentUser)
-        // console.log("currentUser.role:", currentUser.role)
+        // console.log("roles:", roles);
+        // console.log("currentUser:", currentUser);
 
         // check if route is restricted by role
         if (roles && roles.indexOf(currentUser.role) === -1) {

@@ -1,6 +1,5 @@
 import { BehaviorSubject } from 'rxjs';
-
-import { handleResponse } from '../_helpers';
+import { handleResponse } from '../utils';
 
 const currentUserSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('currentUser')));
 
@@ -19,14 +18,11 @@ function login(username, password) {
     };
 
     return fetch(`/users/authenticate`, requestOptions)
-        .then(handleResponse).log("roles:", roles)
-        // console.log("currentUser:", currentUser)
-        // console
+        .then(handleResponse)
         .then(user => {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
             localStorage.setItem('currentUser', JSON.stringify(user));
             currentUserSubject.next(user);
-
             return user;
         });
 }

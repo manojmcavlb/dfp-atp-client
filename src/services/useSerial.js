@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { io } from 'socket.io-client';
-import { API_BASE_URL } from '../_helpers/constants';
+import { API_BASE_URL } from '../utils/constants';
 
 export function useSerial(socketUrl = API_BASE_URL) {
   const [lines, setLines] = useState([]);
@@ -40,24 +40,24 @@ export function useSerial(socketUrl = API_BASE_URL) {
 
   // REST helpers
   const listPorts = () =>
-    safeFetch('/ports');
+    safeFetch('/serial/ports');
 
   const open = (path, options = {}) =>
-    safeFetch('/open', {
+    safeFetch('/serial/open', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ path, ...options })
     });
 
   const send = (data, options = {}) =>
-    safeFetch('/send', {
+    safeFetch('/serial/send', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ data, ...options })
     });
 
   const close = () =>
-    safeFetch('/close', { method: 'POST' });
+    safeFetch('/serial/close', { method: 'POST' });
 
   return { lines, listPorts, open, send, close };
 }

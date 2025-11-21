@@ -1,14 +1,13 @@
 import React from 'react';
 import { Router, Route, Link } from 'react-router-dom';
-
-import { history, Role } from '../_helpers';
-import { authenticationService } from '../_services';
-import { PrivateRoute } from '../_components';
-import { HomePage } from '../_components/HomePage/HomePage';
-import { ManageUser } from '../_components/ManageUser';
+import { history, Role } from '../utils';
+import { authenticationService } from '../services';
+import { PrivateRoute } from '../routes';
+import { HomePage } from '../components/pages/HomePage/HomePage';
+import { ManageUser } from '../components/pages/ManageUser';
 // import EmpListing from '../_components/Employee/EmpListing';
-import { LoginPage } from '../_components/LoginPage';
-import Drivers from '../_components/Drivers/index';
+import { LoginPage } from '../components/pages/LoginPage';
+import Drivers from '../components/pages/Drivers/index';
 
 class App extends React.Component {
     constructor(props) {
@@ -37,13 +36,16 @@ class App extends React.Component {
         return (
             <Router history={history}>
                 <div>
+                    <div style={{ textAlign: 'center', padding: '20px', fontSize: '28px', fontWeight: 'bold' }}>
+                        IoT Eco-Sphere ATP Station
+                    </div>
                     {currentUser &&
                         <nav className="navbar navbar-expand navbar-dark " style={{backgroundColor: '#11182F' }}>
                             <div className="navbar-nav">
                                 <div>
                                     <Link to="/" className="navbar-brand bg-light">
                                         <img
-                                            src={require('../themes/images/logo.svg').default}
+                                            src={require('../assets/logo.svg').default}
                                             alt=""
                                         />
                                     </Link>

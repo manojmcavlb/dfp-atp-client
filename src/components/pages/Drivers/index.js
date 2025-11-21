@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Ethernet from './Ethernet';
-import Serial from './RS232';
+import Serial from './Serial';
 
 export default function Drivers() {
   return (

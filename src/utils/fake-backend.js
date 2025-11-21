@@ -7,17 +7,13 @@ export function configureFakeBackend() {
     ];
     let realFetch = window.fetch;
     window.fetch = function (url, opts) {
-    // const authHeader = opts.headers['Authorization'];
-        
-    // make opts safe so opts.headers won't throw when undefined
-    opts = opts || {};
-    const { method, headers } = opts;
-    // use optional chaining when reading header values
-    const authHeader = headers?.Authorization || headers?.authorization;
+        // const authHeader = opts.headers['Authorization'];
 
-
-
-
+        // make opts safe so opts.headers won't throw when undefined
+        opts = opts || {};
+        const { method, headers } = opts;
+        // use optional chaining when reading header values
+        const authHeader = headers?.Authorization || headers?.authorization;
         const isLoggedIn = authHeader && authHeader.startsWith('Bearer fake-jwt-token');
         const roleString = isLoggedIn && authHeader.split('.')[1];
         const role = roleString ? Role[roleString] : null;

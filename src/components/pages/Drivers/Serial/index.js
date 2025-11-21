@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useSerial } from '../../../_services/useSerial';
+import { useSerial } from '../../../../services/useSerial';
 
 export default function Serial() {
   const { lines, listPorts, open, send, close } = useSerial();
