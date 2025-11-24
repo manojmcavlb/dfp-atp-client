@@ -1,0 +1,194 @@
+
+/* Layout container for dashboard content */
+.dashboard-wrap {
+  padding: 16px 24px;
+}
+
+/* Status row */
+.status-row {
+  display: grid;
+  grid-template-columns: auto auto 1fr auto;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.status-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border: 1px solid #cfd3d8;
+  border-radius: 50%;
+  background: #fff;
+  color: #555;
+  font-weight: 700; 
+}
+
+
+.status-icon:hover {
+  cursor: pointer;
+}
+
+
+.status-label {
+  font-weight: 700;
+  color: #222;
+}
+
+.status-link {
+  color: #2b5a9a;
+  text-decoration: none;
+  font-weight: 600;
+}
+.status-link:hover { text-decoration: underline; }
+
+.status-none {
+  color: #6b7280;
+  font-weight: 600;
+}
+
+.status-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* No station view */
+.no-station {
+  min-height: 400px;
+  display: grid;
+  place-items: center;
+  color: #7a7f88;
+  font-size: 18px;
+  text-align: center;
+}
+
+/* Controls row (connected) */
+.controls-row {
+  display: grid;
+  grid-template-columns: auto auto auto 1fr;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 0 10px;
+}
+
+.checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #222;
+}
+
+.inline-btn {
+  height: 32px;
+  padding: 0 12px;
+  border-radius: 10px;
+  border: 1px solid #cfd3d8;
+  background: #fff;
+  color: #222;
+  font-weight: 600;
+  cursor: pointer;
+}
+.inline-btn:hover { background: #f1f3f5; }
+
+.btn-icon {
+  margin-right: 6px;
+  font-size: 13px;
+}
+
+/* Runs input */
+.runs-field {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.runs-label {
+  font-size: 14px;
+  color: #222;
+  font-weight: 600;
+}
+.runs-input {
+  width: 52px;
+  height: 30px;
+  border: 1px solid #cfd3d8;
+  border-radius: 8px;
+  background: #fff;
+  text-align: center;
+}
+
+/* Mode switch */
+.mode-switch {
+  justify-self: end;
+  display: inline-flex;
+  gap: 8px;
+}
+.mode-btn {
+  height: 34px;
+  padding: 0 14px;
+  border-radius: 10px;
+  border: 1px solid #d2d6dc;
+  background: #eceef2;
+  color: #222;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: inset 0 -2px 0 rgba(0,0,0,0.06);
+}
+.mode-btn.active {
+  background: #dcdfe6;
+}
+
+/* Two-pane main area */
+.two-pane {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 12px;
+  min-height: 420px;
+}
+
+/* Left: group list */
+.group-list {
+  border: 1px solid #e0e2e6;
+  border-radius: 8px;
+  background: #fff;
+  overflow: hidden;
+}
+
+.group-item {
+  width: 100%;
+  text-align: left;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-bottom: 1px solid #eef0f4;
+  background: #fff;
+  color: #222;
+  cursor: pointer;
+}
+.group-item:hover { background: #f8f9fb; }
+
+.group-item.bold .group-name {
+  font-weight: 700;
+}
+
+.group-meta {
+  color: #9aa0a6;
+}
+
+/* Right: work area */
+.work-area {
+  border: 1px solid #e0e2e6;
+  border-radius: 8px;
+  background: #fff;
+  position: relative;
+}
+
+/* Small screens */
+@media (max-width: 900px) {
+  .status-row { grid-template-columns: auto 1fr auto; }
+  .controls-row { grid-template-columns: 1fr; gap: 10px; }
+  .two-pane { grid-template-columns: 1fr; }
+}

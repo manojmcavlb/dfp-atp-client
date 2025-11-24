@@ -1,0 +1,259 @@
+
+/* ===== Base Page ===== */
+.page-bg {
+  min-height: 100vh;
+  background: #f5f6f8;
+  color: #202124;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 24px;
+  background: #eceef2;
+  border-bottom: 1px solid #d2d3d6;
+}
+
+.logo {
+  height: 22px;
+  width: auto;
+  object-fit: contain;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #3b3d40;
+}
+
+/* ===== Center Area ===== */
+.center-wrap {
+  max-width: 1000px;
+  margin: 32px auto;
+  padding: 0 24px;
+}
+
+/* ===== Split Layout (Separate Cards) ===== */
+.split-wrap {
+  display: grid;
+  grid-template-columns: 1fr 320px; /* left: form card, right: rules card */
+  gap: 28px;                        /* clear separation */
+  align-items: start;
+}
+
+/* ===== Cards ===== */
+.card {
+  background: #fff;
+  border: 1px solid #e0e2e6;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.form-card {
+  padding: 24px 28px;
+}
+
+.rule-card {
+  padding: 16px 18px;
+  position: relative;
+}
+
+/* Optional: subtle connector arrow pointing from rules to form */
+.rule-card::before {
+  content: "";
+  position: absolute;
+  left: -14px;
+  top: 36px;
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-right: 14px solid #e0e2e6; /* outer border color */
+}
+.rule-card::after {
+  content: "";
+  position: absolute;
+  left: -12px;
+  top: 37px;
+  width: 0;
+  height: 0;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  border-right: 12px solid #fff;    /* inner fill to match card */
+}
+
+/* ===== Titles ===== */
+.card-title {
+  text-align: center;
+  margin: 8px 0 24px;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.rule-card-title {
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+/* ===== Form (single column inside left card) ===== */
+.form {
+  display: block;
+}
+
+/* Labels & Inputs */
+.label {
+  display: block;
+  font-weight: 600;
+  color: #2f3135;
+  margin-bottom: 14px;
+}
+
+.input {
+  width: 100%;
+  height: 38px;
+  border: 1px solid #cfd3d8;
+  border-radius: 10px;
+  background: #f9fafb;
+  padding: 0 12px;
+  font-size: 14px;
+  color: #1f2328;
+  outline: none;
+  transition: border-color 120ms ease, box-shadow 120ms ease, background 120ms ease;
+}
+
+.input::placeholder { color: #a7abb0; }
+
+.input:focus {
+  border-color: #7aa8ff;
+  box-shadow: 0 0 0 3px rgba(122,168,255,0.25);
+  background: #fff;
+}
+
+/* Password row with right-side icon */
+.pwd-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input.has-icon {
+  padding-right: 42px; /* space for eye button */
+}
+
+/* Eye toggle button styled as circular icon inside input */
+.eye-btn {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 28px;
+  width: 28px;
+  border: 1px solid #cfd3d8;
+  border-radius: 50%;
+  background: #fff;
+  color: #6b7280;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 120ms ease, color 120ms ease, border-color 120ms ease, box-shadow 120ms ease;
+}
+
+.eye-btn:hover {
+  background: #f1f3f5;
+  color: #374151;
+  border-color: #b9bec4;
+}
+
+.eye-btn:focus {
+  outline: none;
+  border-color: #7aa8ff;
+  box-shadow: 0 0 0 3px rgba(122,168,255,0.25);
+}
+
+.eye-svg {
+  display: block;
+}
+
+/* Buttons row */
+.row-between {
+  margin-top: 16px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.primary-btn,
+.secondary-btn {
+  min-width: 140px;
+  height: 40px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 80ms ease, box-shadow 120ms ease, background 120ms ease;
+}
+
+.primary-btn {
+  background: #eceef2;
+  color: #222;
+  border-color: #d2d6dc;
+  box-shadow: inset 0 -2px 0 rgba(0,0,0,0.06);
+}
+
+.primary-btn:hover { background: #e6e8ed; }
+
+.secondary-btn {
+  background: #f5f6f8;
+  color: #222;
+  border-color: #d6d9df;
+}
+
+.secondary-btn:hover { background: #eef0f4; }
+
+/* Info message */
+.info-msg {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: #f1f8ff;
+  border: 1px solid #cfe4ff;
+  color: #0b3b7a;
+}
+
+/* ===== Rules List (right card) ===== */
+.rule-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.rule-list li {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  align-items: start;
+  gap: 8px;
+  padding: 6px 0;
+  color: #374151;
+  font-size: 14px;
+}
+
+.rule-check {
+  color: #26a35b; /* green check */
+  font-weight: 700;
+  line-height: 18px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 900px) {
+  .split-wrap {
+    grid-template-columns: 1fr; /* stack vertically on small screens */
+  }
+  .rule-card::before,
+  .rule-card::after {
+    display: none; /* remove connector on mobile */
+  }
+}
