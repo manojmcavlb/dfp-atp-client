@@ -1,4 +1,3 @@
-// ethernet/index.js
 import { useState } from 'react';
 import { useEthernet } from '../../../../services/useEthernet';
 
