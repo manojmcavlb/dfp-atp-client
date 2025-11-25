@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { logout } from "../../../utils/auth-header";
 import "./styles.css";
 
-function Dashboard() {
+function Home() {
   const navigate = useNavigate();
 
   // Simulated detection state; set to null for "None" or object for "Remote Head"
@@ -39,13 +40,13 @@ function Dashboard() {
         <h1 className="title">IoT Eco-Sphere ATP Station</h1>
 
         <div style={{ marginLeft: "auto", display: "flex", gap: 8 }}>
-          <button className="secondary-btn" onClick={() => navigate("/")}>
+          <button className="secondary-btn" onClick={logout}>
             Logout
           </button>
         </div>
       </header>
 
-      <main className="dashboard-wrap">
+      <main className="home-wrap">
         {/* Status Row (matches both mocks) */}
         <div className="status-row">
           <span className="status-icon" onClick={handleRefresh}>
@@ -164,4 +165,4 @@ function Dashboard() {
   );
 }
 
-export { Dashboard }; 
+export { Home };

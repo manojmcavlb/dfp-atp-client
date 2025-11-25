@@ -9,3 +9,8 @@ export function authHeader() {
         return {};
     }
 }
+
+export function logout() {
+    authenticationService.logout();
+    window.location.href = "/login";
+}

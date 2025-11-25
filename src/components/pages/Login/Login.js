@@ -1,7 +1,6 @@
-
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import usersData from "../../../utils/users.json";
+import { useLocation, useNavigate } from "react-router-dom";
+import { authenticationService } from "../../../services";
 import "./styles.css";
 import { Header } from "../../ui/Header";
 
@@ -31,21 +30,24 @@ function Login() {
   const [showPwd, setShowPwd] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
 
   function handleSubmit(e) {
     e.preventDefault();
     if (!username || !password) {
-      setError("we didn't recognize the username or password you entered. Please try again.");
+      setError(
+        "We didn't recognize the username or password you entered. Please try again."
+      );
       return;
     }
-    // Read credentials from users.json (imported at build time)
-    const user = usersData.users.find(u => u.username === username);
-    if (user && user.password === password) {
-      setError("");
-      navigate("/dashboard");
-    } else {
-      setError("We didn't recognize the username or password you entered. Please try again.");
-    }
+    authenticationService.login(username, password).then(
+      (user) => {
+        navigate("/home");
+      },
+      (error) => {
+        setError(error);
+      }
+    );
   }
 
   return (
@@ -105,4 +107,4 @@ function Login() {
   );
 }
 
-export { Login }; 
+export { Login };

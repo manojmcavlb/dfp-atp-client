@@ -1,7 +1,7 @@
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import usersData from "../../../utils/users.json";
+import SessionExpiredAlert from "../../ui/SessionExpiredAlert";
 import "./styles.css";
 
 /* ---------- utils ---------- */
@@ -43,6 +43,7 @@ function ResetPassword() {
   const [showPwd, setShowPwd] = useState(false);
   const [message, setMessage] = useState("");
   const [localUsers, setLocalUsers] = useState(usersData.users);
+  const [showSessionExpiredAlert, setShowSessionExpiredAlert] = useState(false);
   const navigate = useNavigate();
 
   function validatePassword(p) {
@@ -92,6 +93,11 @@ function ResetPassword() {
     URL.revokeObjectURL(url);
   }
 
+  const handleLoginRedirect = () => {
+    setShowSessionExpiredAlert(false);
+    navigate("/login");
+  };
+
   const rules = [
     "Minimum length of 12 characters.",
     "Maximum length of 64 characters.",
@@ -110,6 +116,9 @@ function ResetPassword() {
       </header>
 
       <main className="center-wrap">
+        {showSessionExpiredAlert && (
+          <SessionExpiredAlert onLogin={handleLoginRedirect} />
+        )}
         {/* NEW: side-by-side container */}
         <div className="split-wrap">
           {/* LEFT: Reset Password card */}
@@ -177,6 +186,13 @@ function ResetPassword() {
                   Cancel
                 </button>
                 <button type="submit" className="primary-btn">Reset</button>
+                <button
+                  type="button"
+                  className="secondary-btn"
+                  onClick={() => setShowSessionExpiredAlert(true)}
+                >
+                  Test Session Expiry
+                </button>
               </div>
 
               {message && <div className="info-msg">{message}</div>}
@@ -201,4 +217,4 @@ function ResetPassword() {
   );
 }
 
-export { ResetPassword }; 
+export { ResetPassword };

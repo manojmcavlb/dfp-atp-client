@@ -8,7 +8,7 @@ import { HomePage } from "./components/pages/HomePage/HomePage";
 import { ManageUser } from "./components/pages/ManageUser";
 import { Login } from "./components/pages/Login";
 import Drivers from "./components/pages/Drivers/index";
-import { Dashboard } from "./components/pages/Dashboard";
+import { Home } from "./components/pages/Home";
 
 class App extends React.Component {
   constructor(props) {
@@ -31,12 +31,6 @@ class App extends React.Component {
   componentWillUnmount() {
     this.subscription.unsubscribe();
   }
-
-  logout = () => {
-    authenticationService.logout();
-    // Use navigate hook or a method to redirect after logout
-    window.location.href = "/login"; // Simple redirect workaround here for class component
-  };
 
   render() {
     const { currentUser, isAdmin } = this.state;
@@ -114,14 +108,14 @@ class App extends React.Component {
               <div className="row">
                 <div className="col-md-6 offset-md-3">
                   <Routes>
-                    <Route
+                    {/* <Route
                       path="/"
                       element={
                         <PrivateRoute>
                           <HomePage />
                         </PrivateRoute>
                       }
-                    />
+                    /> */}
                     <Route
                       path="/reset-password"
                       element={
@@ -129,11 +123,11 @@ class App extends React.Component {
                       }
                     />
                     <Route
-                      path="/dashboard"
+                      path="/home"
                       element={
                         // roles={[Role.Admin]}
                         <PrivateRoute >
-                            <Dashboard />
+                            <Home />
                         </PrivateRoute>
                       }
                     />
