@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import usersData from "../../../utils/users.json";
 import "./styles.css";
+import { Header } from "../../ui/Header";
 
 /* ---------- icons ---------- */
 const EyeIcon = ({ className }) => (
@@ -49,6 +50,7 @@ function Login() {
 
   return (
     <div>
+      <Header />
       <main className="center-wrap">
         <div className="card login-card">
           <h2 className="card-title">Login</h2>

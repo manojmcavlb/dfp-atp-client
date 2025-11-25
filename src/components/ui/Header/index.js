@@ -1,8 +1,3 @@
-
-
-import { useState } from 'react';
-import { useEthernet } from '../../../../services/useEthernet';
-
 function Header() {
     return (
         <header className="topbar">

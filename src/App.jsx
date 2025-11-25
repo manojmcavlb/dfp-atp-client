@@ -44,7 +44,7 @@ class App extends React.Component {
     return (
       <Router>
         <div>
-          {currentUser && (
+          {/* {currentUser && (
             <nav
               className="navbar navbar-expand navbar-dark"
               style={{ backgroundColor: "#11182F" }}
@@ -108,7 +108,7 @@ class App extends React.Component {
                 </a>
               </div>
             </nav>
-          )}
+          )} */}
           <div className="jumbotron">
             <div className="container">
               <div className="row">
