@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { logout } from "../../../utils/auth-header";
 import "./styles.css";
 
-function Home() {
+function DetectedProduct({ product }) {
   const navigate = useNavigate();
 
   // Simulated detection state; set to null for "None" or object for "Remote Head"
@@ -22,7 +22,7 @@ function Home() {
       setActiveMode("production");
       setSelectAll(false);
     } else {
-      setDetectedProduct({ name: "Remote Head" });
+      setDetectedProduct({ name: product === 'remote-head' ? "Remote Head" : "IoT Gateway" });
     }
   }
 
@@ -46,7 +46,7 @@ function Home() {
         </div>
       </header>
 
-      <main className="home-wrap">
+      <main className="product-wrap">
         {/* Status Row (matches both mocks) */}
         <div className="status-row">
           <span className="status-icon" onClick={handleRefresh}>
@@ -165,4 +165,4 @@ function Home() {
   );
 }
 
-export { Home };
+export { DetectedProduct };

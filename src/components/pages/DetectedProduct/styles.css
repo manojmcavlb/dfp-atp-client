@@ -1,6 +1,6 @@
 
-/* Layout container for home content */
-.home-wrap {
+/* Layout container for product content */
+.product-wrap {
   padding: 16px 24px;
 }
 
@@ -26,11 +26,9 @@
   font-weight: 700; 
 }
 
-
 .status-icon:hover {
   cursor: pointer;
 }
-
 
 .status-label {
   font-weight: 700;

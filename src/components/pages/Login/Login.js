@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { authenticationService } from "../../../services";
-import "./styles.css";
 import { Header } from "../../ui/Header";
+import usersData from "../../../utils/users.json";
+import "./styles.css";
 
 /* ---------- icons ---------- */
 const EyeIcon = ({ className }) => (
@@ -42,7 +43,7 @@ function Login() {
     }
     authenticationService.login(username, password).then(
       (user) => {
-        navigate("/home");
+        navigate("/main-menu");
       },
       (error) => {
         setError(error);

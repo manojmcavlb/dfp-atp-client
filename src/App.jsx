@@ -4,11 +4,12 @@ import { Role } from "./utils";
 import { authenticationService } from "./services";
 import { PrivateRoute } from "./routes"; // Assuming PrivateRoute is updated for v6
 import { ResetPassword } from "./components/pages/ResetPassword/ResetPassword";
-import { HomePage } from "./components/pages/HomePage/HomePage";
+// import { HomePage } from "./components/pages/HomePage/HomePage";
 import { ManageUser } from "./components/pages/ManageUser";
 import { Login } from "./components/pages/Login";
 import Drivers from "./components/pages/Drivers/index";
-import { Home } from "./components/pages/Home";
+import MainMenu from "./components/pages/MainMenu";
+import { DetectedProduct } from "./components/pages/DetectedProduct";
 
 class App extends React.Component {
   constructor(props) {
@@ -123,11 +124,19 @@ class App extends React.Component {
                       }
                     />
                     <Route
-                      path="/home"
+                      path="/main-menu"
+                      element={
+                        <PrivateRoute>
+                          <MainMenu />
+                        </PrivateRoute>
+                      }
+                    />
+                    <Route
+                      path="/detected-product"
                       element={
                         // roles={[Role.Admin]}
                         <PrivateRoute >
-                            <Home />
+                            <DetectedProduct />
                         </PrivateRoute>
                       }
                     />
@@ -144,6 +153,30 @@ class App extends React.Component {
                       element={
                         <PrivateRoute roles={[Role.Admin]}>
                           <ManageUser />
+                        </PrivateRoute>
+                      }
+                    />
+                    <Route
+                      path="/detected-product"
+                      element={
+                        <PrivateRoute>
+                          <DetectedProduct />
+                        </PrivateRoute>
+                      }
+                    />
+                    <Route
+                      path="/detected-product"
+                      element={
+                        <PrivateRoute>
+                          <DetectedProduct product="remote-head" />
+                        </PrivateRoute>
+                      }
+                    />
+                    <Route
+                      path="/detected-product"
+                      element={
+                        <PrivateRoute>
+                          <DetectedProduct product="iot-gateway" />
                         </PrivateRoute>
                       }
                     />
