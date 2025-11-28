@@ -1,8 +1,11 @@
-
 :root {
   --bg: #f6f6f6;
-  --card: #fff;
-  --btn-bg: #d9d9d9;
+  --card: #ffffff;
+  --bg-black: #090808;
+  --bg-primary: #d9d9d9;
+  --bg-secondary: #ffffff;
+  --bgh-primary: #ffffff;
+  --bgh-secondary: #d9d9d9;
 }
 
 body,
@@ -96,7 +99,7 @@ html,
   width: 100%;
   padding: 8px 10px;
   border-radius: 15px;
-  border: 1px solid #D9D9D9;
+  border: 1px solid var(--color-black);
   box-sizing: border-box;
 }
 
@@ -114,22 +117,44 @@ html,
 }
 
 /* Buttons */
-.primary-btn {
-  background: var(--btn-bg);
-  border-radius: 8px;
-  padding: 10px 18px;
-  border: 1px solid #bdbdbd;
+.primary-btn,
+.secondary-btn {
+  min-width: 140px;
+  height: 40px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.05) inset;
+  transition: transform 80ms ease, box-shadow 120ms ease, background 120ms ease;
+}
+
+.primary-btn {
+  background: var(--bg-primary);
+  border-radius: 8px;
+  cursor: pointer;
 }
 
 .secondary-btn {
-  background: #fff;
+  background: var(--bg-secondary);
   padding: 8px 14px;
   border-radius: 6px;
-  border: 1px solid #ccc;
+  border: 1px solid #cccccc;
   cursor: pointer;
 }
+
+.primary-btn:hover {
+  background: var(--bgh-primary);
+  border: 1px solid #cccccc;
+}
+
+.secondary-btn:hover {
+  background: var(--bgh-secondary);
+}
+
+
+
+
+
 
 /* Misc */
 .center {
