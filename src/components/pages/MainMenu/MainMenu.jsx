@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './styles.css';
-import { HeaderMainMenu } from "../../ui/HeaderMainMenu";
 
 const MainMenu = () => {
     const navigate = useNavigate();
@@ -12,7 +11,6 @@ const MainMenu = () => {
 
     return (
         <div className="main-menu">
-            <HeaderMainMenu />
             <main className="content">
                 <div className="button-container">
                     <button className="menu-button" onClick={() => handleNavigation('/detected-product/remote-head')}>

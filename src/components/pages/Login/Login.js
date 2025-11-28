@@ -54,7 +54,7 @@ function Login() {
 
   return (
     <div>
-      <Header />
+      {/* <Header /> */}
       <main className="center-wrap">
         <div className="card login-card">
           <h2 className="card-title">Login</h2>

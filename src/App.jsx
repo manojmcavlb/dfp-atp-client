@@ -10,6 +10,8 @@ import { Login } from "./components/pages/Login";
 import Drivers from "./components/pages/Drivers/index";
 import MainMenu from "./components/pages/MainMenu/MainMenu";
 import { DetectedProduct } from "./components/pages/DetectedProduct";
+import Calibration from "./components/pages/Calibration";
+import { HeaderMainMenu } from "./components/ui/HeaderMainMenu";
 
 class App extends React.Component {
   constructor(props) {
@@ -39,6 +41,7 @@ class App extends React.Component {
     return (
       <Router>
         <div>
+          <HeaderMainMenu />
           {/* {currentUser && (
             <nav
               className="navbar navbar-expand navbar-dark"
@@ -177,6 +180,14 @@ class App extends React.Component {
                       element={
                         <PrivateRoute>
                           <DetectedProduct product="iot-gateway" />
+                        </PrivateRoute>
+                      }
+                    />
+                    <Route
+                      path="/calibration"
+                      element={
+                        <PrivateRoute>
+                          <Calibration />
                         </PrivateRoute>
                       }
                     />

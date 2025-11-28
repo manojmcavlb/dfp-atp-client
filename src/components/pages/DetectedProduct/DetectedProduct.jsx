@@ -35,7 +35,7 @@ function DetectedProduct() {
 
   return (
     <div className="page-bg">
-      <header className="topbar">
+      {/* <header className="topbar">
         <img src="../images/logo.svg" alt="logo" className="logo-left" />
         <h1 className="title">IoT Eco-Sphere ATP Station</h1>
 
@@ -44,7 +44,7 @@ function DetectedProduct() {
             Logout
           </button>
         </div>
-      </header>
+      </header> */}
 
       <main className="product-wrap">
         {/* Status Row (matches both mocks) */}

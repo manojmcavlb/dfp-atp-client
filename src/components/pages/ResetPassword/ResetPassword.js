@@ -104,10 +104,10 @@ function ResetPassword() {
 
   return (
     <div className="page-bg">
-      <header className="topbar">
+      {/* <header className="topbar">
         <img src="./images/logo.svg" alt="logo" className="logo-left" />
         <h1 className="title">IoT Eco-Sphere ATP Station</h1>
-      </header>
+      </header> */}
 
       <main className="center-wrap">
         {/* NEW: side-by-side container */}

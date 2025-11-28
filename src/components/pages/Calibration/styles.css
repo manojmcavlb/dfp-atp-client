@@ -1,0 +1,51 @@
+.calibration-wrap {
+  padding: 16px 24px;
+}
+
+.page-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.table-container {
+  overflow-x: auto;
+  border: 1px solid #e0e2e6;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.calibration-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.calibration-table th,
+.calibration-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #eef0f4;
+}
+
+.calibration-table th {
+  background-color: #f8f9fb;
+  font-weight: 700;
+  color: #222;
+}
+
+.calibration-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.status-box {
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: #fff;
+  font-weight: 600;
+  text-align: center;
+}
+
+.status-ok {
+  background-color: #28a745;
+}
