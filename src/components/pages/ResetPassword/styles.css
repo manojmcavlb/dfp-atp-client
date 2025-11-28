@@ -17,18 +17,6 @@
   border-bottom: 1px solid #d2d3d6;
 }
 
-.logo {
-  height: 22px;
-  width: auto;
-  object-fit: contain;
-}
-
-.title {
-  font-size: 18px;
-  font-weight: 600;
-  color: #3b3d40;
-}
-
 /* ===== Center Area ===== */
 .center-wrap {
   max-width: 1000px;

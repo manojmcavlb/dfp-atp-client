@@ -13,10 +13,10 @@ const MainMenu = () => {
         <div className="main-menu">
             <main className="content">
                 <div className="button-container">
-                    <button className="menu-button" onClick={() => handleNavigation('/detected-product/remote-head')}>
+                    <button className="menu-button" onClick={() => handleNavigation('/detected-product?product=remote-head')}>
                         Remote Head
                     </button>
-                    <button className="menu-button" onClick={() => handleNavigation('/detected-product/iot-gateway')}>
+                    <button className="menu-button" onClick={() => handleNavigation('/detected-product?product=iot-gateway')}>
                         IoT Gateway
                     </button>
                 </div>

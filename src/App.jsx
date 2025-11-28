@@ -12,7 +12,8 @@ import MainMenu from "./components/pages/MainMenu/MainMenu";
 import { DetectedProduct } from "./components/pages/DetectedProduct";
 import Calibration from "./components/pages/Calibration";
 import Instrument from "./components/pages/Instrument";
-import { HeaderMainMenu } from "./components/ui/HeaderMainMenu";
+import TestSettings from "./components/pages/TestSettings";
+import { Header } from "./components/ui/Header";
 
 class App extends React.Component {
   constructor(props) {
@@ -42,7 +43,7 @@ class App extends React.Component {
     return (
       <Router>
         <div>
-          <HeaderMainMenu />
+          <Header />
           {/* {currentUser && (
             <nav
               className="navbar navbar-expand navbar-dark"
@@ -136,15 +137,6 @@ class App extends React.Component {
                       }
                     />
                     <Route
-                      path="/detected-product"
-                      element={
-                        // roles={[Role.Admin]}
-                        <PrivateRoute >
-                            <DetectedProduct />
-                        </PrivateRoute>
-                      }
-                    />
-                    <Route
                       path="/drivers"
                       element={
                         <PrivateRoute roles={[Role.Admin]}>
@@ -169,7 +161,7 @@ class App extends React.Component {
                       }
                     />
                     <Route
-                      path="/detected-product"
+                      path="/detected-product?product=remote-head"
                       element={
                         <PrivateRoute>
                           <DetectedProduct product="remote-head" />
@@ -177,7 +169,7 @@ class App extends React.Component {
                       }
                     />
                     <Route
-                      path="/detected-product"
+                      path="/detected-product?product=iot-gateway"
                       element={
                         <PrivateRoute>
                           <DetectedProduct product="iot-gateway" />
@@ -197,6 +189,14 @@ class App extends React.Component {
                       element={
                         <PrivateRoute>
                           <Instrument />
+                        </PrivateRoute>
+                      }
+                    />
+                    <Route
+                      path="/test-settings"
+                      element={
+                        <PrivateRoute>
+                          <TestSettings />
                         </PrivateRoute>
                       }
                     />

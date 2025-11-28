@@ -12,7 +12,7 @@ function DetectedProduct() {
   const [activeMode, setActiveMode] = useState("production"); // 'production' | 'customized'
   const [selectAll, setSelectAll] = useState(false);
 
-  const productName = detectedProduct?.name ?? "None";
+  const productName = detectedProduct?.product ?? "None";
 
   // Simulate scanning action
   function handleRefresh() {
@@ -35,17 +35,6 @@ function DetectedProduct() {
 
   return (
     <div className="page-bg">
-      {/* <header className="topbar">
-        <img src="../images/logo.svg" alt="logo" className="logo-left" />
-        <h1 className="title">IoT Eco-Sphere ATP Station</h1>
-
-        <div style={{ marginLeft: "auto", display: "flex", gap: 8 }}>
-          <button className="secondary-btn" onClick={logout}>
-            Logout
-          </button>
-        </div>
-      </header> */}
-
       <main className="product-wrap">
         {/* Status Row (matches both mocks) */}
         <div className="status-row">

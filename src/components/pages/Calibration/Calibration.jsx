@@ -99,11 +99,6 @@ function Calibration() {
 
   return (
     <div className="page-bg">
-      {/* <header className="topbar">
-        <img src="../images/logo.svg" alt="logo" className="logo-left" />
-        <h1 className="title">IoT Eco-Sphere ATP Station</h1>
-      </header> */}
-
       <main className="calibration-wrap">
         <h2 className="page-title">Calibration Information</h2>
         <div className="table-container">

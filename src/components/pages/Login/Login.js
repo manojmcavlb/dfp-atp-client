@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { authenticationService } from "../../../services";
-import { Header } from "../../ui/Header";
 import usersData from "../../../utils/users.json";
 import "./styles.css";
 
@@ -54,7 +53,6 @@ function Login() {
 
   return (
     <div>
-      {/* <Header /> */}
       <main className="center-wrap">
         <div className="card login-card">
           <h2 className="card-title">Login</h2>

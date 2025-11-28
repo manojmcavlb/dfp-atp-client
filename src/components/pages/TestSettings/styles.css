@@ -1,0 +1,49 @@
+.test-settings-wrap {
+  padding: 16px 24px;
+}
+
+.page-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.table-container {
+  overflow-x: auto;
+  border: 1px solid #e0e2e6;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.test-settings-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.test-settings-table th,
+.test-settings-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #eef0f4;
+}
+
+.test-settings-table th {
+  background-color: #f8f9fb;
+  font-weight: 700;
+  color: #222;
+}
+
+.test-settings-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 16px;
+}
+
+.header-controls {
+    margin-bottom: 16px;
+}
