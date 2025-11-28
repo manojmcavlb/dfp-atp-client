@@ -11,6 +11,7 @@ import Drivers from "./components/pages/Drivers/index";
 import MainMenu from "./components/pages/MainMenu/MainMenu";
 import { DetectedProduct } from "./components/pages/DetectedProduct";
 import Calibration from "./components/pages/Calibration";
+import Instrument from "./components/pages/Instrument";
 import { HeaderMainMenu } from "./components/ui/HeaderMainMenu";
 
 class App extends React.Component {
@@ -152,7 +153,7 @@ class App extends React.Component {
                       }
                     />
                     <Route
-                      path="/manageUser"
+                      path="/manage-user"
                       element={
                         <PrivateRoute roles={[Role.Admin]}>
                           <ManageUser />
@@ -191,7 +192,15 @@ class App extends React.Component {
                         </PrivateRoute>
                       }
                     />
-                    {/* Add other PrivateRoutes similarly */}
+                    <Route
+                      path="/instrument"
+                      element={
+                        <PrivateRoute>
+                          <Instrument />
+                        </PrivateRoute>
+                      }
+                    />
+                    {/* Add other PrivateRoutses similarly */}
                     <Route path="/login" element={<Login />} />
                   </Routes>
                 </div>

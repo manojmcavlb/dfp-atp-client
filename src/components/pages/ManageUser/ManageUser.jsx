@@ -1,39 +1,70 @@
-import React from 'react';
+import React from "react";
+import "./styles.css";
 
-import { userService } from '../../../services';
+const userData = [
+  {
+    username: "Admin",
+    password: "****",
+    role: "Administrator",
+    privileges: "View Reports,Auto Test,Manual Test,Self Test,Settings,Calib Info,Manage User",
+  },
+  {
+    username: "Preethi",
+    password: "****",
+    role: "Operator",
+    privileges: "View Reports,Auto Test,Manual Test,Self Test",
+  },
+  {
+    username: "Raj",
+    password: "****",
+    role: "Operator",
+    privileges: "View Reports,Auto Test,Manual Test,Self Test",
+  },
+  {
+    username: "Ajay",
+    password: "****",
+    role: "Administrator",
+    privileges: "View Reports,Auto Test,Manual Test,Self Test,Settings,Calib Info,Manage User",
+  },
+];
 
-class ManageUser extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            users: null
-        };
-    }
-
-    componentDidMount() {
-        userService.getAll().then(users => this.setState({ users }));
-    }
-
-    render() {
-        const { users } = this.state;
-        return (
-            <div>
-                <h1>Admin</h1>
-                <p>This page can only be accessed by administrators.</p>
-                <div>
-                    All users from secure (admin only) api end point:
-                    {users &&
-                        <ul>
-                            {users.map(user =>
-                                <li key={user.id}>{user.firstName} {user.lastName}</li>
-                            )}
-                        </ul>
-                    }
-                </div>
-            </div>
-        );
-    }
+function ManageUser() {
+  return (
+    <div className="page-bg">
+      <main className="manage-user-wrap">
+        <h2 className="page-title">Manage User</h2>
+        <div className="table-container">
+          <table className="manage-user-table">
+            <thead>
+              <tr>
+                <th>User Name</th>
+                <th>Password</th>
+                <th>Role</th>
+                <th>Privileges</th>
+              </tr>
+            </thead>
+            <tbody>
+              {userData.map((user, index) => (
+                <tr key={index}>
+                  <td>{user.username}</td>
+                  <td>{user.password}</td>
+                  <td>{user.role}</td>
+                  <td>{user.privileges}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div className="action-buttons">
+            <button>Add User</button>
+            <button>Edit User</button>
+            <button>Delete User</button>
+            <button>Data Reset</button>
+            <button>Back</button>
+        </div>
+      </main>
+    </div>
+  );
 }
 
 export { ManageUser };

@@ -29,7 +29,7 @@ const MainMenu = () => {
                     </button>
                 </div>
                 <div className="button-container">
-                    <button className="menu-button" onClick={() => handleNavigation('/instrument-settings')}>
+                    <button className="menu-button" onClick={() => handleNavigation('/instrument')}>
                         Instrument Settings
                     </button>
                     <button className="menu-button" onClick={() => handleNavigation('/manage-user')}>
