@@ -38,7 +38,55 @@
   border-bottom: none;
 }
 
-.action-buttons {
-    display: flex;
-    gap: 10px;
+.action-cell {
+  display: flex;
+  gap: 8px;
+}
+
+.grid-btn {
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f0f0f0;
+  cursor: pointer;
+}
+
+.user-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.add-user-icon {
+  font-size: 24px;
+  cursor: pointer;
+  color: #007bff;
+}
+
+.action-btn {
+  background-color: #007bff;
+  color: white;
+}
+
+.manage-user-container {
+  padding: 20px;
+  background-color: #f4f7fa;
+}
+
+.manage-user-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.manage-user-header h2 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.user-table-container {
+  background-color: white;
+  border-radius: 8px;
 }

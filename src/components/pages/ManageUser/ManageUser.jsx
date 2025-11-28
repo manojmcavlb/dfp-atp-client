@@ -1,30 +1,41 @@
 import React from "react";
 import "./styles.css";
 
-const userData = [
+const initialUserData = [
   {
+    id: 1,
+    username: "Super Admin",
+    password: "****",
+    role: "Super Administrator",
+    privileges: "View Reports,Add/Edit Device, Add/Edit Test Suite,Execute Test SuiteSettings,Calib InfoTest Settings,Manage User",
+  },
+  {
+    id: 2,
     username: "Admin",
     password: "****",
     role: "Administrator",
-    privileges: "View Reports,Auto Test,Manual Test,Self Test,Settings,Calib Info,Manage User",
+    privileges: "View Reports,Add/Edit Device, Add/Edit Test Suite,Execute Test SuiteSettings,Calib InfoTest Settings,Manage User",
   },
   {
-    username: "Preethi",
-    password: "****",
-    role: "Operator",
-    privileges: "View Reports,Auto Test,Manual Test,Self Test",
-  },
-  {
-    username: "Raj",
-    password: "****",
-    role: "Operator",
-    privileges: "View Reports,Auto Test,Manual Test,Self Test",
-  },
-  {
+    id: 3,
     username: "Ajay",
     password: "****",
     role: "Administrator",
-    privileges: "View Reports,Auto Test,Manual Test,Self Test,Settings,Calib Info,Manage User",
+    privileges: "View Reports,Add/Edit Device, Add/Edit Test Suite,Execute Test SuiteSettings,Calib InfoTest Settings,Manage User",
+  },
+  {
+    id: 4,
+    username: "Preethi",
+    password: "****",
+    role: "Operator",
+    privileges: "View Reports,Add/Edit Device, Add/Edit Test Suite",
+  },
+  {
+    id: 5,
+    username: "Raj",
+    password: "****",
+    role: "Operator",
+    privileges: "View Reports,Add/Edit Device, Add/Edit Test Suite",
   },
 ];
 
@@ -41,26 +52,30 @@ function ManageUser() {
                 <th>Password</th>
                 <th>Role</th>
                 <th>Privileges</th>
+                <th>Actions&nbsp;&nbsp;
+                  <button className="grid-btn">Add</button></th>
               </tr>
             </thead>
             <tbody>
-              {userData.map((user, index) => (
-                <tr key={index}>
+              {initialUserData.map((user) => (
+                <tr key={user.id}>
                   <td>{user.username}</td>
                   <td>{user.password}</td>
                   <td>{user.role}</td>
                   <td>{user.privileges}</td>
+                  <td className="action-cell">
+                    <button className="grid-btn">Edit</button>
+                    <button
+                      className="grid-btn"
+                      disabled={user.username === "Super Admin"}
+                    >
+                      Delete
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
-        </div>
-        <div className="action-buttons">
-            <button>Add User</button>
-            <button>Edit User</button>
-            <button>Delete User</button>
-            <button>Data Reset</button>
-            <button>Back</button>
         </div>
       </main>
     </div>

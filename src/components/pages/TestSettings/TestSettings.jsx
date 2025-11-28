@@ -1,4 +1,5 @@
 import React from "react";
+import "../../../assets/styles/main.css";
 import "./styles.css";
 
 const testSettingsData = [
@@ -32,21 +33,23 @@ function TestSettings() {
     <div className="page-bg">
       <main className="test-settings-wrap">
         <div className="header-controls">
-            <select>
+            <select className="custom-select">
                 <option>79281300AA AC-DC Battery Charger</option>
             </select>
+            <button className="grid-btn">Add</button>
         </div>
         <div className="table-container">
           <table className="test-settings-table">
             <thead>
               <tr>
-                <th></th>
+                <th>Step ID</th>
                 <th>Step Names</th>
                 <th>Comparison</th>
                 <th>Low Lt</th>
                 <th>High Lt</th>
                 <th>Unit</th>
                 <th>String Lt</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -59,16 +62,13 @@ function TestSettings() {
                   <td>{item.highLt}</td>
                   <td>{item.unit}</td>
                   <td>{item.stringLt}</td>
+                  <td className="action-cell">
+                    <button className="grid-btn">Edit</button>
+                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
-        </div>
-        <div className="action-buttons">
-            <button>Test Settings</button>
-            <button>HW Settings</button>
-            <button>Edit</button>
-            <button>Back</button>
         </div>
       </main>
     </div>

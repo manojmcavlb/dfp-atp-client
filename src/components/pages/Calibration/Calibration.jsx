@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../../../utils/auth-header";
+import "../../../assets/styles/main.css";
 import "./styles.css";
 
 const calibrationData = [
@@ -101,6 +102,12 @@ function Calibration() {
     <div className="page-bg">
       <main className="calibration-wrap">
         <h2 className="page-title">Calibration Information</h2>
+        <div className="header-controls">
+          <select className="custom-select">
+            <option>Select Device</option>
+          </select>
+          <button className="grid-btn">Add</button>
+        </div>
         <div className="table-container">
           <table className="calibration-table">
             <thead>

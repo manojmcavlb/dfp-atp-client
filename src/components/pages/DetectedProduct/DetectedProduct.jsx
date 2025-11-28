@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { logout } from "../../../utils/auth-header";
 import "./styles.css";
 
 function DetectedProduct() {
@@ -39,9 +38,12 @@ function DetectedProduct() {
     <div>
       <main className="product-wrap">
         <div className="status-row">
-          <span className="status-icon" onClick={handleRefresh}>
-            🔄️
-          </span>
+          <div className="status-item">
+            <span className="status-icon" onClick={handleRefresh}>
+              <i className="fa-solid fa-arrows-rotate"></i>
+            </span>
+            <span className="status-label">Rescan</span>
+          </div>
           <span className="status-label">Detected Product:&nbsp;</span>
           <a href="#device" className="detected-product">
             {productName}

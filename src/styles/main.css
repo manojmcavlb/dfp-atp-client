@@ -1,3 +1,16 @@
+/* body_color: #0B1F66,
+body_background_color: #F5F5F5,
+color_error: #B30F3B,
+color_info: #616D78,
+color_primary: #E51937,
+color_secondary: #11172F,
+color_success: #00810C,
+color_tertiary: #4470C3,
+color_warn: #CD7923,
+gray_dark: #7D8388,
+gray_light: #F5F7FA,
+gray_medium: #F5F5F5, */
+
 :root {
   --bg: #f6f6f6;
   --card: #ffffff;
