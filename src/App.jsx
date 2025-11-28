@@ -8,7 +8,7 @@ import { ResetPassword } from "./components/pages/ResetPassword/ResetPassword";
 import { ManageUser } from "./components/pages/ManageUser";
 import { Login } from "./components/pages/Login";
 import Drivers from "./components/pages/Drivers/index";
-import MainMenu from "./components/pages/MainMenu";
+import MainMenu from "./components/pages/MainMenu/MainMenu";
 import { DetectedProduct } from "./components/pages/DetectedProduct";
 
 class App extends React.Component {

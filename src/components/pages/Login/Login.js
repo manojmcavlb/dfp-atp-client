@@ -43,6 +43,7 @@ function Login() {
     }
     authenticationService.login(username, password).then(
       (user) => {
+        setError("");
         navigate("/main-menu");
       },
       (error) => {

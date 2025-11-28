@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './styles.css';
-import logo from '../../../assets/logo.png';
+import { HeaderMainMenu } from "../../ui/HeaderMainMenu";
 
 const MainMenu = () => {
     const navigate = useNavigate();
@@ -12,11 +12,7 @@ const MainMenu = () => {
 
     return (
         <div className="main-menu">
-            <header className="header">
-                <img src={logo} alt="Delta Flight Products" className="logo" />
-                <div className="title">IoT Eco-Sphere ATP Station</div>
-                <div className="user-info">Admin / Tech</div>
-            </header>
+            <HeaderMainMenu />
             <main className="content">
                 <div className="button-container">
                     <button className="menu-button" onClick={() => handleNavigation('/detected-product/remote-head')}>
@@ -27,11 +23,19 @@ const MainMenu = () => {
                     </button>
                 </div>
                 <div className="button-container">
-                    <button className="menu-button" onClick={() => handleNavigation('/settings')}>
+                    <button className="menu-button" onClick={() => handleNavigation('/test-settings')}>
                         Test Settings
                     </button>
                     <button className="menu-button" onClick={() => handleNavigation('/calibration')}>
                         Calibration Info.
+                    </button>
+                </div>
+                <div className="button-container">
+                    <button className="menu-button" onClick={() => handleNavigation('/instrument-settings')}>
+                        Instrument Settings
+                    </button>
+                    <button className="menu-button" onClick={() => handleNavigation('/manage-user')}>
+                        ManageUser
                     </button>
                 </div>
             </main>

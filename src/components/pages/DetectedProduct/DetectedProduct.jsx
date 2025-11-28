@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { logout } from "../../../utils/auth-header";
 import "./styles.css";
 
-function DetectedProduct({ product }) {
+function DetectedProduct() {
   const navigate = useNavigate();
 
   // Simulated detection state; set to null for "None" or object for "Remote Head"
@@ -22,7 +22,7 @@ function DetectedProduct({ product }) {
       setActiveMode("production");
       setSelectAll(false);
     } else {
-      setDetectedProduct({ name: product === 'remote-head' ? "Remote Head" : "IoT Gateway" });
+      setDetectedProduct({ name: "Remote Head" });
     }
   }
 
