@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import "../../../styles/main.css";
+import "../../../assets/styles/main.css";
 
 function AddEditUser() {
   const [username, setUsername] = useState("");

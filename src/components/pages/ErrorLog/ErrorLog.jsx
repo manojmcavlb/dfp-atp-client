@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../../../styles/main.css';
+import '../../../assets/styles/main.css';
 import './styles.css';
 
 const ErrorLog = () => {
