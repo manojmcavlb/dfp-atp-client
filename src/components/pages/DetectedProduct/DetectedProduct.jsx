@@ -11,6 +11,7 @@ function DetectedProduct() {
   const [selectAll, setSelectAll] = useState(false);
 
   const productName = detectedProduct?.name ?? "None";
+  const productOptions = ["Remote Head", "IoT Gateway", "Product C"];
 
   function handleRefresh() {
     setDetectedProduct(
@@ -45,13 +46,20 @@ function DetectedProduct() {
             <span className="status-label">Rescan</span>
           </div>
           <span className="status-label">Detected Product:&nbsp;</span>
-          <a href="#device" className="detected-product">
-            {productName}
-          </a>
+          <select
+            className="detected-product"
+            value={productName}
+            onChange={(e) => setDetectedProduct({ name: e.target.value })}
+          >
+            {productOptions.map((product) => (
+              <option key={product} value={product}>
+                {product}
+              </option>
+            ))}
+          </select>
 
           <div className="status-actions">
             <button className="secondary-btn" onClick={() => navigate('/edit-device/1')}>Edit</button>
-            <button className="primary-btn">Tests</button>
             <button className="secondary-btn">View Reports</button>
           </div>
         </div>

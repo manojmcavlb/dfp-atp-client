@@ -18,6 +18,7 @@ import AddEditCalibration from "./components/pages/Calibration/AddEditCalibratio
 import TestSettings from "./components/pages/TestSettings/TestSettings";
 import AddEditTestSettings from "./components/pages/TestSettings/AddEditTestSettings";
 import Instrument from "./components/pages/Instrument";
+import TestSuites from "./components/pages/TestSuites/TestSuites";
 
 class App extends React.Component {
   constructor(props) {
@@ -234,6 +235,9 @@ class App extends React.Component {
                     <Route path="/edit-test-settings/:id" element={<PrivateRoute><AddEditTestSettings /></PrivateRoute>} />
                     <Route path="/add-calibration" element={<PrivateRoute><AddEditCalibration /></PrivateRoute>} />
                     <Route path="/edit-calibration/:id" element={<PrivateRoute><AddEditCalibration /></PrivateRoute>} />
+                    <Route path="/test-suite" element={<PrivateRoute><TestSuites /></PrivateRoute>} />
+                    {/* <Route path="/add-test-suite" element={<PrivateRoute><AddEditTestSuite /></PrivateRoute>} />
+                    <Route path="/edit-test-suite/:id" element={<PrivateRoute><AddEditTestSuite /></PrivateRoute>} /> */}
                   </Routes>
                 </div>
               </div>

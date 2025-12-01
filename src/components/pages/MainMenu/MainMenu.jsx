@@ -14,10 +14,10 @@ const MainMenu = () => {
             <main className="content">
                 <div className="button-container">
                     <button className="menu-button" onClick={() => handleNavigation('/detected-product?product=remote-head')}>
-                        Remote Head
+                        Production
                     </button>
-                    <button className="menu-button" onClick={() => handleNavigation('/detected-product?product=iot-gateway')}>
-                        IoT Gateway
+                    <button className="menu-button" onClick={() => handleNavigation('/test-suite')}>
+                        Manual
                     </button>
                 </div>
                 <div className="button-container">
@@ -34,11 +34,6 @@ const MainMenu = () => {
                     </button>
                     <button className="menu-button" onClick={() => handleNavigation('/manage-user')}>
                         Manage User
-                    </button>
-                </div>
-                <div className="button-container">
-                    <button className="menu-button" onClick={() => handleNavigation('/detected-product?product=remote-head')}>
-                        Test Suites
                     </button>
                 </div>
             </main>
