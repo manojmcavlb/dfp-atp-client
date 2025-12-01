@@ -34,65 +34,6 @@
   color: #8b0000;
 }
 
-/* ===== Form ===== */
-.form { display: block; }
-
-.label {
-  display: block;
-  font-weight: 600;
-  color: #2f3135;
-  margin-bottom: 14px;
-}
-
-.input {
-  width: 100%;
-  height: 38px;
-  border: 1px solid #cfd3d8;
-  border-radius: 10px;
-  background: #f9fafb;
-  padding: 0 12px;
-  font-size: 14px;
-  color: #1f2328;
-  outline: none;
-  transition: border-color 120ms ease, box-shadow 120ms ease, background 120ms ease;
-}
-
-.input:focus {
-  border-color: #7aa8ff;
-  box-shadow: 0 0 0 3px rgba(122,168,255,0.25);
-  background: #fff;
-}
-
-/* Password row with right-side icon */
-.pwd-row {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-.input.has-icon { padding-right: 42px; }
-
-.eye-btn {
-  position: absolute;
-  right: 8px;
-  top: 50%;
-  transform: translateY(-50%);
-  height: 28px;
-  width: 28px;
-  border: 1px solid #cfd3d8;
-  border-radius: 50%;
-  background: #fff;
-  color: #6b7280;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: background 120ms ease, color 120ms ease, border-color 120ms ease, box-shadow 120ms ease;
-}
-.eye-btn:hover { background: #f1f3f5; color: #374151; border-color: #b9bec4; }
-.eye-btn:focus { outline: none; border-color: #7aa8ff; box-shadow: 0 0 0 3px rgba(122,168,255,0.25); }
-.eye-svg { display: block; }
-
 /* Forgot link */
 .row-between { margin-top: 8px; display: flex; justify-content: flex-start; }
 .forgot {
@@ -104,20 +45,6 @@
 
 /* Submit button (pill style) */
 .center { display: flex; justify-content: center; margin-top: 16px; }
-
-.primary-btn {
-  height: 40px;
-  border-radius: 12px;
-  border: 1px solid #d2d6dc;
-  background: #eceef2;
-  color: #222;
-  font-weight: 600;
-  cursor: pointer;
-  box-shadow: inset 0 -2px 0 rgba(0,0,0,0.06);
-  transition: transform 80ms ease, box-shadow 120ms ease, background 120ms ease;
-}
-.primary-btn:hover { background: #e6e8ed; }
-.primary-btn:active { transform: translateY(1px); }
 
 /* Manage users link (footnote) */
 .manage-users {

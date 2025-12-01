@@ -6,7 +6,7 @@ const MainMenu = () => {
     const navigate = useNavigate();
 
     const handleNavigation = (path) => {
-        navigate(path);
+        // navigate(path);
     };
 
     return (
@@ -14,34 +14,34 @@ const MainMenu = () => {
             <main className="content">
                 <div className="button-container">
                     <button className="menu-button" onClick={() => handleNavigation('/detected-product?product=remote-head')}>
-                        Production
+                        PRODUCTION
                     </button>
                     <button className="menu-button" onClick={() => handleNavigation('/test-suite')}>
-                        Manual
+                        MANUAL
                     </button>
                 </div>
                 <div className="button-container">
                     <button className="menu-button" onClick={() => handleNavigation('/test-settings')}>
-                        Test Settings
+                        TEST SETTINGS
                     </button>
                     <button className="menu-button" onClick={() => handleNavigation('/calibration')}>
-                        Calibration Info.
+                        CALIBRATION INFO.
                     </button>
                 </div>
                 <div className="button-container">
                     <button className="menu-button" onClick={() => handleNavigation('/instrument')}>
-                        Instrument Settings
+                        INSTRUMENT SETTINGS
                     </button>
                     <button className="menu-button" onClick={() => handleNavigation('/manage-user')}>
-                        Manage User
+                        MANAGE USER
                     </button>
                 </div>
                 <div className="button-container">
                     <button className="menu-button" onClick={() => handleNavigation('/atp-health-status')}>
-                        ATP Health Status
+                        ATP HEALTH STATUS
                     </button>
                     <button className="menu-button" onClick={() => handleNavigation('/error-log')}>
-                        Error/Event Log
+                        ERROR/EVENT LOG
                     </button>
                 </div>
             </main>

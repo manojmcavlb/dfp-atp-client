@@ -23,7 +23,7 @@ function Header() {
                                 Main Menu
                             </button>
                         )}
-                        <button className="primary-btn" onClick={logout}>Log Out</button>
+                        <button className="primary-btn" onClick={logout}>LOG OUT</button>
                     </div>
                 </div>
             )}
