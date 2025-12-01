@@ -20,6 +20,7 @@ import AddEditTestSettings from "./components/pages/TestSettings/AddEditTestSett
 import Instrument from "./components/pages/Instrument";
 import TestSuites from "./components/pages/TestSuites/TestSuites";
 import AtpHealthStatus from "./components/pages/AtpHealthStatus/AtpHealthStatus";
+import ErrorLog from "./components/pages/ErrorLog/ErrorLog";
 
 class App extends React.Component {
   constructor(props) {
@@ -238,6 +239,7 @@ class App extends React.Component {
                     <Route path="/edit-calibration/:id" element={<PrivateRoute><AddEditCalibration /></PrivateRoute>} />
                     <Route path="/test-suite" element={<PrivateRoute><TestSuites /></PrivateRoute>} />
                     <Route path="/atp-health-status" element={<PrivateRoute><AtpHealthStatus /></PrivateRoute>} />
+                    <Route path="/error-log" element={<PrivateRoute><ErrorLog /></PrivateRoute>} />
                     {/* <Route path="/add-test-suite" element={<PrivateRoute><AddEditTestSuite /></PrivateRoute>} />
                     <Route path="/edit-test-suite/:id" element={<PrivateRoute><AddEditTestSuite /></PrivateRoute>} /> */}
                   </Routes>
