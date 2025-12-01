@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "../../../assets/styles/main.css";
 import "./styles.css";
 
 function DetectedProduct() {
@@ -37,7 +38,7 @@ function DetectedProduct() {
 
   return (
     <div>
-      <main className="product-wrap">
+      <main className="page-wrap">
         <div className="status-row">
           <div className="status-item">
             <span className="status-icon" onClick={handleRefresh}>

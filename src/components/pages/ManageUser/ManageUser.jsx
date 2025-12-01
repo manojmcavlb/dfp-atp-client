@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import "../../../assets/styles/main.css";
 import "./styles.css";
 
 const initialUserData = [
@@ -53,10 +54,10 @@ function ManageUser() {
 
   return (
     <div className="page-bg">
-      <main className="manage-user-wrap">
+      <main className="page-wrap">
         <h2 className="page-title">Manage User</h2>
         <div className="table-container">
-          <table className="manage-user-table">
+          <table className="page-table">
             <thead>
               <tr>
                 <th>User Name</th>

@@ -33,7 +33,7 @@ function TestSettings() {
   const navigate = useNavigate();
   return (
     <div className="page-bg">
-      <main className="test-settings-wrap">
+      <main className="page-wrap">
         <h1 className="page-title">Test Settings</h1>
         <div className="header-controls">
             <select className="custom-select">
@@ -42,7 +42,7 @@ function TestSettings() {
             <button className="grid-btn" onClick={() => navigate("/add-test-settings")}>Add</button>
         </div>
         <div className="table-container">
-          <table className="test-settings-table">
+          <table className="page-table">
             <thead>
               <tr>
                 <th>Step ID</th>

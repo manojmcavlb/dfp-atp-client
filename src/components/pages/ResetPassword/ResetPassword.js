@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";import usersData from "../../../utils/users.json";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import "./styles.css";
 import "../../../assets/styles/main.css";
+import "./styles.css";
 
 /* ---------- utils ---------- */
 function hasSequentialString(s, length = 3) {

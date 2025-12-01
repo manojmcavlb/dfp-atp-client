@@ -1,6 +1,5 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { logout } from "../../../utils/auth-header";
 import "../../../assets/styles/main.css";
 import "./styles.css";
 
@@ -100,10 +99,10 @@ function Calibration() {
 
   return (
     <div className="page-bg">
-      <main className="calibration-wrap">
+      <main className="page-wrap">
         <h2 className="page-title">Calibration Information</h2>
         <div className="table-container">
-          <table className="calibration-table">
+          <table className="page-table">
             <thead>
               <tr>
                 <th>Device Name</th>

@@ -1,7 +1,3 @@
-.product-wrap {
-  padding: 16px 24px;
-}
-
 .status-row {
   display: flex;
   align-items: center;
@@ -111,19 +107,4 @@
 
 .group-item:last-child {
   border-bottom: none;
-}
-
-.status-indicator {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background-color: #ccc; /* Default pending color */
-}
-
-.status-indicator.success {
-  background-color: #28a745;
-}
-
-.status-indicator.failed {
-  background-color: #dc3545;
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import "../../../assets/styles/main.css";
 import "./styles.css";
 
 const instrumentData = [
@@ -37,10 +38,10 @@ const portOptions = [
 function Instrument() {
   return (
     <div className="page-bg">
-      <main className="instrument-wrap">
+      <main className="page-wrap">
         <h2 className="page-title">Instrument Settings</h2>
         <div className="table-container">
-          <table className="instrument-table">
+          <table className="page-table">
             <thead>
               <tr>
                 <th>Instruments Name</th>

@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../../../assets/styles/main.css";
+
 const testSuiteData = [
   {
     testSuiteName: "Test Suite A",
@@ -18,10 +19,10 @@ function TestSuites() {
 
   return (
     <div className="page-bg">
-      <main className="calibration-wrap">
+      <main className="page-wrap">
         <h2 className="page-title">Test Suites</h2>
         <div className="table-container">
-          <table className="calibration-table">
+          <table className="page-table">
             <thead>
               <tr>
                 <th>Test Suite Name</th>
