@@ -102,12 +102,6 @@ function Calibration() {
     <div className="page-bg">
       <main className="calibration-wrap">
         <h2 className="page-title">Calibration Information</h2>
-        <div className="header-controls">
-          <select className="custom-select">
-            <option>Select Device</option>
-          </select>
-          <button className="grid-btn" onClick={() => navigate("/add-calibration")}>Add</button>
-        </div>
         <div className="table-container">
           <table className="calibration-table">
             <thead>
@@ -118,7 +112,9 @@ function Calibration() {
                 <th>Calibration Date</th>
                 <th>Calibration Due Date</th>
                 <th>Status</th>
-                <th>Actions</th>
+                <th>Actions&nbsp;&nbsp;
+                  <button className="grid-btn" onClick={() => navigate("/add-calibration")}>Add</button>
+                </th>
               </tr>
             </thead>
             <tbody>

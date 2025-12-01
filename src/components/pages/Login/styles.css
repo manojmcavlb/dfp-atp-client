@@ -128,7 +128,6 @@
 .center { display: flex; justify-content: center; margin-top: 16px; }
 
 .primary-btn {
-  min-width: 160px;
   height: 40px;
   border-radius: 12px;
   border: 1px solid #d2d6dc;

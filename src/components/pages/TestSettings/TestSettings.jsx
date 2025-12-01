@@ -34,6 +34,7 @@ function TestSettings() {
   return (
     <div className="page-bg">
       <main className="test-settings-wrap">
+        <h1 className="page-title">Test Settings</h1>
         <div className="header-controls">
             <select className="custom-select">
                 <option>79281300AA AC-DC Battery Charger</option>

@@ -5,18 +5,19 @@ import { authenticationService } from "./services";
 import { PrivateRoute } from "./routes"; // Assuming PrivateRoute is updated for v6
 import { ResetPassword } from "./components/pages/ResetPassword/ResetPassword";
 // import { HomePage } from "./components/pages/HomePage/HomePage";
+import { Header } from "./components/ui/Header";
 import { ManageUser } from "./components/pages/ManageUser";
+import AddEditUser from "./components/pages/ManageUser/AddEditUser";
 import { Login } from "./components/pages/Login";
 import Drivers from "./components/pages/Drivers/index";
 import MainMenu from "./components/pages/MainMenu/MainMenu";
 import { DetectedProduct } from "./components/pages/DetectedProduct";
+import AddEditDevice from "./components/pages/DetectedProduct/AddEditDevice";
 import Calibration from "./components/pages/Calibration";
-import Instrument from "./components/pages/Instrument";
+import AddEditCalibration from "./components/pages/Calibration/AddEditCalibration";
 import TestSettings from "./components/pages/TestSettings/TestSettings";
-import AddEditUser from "./components/pages/AddEditUser";
-import AddEditTestSettings from "./components/pages/AddEditTestSettings/AddEditTestSettings";
-import AddEditCalibration from "./components/pages/AddEditCalibration/AddEditCalibration";
-import { Header } from "./components/ui/Header";
+import AddEditTestSettings from "./components/pages/TestSettings/AddEditTestSettings";
+import Instrument from "./components/pages/Instrument";
 
 class App extends React.Component {
   constructor(props) {
@@ -125,6 +126,7 @@ class App extends React.Component {
                         </PrivateRoute>
                       }
                     /> */}
+                    <Route path="/login" element={<Login />} />
                     <Route
                       path="/reset-password"
                       element={
@@ -168,6 +170,22 @@ class App extends React.Component {
                       element={
                         <PrivateRoute roles={[Role.Admin]}>
                           <AddEditUser />
+                        </PrivateRoute>
+                      }
+                    />
+                    <Route
+                      path="/add-device"
+                      element={
+                        <PrivateRoute>
+                          <AddEditDevice />
+                        </PrivateRoute>
+                      }
+                    />
+                    <Route
+                      path="/edit-device/:id"
+                      element={
+                        <PrivateRoute>
+                          <AddEditDevice />
                         </PrivateRoute>
                       }
                     />

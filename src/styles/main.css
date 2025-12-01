@@ -132,7 +132,7 @@ html,
 /* Buttons */
 .primary-btn,
 .secondary-btn {
-  min-width: 140px;
+  min-width: 100px;
   height: 40px;
   border-radius: 12px;
   border: 1px solid transparent;

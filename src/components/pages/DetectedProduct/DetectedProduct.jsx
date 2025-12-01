@@ -50,7 +50,7 @@ function DetectedProduct() {
           </a>
 
           <div className="status-actions">
-            <button className="secondary-btn">Edit Device</button>
+            <button className="secondary-btn" onClick={() => navigate('/edit-device/1')}>Edit</button>
             <button className="primary-btn">Tests</button>
             <button className="secondary-btn">View Reports</button>
           </div>

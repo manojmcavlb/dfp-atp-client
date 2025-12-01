@@ -64,7 +64,8 @@ function ManageUser() {
                 <th>Role</th>
                 <th>Privileges</th>
                 <th>Actions&nbsp;&nbsp;
-                  <button className="grid-btn" onClick={handleAddUser}>Add</button></th>
+                  <button className="grid-btn" onClick={handleAddUser}>Add</button>
+                </th>
               </tr>
             </thead>
             <tbody>

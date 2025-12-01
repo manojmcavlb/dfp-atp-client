@@ -33,7 +33,12 @@ const MainMenu = () => {
                         Instrument Settings
                     </button>
                     <button className="menu-button" onClick={() => handleNavigation('/manage-user')}>
-                        ManageUser
+                        Manage User
+                    </button>
+                </div>
+                <div className="button-container">
+                    <button className="menu-button" onClick={() => handleNavigation('/detected-product?product=remote-head')}>
+                        Test Suites
                     </button>
                 </div>
             </main>

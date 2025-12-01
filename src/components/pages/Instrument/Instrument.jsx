@@ -16,6 +16,24 @@ const instrumentData = [
   { name: "Cyclone Programmer", port: "COM6" },
 ];
 
+const portOptions = [
+  "TCPIP0::A-N6974A-00127.local::inst0::INSTR",
+  "TCPIPO::192.168.1.2::inst0::INSTR",
+  "TCPIPO::A-34461A-00000.local::inst0::INSTR",
+  "TCPIPO::192.168.1.4::inst0::INSTR",
+  "COM1",
+  "COM2",
+  "COM3",
+  "COM4",
+  "COM5",
+  "COM6",
+  "COM7",
+  "COM8",
+  "DAQ",
+  "PXI4::14::INSTR",
+  "TCPIP0::192.168.1.5::5025::SOCKET",
+];
+
 function Instrument() {
   return (
     <div className="page-bg">
@@ -33,7 +51,15 @@ function Instrument() {
               {instrumentData.map((item, index) => (
                 <tr key={index}>
                   <td>{item.name}</td>
-                  <td>{item.port}</td>
+                  <td>
+                    <select className="custom-select" defaultValue={item.port}>
+                      {portOptions.map((port, portIndex) => (
+                        <option key={portIndex} value={port}>
+                          {port}
+                        </option>
+                      ))}
+                    </select>
+                  </td>
                 </tr>
               ))}
             </tbody>

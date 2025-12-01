@@ -1,1 +1,1 @@
-export { default } from './AddEditUser';
+export { default } from '../ManageUser/AddEditUser';
