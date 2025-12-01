@@ -13,6 +13,7 @@ import { DetectedProduct } from "./components/pages/DetectedProduct";
 import Calibration from "./components/pages/Calibration";
 import Instrument from "./components/pages/Instrument";
 import TestSettings from "./components/pages/TestSettings";
+import AddEditUser from "./components/pages/AddEditUser";
 import { Header } from "./components/ui/Header";
 
 class App extends React.Component {
@@ -149,6 +150,22 @@ class App extends React.Component {
                       element={
                         <PrivateRoute roles={[Role.Admin]}>
                           <ManageUser />
+                        </PrivateRoute>
+                      }
+                    />
+                    <Route
+                      path="/add-user"
+                      element={
+                        <PrivateRoute roles={[Role.Admin]}>
+                          <AddEditUser />
+                        </PrivateRoute>
+                      }
+                    />
+                    <Route
+                      path="/edit-user/:id"
+                      element={
+                        <PrivateRoute roles={[Role.Admin]}>
+                          <AddEditUser />
                         </PrivateRoute>
                       }
                     />

@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./styles.css";
 
 const initialUserData = [
@@ -40,6 +41,16 @@ const initialUserData = [
 ];
 
 function ManageUser() {
+  const navigate = useNavigate();
+
+  const handleAddUser = () => {
+    navigate("/add-user");
+  };
+
+  const handleEditUser = (id) => {
+    navigate(`/edit-user/${id}`);
+  };
+
   return (
     <div className="page-bg">
       <main className="manage-user-wrap">
@@ -53,7 +64,7 @@ function ManageUser() {
                 <th>Role</th>
                 <th>Privileges</th>
                 <th>Actions&nbsp;&nbsp;
-                  <button className="grid-btn">Add</button></th>
+                  <button className="grid-btn" onClick={handleAddUser}>Add</button></th>
               </tr>
             </thead>
             <tbody>
@@ -64,7 +75,7 @@ function ManageUser() {
                   <td>{user.role}</td>
                   <td>{user.privileges}</td>
                   <td className="action-cell">
-                    <button className="grid-btn">Edit</button>
+                    <button className="grid-btn" onClick={() => handleEditUser(user.id)}>Edit</button>
                     <button
                       className="grid-btn"
                       disabled={user.username === "Super Admin"}

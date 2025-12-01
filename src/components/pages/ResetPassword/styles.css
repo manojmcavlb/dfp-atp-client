@@ -1,4 +1,3 @@
-
 /* ===== Base Page ===== */
 .page-bg {
   min-height: 100vh;
@@ -28,20 +27,8 @@
 .split-wrap {
   display: grid;
   grid-template-columns: 1fr 320px; /* left: form card, right: rules card */
-  gap: 28px;                        /* clear separation */
+  gap: 28px; /* clear separation */
   align-items: start;
-}
-
-/* ===== Cards ===== */
-.card {
-  background: #fff;
-  border: 1px solid #e0e2e6;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-}
-
-.form-card {
-  padding: 24px 28px;
 }
 
 .rule-card {
@@ -70,7 +57,68 @@
   height: 0;
   border-top: 7px solid transparent;
   border-bottom: 7px solid transparent;
-  border-right: 12px solid #fff;    /* inner fill to match card */
+  border-right: 12px solid #fff; /* inner fill to match card */
+}
+
+.rule-card-title {
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+/* Info message */
+.info-msg {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: #f1f8ff;
+  border: 1px solid #cfe4ff;
+  color: #0b3b7a;
+}
+
+/* ===== Rules List (right card) ===== */
+.rule-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.rule-list li {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  align-items: start;
+  gap: 8px;
+  padding: 6px 0;
+  color: #374151;
+  font-size: 14px;
+}
+
+.rule-check {
+  color: #26a35b; /* green check */
+  font-weight: 700;
+  line-height: 18px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 900px) {
+  .split-wrap {
+    grid-template-columns: 1fr; /* stack vertically on small screens */
+  }
+  .rule-card::before,
+  .rule-card::after {
+    display: none; /* remove connector on mobile */
+  }
+}
+
+/* ===== Cards ===== */
+.card {
+  background: #fff;
+  border: 1px solid #e0e2e6;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.form-card {
+  padding: 24px 28px;
 }
 
 /* ===== Titles ===== */
@@ -172,48 +220,4 @@
   display: flex;
   justify-content: space-between;
   gap: 12px;
-}
-
-/* Info message */
-.info-msg {
-  margin-top: 12px;
-  padding: 10px 12px;
-  border-radius: 10px;
-  background: #f1f8ff;
-  border: 1px solid #cfe4ff;
-  color: #0b3b7a;
-}
-
-/* ===== Rules List (right card) ===== */
-.rule-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.rule-list li {
-  display: grid;
-  grid-template-columns: 18px 1fr;
-  align-items: start;
-  gap: 8px;
-  padding: 6px 0;
-  color: #374151;
-  font-size: 14px;
-}
-
-.rule-check {
-  color: #26a35b; /* green check */
-  font-weight: 700;
-  line-height: 18px;
-}
-
-/* ===== Responsive ===== */
-@media (max-width: 900px) {
-  .split-wrap {
-    grid-template-columns: 1fr; /* stack vertically on small screens */
-  }
-  .rule-card::before,
-  .rule-card::after {
-    display: none; /* remove connector on mobile */
-  }
 }
