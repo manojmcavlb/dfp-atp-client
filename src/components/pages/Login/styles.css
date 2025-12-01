@@ -1,25 +1,3 @@
-
-/* ===== Base Page (shared) ===== */
-.page-bg {
-  min-height: 100vh;
-  background: #f5f6f8;
-  color: #202124;
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial,
-    "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-}
-
-.topbar {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 10px 24px;
-  background: #eceef2;
-  border-bottom: 1px solid #d2d3d6;
-}
-
-.logo { height: 22px; width: auto; object-fit: contain; }
-.title { font-size: 18px; font-weight: 600; color: #3b3d40; }
-
 /* ===== Center Area ===== */
 .center-wrap {
   max-width: 800px;

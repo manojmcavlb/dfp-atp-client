@@ -9,11 +9,11 @@
     width: 100%;
 }
 
-.logo {
+.header-logo {
     height: 30px;
 }
 
-.title {
+.header-title {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
@@ -36,17 +36,4 @@
 .user-role{
     margin-right: 10px;
     font-weight: 500;
-}
-
-.logout-button {
-    border: 1px solid #cccccc;
-    border-radius: 8px;
-    padding: 8px 20px;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: 500;
-}
-
-.logout-button:hover {
-    background-color: #dcdcdc;
 }

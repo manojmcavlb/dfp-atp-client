@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { authenticationService } from "../../../services";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import "./styles.css";
 import "../../../assets/styles/main.css";
+import "./styles.css";
+
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -32,7 +33,7 @@ function Login() {
   }
 
   return (
-    <div>
+    <div className="page-bg">
       <main className="center-wrap">
         <div className="card login-card">
           <h2 className="card-title">Login</h2>

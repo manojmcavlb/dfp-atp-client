@@ -1,0 +1,30 @@
+// ------------- VARIABLES ------------- //
+
+// ------------- COLORS ------------- //
+$gray-dark: #5a5a5a;
+$gray-medium: #d8d8d8;
+$gray-light: #f2f2f2;
+
+$color-primary: $gray-dark;
+$color-secondary: $gray-dark;
+$color-tertiary: $color-secondary;
+
+$color-error: #e74c3c;
+$color-info: #616d78;
+$color-success: #2ecc71;
+$color-warn: #f39c12;
+
+$color-white: #ffffff;
+$color-black: #000000;
+
+// ------------- FONT WEIGHTS ------------- //
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-bold: 700;
+
+// ------------- BORDER RADIUS ------------- //
+$border-radius: 3px;
+
+// ------------- FILTER FUNCTION ------------- //
+$backdrop-filter-normal: blur(18px);
+$background-color-opacity: rgba(255, 255, 255, 0.68);
