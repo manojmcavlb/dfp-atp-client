@@ -36,6 +36,11 @@ const MainMenu = () => {
                         Manage User
                     </button>
                 </div>
+                <div className="button-container">
+                    <button className="menu-button" onClick={() => handleNavigation('/atp-health-status')}>
+                        ATP Health Status
+                    </button>
+                </div>
             </main>
         </div>
     );
