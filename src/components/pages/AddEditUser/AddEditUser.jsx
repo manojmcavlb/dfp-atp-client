@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import "./styles.css";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import "../../../styles/main.css";
 
 function AddEditUser() {
@@ -9,6 +9,8 @@ function AddEditUser() {
   const [role, setRole] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const navigate = useNavigate();
   const { id } = useParams();
   const isEditMode = id !== undefined;
@@ -66,21 +68,47 @@ function AddEditUser() {
             </label>
             <label className="label">
               Password:
-              <input
-                className="input"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
+              <div className="pwd-row">
+                <input
+                  className="input has-icon"
+                  type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                <button
+                  type="button"
+                  className="eye-btn"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? (
+                    <FaEye/>
+                  ) : (
+                    <FaEyeSlash/>
+                  )}
+                </button>
+              </div>
             </label>
             <label className="label">
               Confirm Password:
-              <input
-                className="input"
-                type="password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-              />
+              <div className="pwd-row">
+                <input
+                  className="input has-icon"
+                  type={showConfirmPassword ? "text" : "password"}
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                />
+                <button
+                  type="button"
+                  className="eye-btn"
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                >
+                  {showConfirmPassword ? (
+                    <FaEye/>
+                  ) : (
+                    <FaEyeSlash/>
+                  )}
+                </button>
+              </div>
             </label>
             <div className="row-between">
               <button

@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "../../../assets/styles/main.css";
 import "./styles.css";
 
@@ -29,6 +30,7 @@ const testSettingsData = [
 ];
 
 function TestSettings() {
+  const navigate = useNavigate();
   return (
     <div className="page-bg">
       <main className="test-settings-wrap">
@@ -36,7 +38,7 @@ function TestSettings() {
             <select className="custom-select">
                 <option>79281300AA AC-DC Battery Charger</option>
             </select>
-            <button className="grid-btn">Add</button>
+            <button className="grid-btn" onClick={() => navigate("/add-test-settings")}>Add</button>
         </div>
         <div className="table-container">
           <table className="test-settings-table">
@@ -63,7 +65,7 @@ function TestSettings() {
                   <td>{item.unit}</td>
                   <td>{item.stringLt}</td>
                   <td className="action-cell">
-                    <button className="grid-btn">Edit</button>
+                    <button className="grid-btn" onClick={() => navigate(`/edit-test-settings/${item.step}`)}>Edit</button>
                   </td>
                 </tr>
               ))}

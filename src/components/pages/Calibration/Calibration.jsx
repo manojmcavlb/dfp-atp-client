@@ -106,7 +106,7 @@ function Calibration() {
           <select className="custom-select">
             <option>Select Device</option>
           </select>
-          <button className="grid-btn">Add</button>
+          <button className="grid-btn" onClick={() => navigate("/add-calibration")}>Add</button>
         </div>
         <div className="table-container">
           <table className="calibration-table">
@@ -118,6 +118,7 @@ function Calibration() {
                 <th>Calibration Date</th>
                 <th>Calibration Due Date</th>
                 <th>Status</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -130,6 +131,9 @@ function Calibration() {
                   <td>{item.calibrationDueDate}</td>
                   <td>
                     <span className={`status-box status-${item.status.toLowerCase()}`}>{item.status}</span>
+                  </td>
+                  <td className="action-cell">
+                    <button className="grid-btn" onClick={() => navigate(`/edit-calibration/${item.serialNumber}`)}>Edit</button>
                   </td>
                 </tr>
               ))}

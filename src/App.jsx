@@ -12,8 +12,10 @@ import MainMenu from "./components/pages/MainMenu/MainMenu";
 import { DetectedProduct } from "./components/pages/DetectedProduct";
 import Calibration from "./components/pages/Calibration";
 import Instrument from "./components/pages/Instrument";
-import TestSettings from "./components/pages/TestSettings";
+import TestSettings from "./components/pages/TestSettings/TestSettings";
 import AddEditUser from "./components/pages/AddEditUser";
+import AddEditTestSettings from "./components/pages/AddEditTestSettings/AddEditTestSettings";
+import AddEditCalibration from "./components/pages/AddEditCalibration/AddEditCalibration";
 import { Header } from "./components/ui/Header";
 
 class App extends React.Component {
@@ -209,16 +211,11 @@ class App extends React.Component {
                         </PrivateRoute>
                       }
                     />
-                    <Route
-                      path="/test-settings"
-                      element={
-                        <PrivateRoute>
-                          <TestSettings />
-                        </PrivateRoute>
-                      }
-                    />
-                    {/* Add other PrivateRoutses similarly */}
-                    <Route path="/login" element={<Login />} />
+                    <Route path="/test-settings" element={<PrivateRoute><TestSettings /></PrivateRoute>} />
+                    <Route path="/add-test-settings" element={<PrivateRoute><AddEditTestSettings /></PrivateRoute>} />
+                    <Route path="/edit-test-settings/:id" element={<PrivateRoute><AddEditTestSettings /></PrivateRoute>} />
+                    <Route path="/add-calibration" element={<PrivateRoute><AddEditCalibration /></PrivateRoute>} />
+                    <Route path="/edit-calibration/:id" element={<PrivateRoute><AddEditCalibration /></PrivateRoute>} />
                   </Routes>
                 </div>
               </div>
