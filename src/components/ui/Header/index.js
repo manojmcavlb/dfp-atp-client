@@ -19,11 +19,11 @@ function Header() {
                     <span className="user-role">Admin / Tech</span>
                     <div style={{ marginLeft: "auto", display: "flex", gap: 8 }}>
                         {location.pathname !== "/main-menu" && (
-                            <button className="secondary-btn" onClick={() => navigate("/main-menu")}>
-                                Main Menu
+                            <button className="btn-secondary" onClick={() => navigate("/main-menu")}>
+                                MAIN MENU
                             </button>
                         )}
-                        <button className="primary-btn" onClick={logout}>LOG OUT</button>
+                        <button className="btn-primary" onClick={logout}>LOG OUT</button>
                     </div>
                 </div>
             )}

@@ -60,8 +60,20 @@ const AddEditTestSettings = () => {
               <input className="input" type="text" value={stringLt} onChange={(e) => setStringLt(e.target.value)} />
             </label>
             <div className="row-between">
-              <button type="button" className="secondary-btn" onClick={handleCancel}>Cancel</button>
-              <button type="button" className="primary-btn" onClick={handleSave}>Save</button>
+              <button
+                type="button"
+                className="btn-secondary"
+                onClick={handleCancel}
+              >
+                CANCEL
+              </button>
+              <button
+                type="button"
+                className="btn-primary"
+                onClick={handleSave}
+              >
+                SAVE
+              </button>
             </div>
           </form>
         </div>

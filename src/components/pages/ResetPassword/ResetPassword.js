@@ -151,18 +151,18 @@ function ResetPassword() {
               <div className="row-between">
                 <button
                   type="button"
-                  className="secondary-btn"
+                  className="btn-secondary"
                   onClick={() => navigate("/login")}
                 >
-                  Cancel
+                  CANCEL
                 </button>
-                <button type="submit" className="primary-btn">Reset</button>
+                <button type="submit" className="btn-primary">RESET</button>
                 <button
                   type="button"
-                  className="secondary-btn"
+                  className="btn-secondary"
                   onClick={() => SessionExpiredAlert()}
                 >
-                  SessionExpiredAlert
+                  TEST-SESSION EXPIRED
                 </button>
               </div>
 

@@ -113,17 +113,17 @@ function AddEditUser() {
             <div className="row-between">
               <button
                 type="button"
-                className="secondary-btn"
+                className="btn-secondary"
                 onClick={handleCancel}
               >
-                Cancel
+                CANCEL
               </button>
               <button
                 type="button"
-                className="primary-btn"
+                className="btn-primary"
                 onClick={handleSave}
               >
-                Save
+                SAVE
               </button>
             </div>
           </form>

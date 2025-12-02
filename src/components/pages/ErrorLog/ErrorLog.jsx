@@ -71,9 +71,9 @@ const ErrorLog = () => {
       <div className="error-log-header">
         <h1>Error / Event Log</h1>
         <div className="header-buttons">
-          <button className="secondary-btn">Refresh</button>
-          <button className="secondary-btn">Clear Log</button>
-          <button className="secondary-btn">Export</button>
+          <button className="btn-secondary">REFRESH</button>
+          <button className="btn-secondary">CLEAR LOG</button>
+          <button className="btn-secondary">EXPORT</button>
         </div>
       </div>
 
@@ -123,8 +123,8 @@ const ErrorLog = () => {
         <div className="filter-group">
           <input type="text" placeholder="Search..." className="runs-input" />
         </div>
-        <button className="inline-btn">Apply</button>
-        <button className="inline-btn">Reset</button>
+        <button className="inline-btn">APPLY</button>
+        <button className="inline-btn">RESET</button>
       </div>
 
       <div className="error-log-grid">
@@ -151,7 +151,7 @@ const ErrorLog = () => {
                 <td>{log.message}</td>
                 <td>
                   <button className="inline-btn" onClick={() => handleViewDetails(log)}>
-                    View Details
+                    VIEW DETAILS
                   </button>
                 </td>
               </tr>
@@ -165,7 +165,7 @@ const ErrorLog = () => {
           <div className="details-popup-content">
             <div className="details-popup-header">
               <h2>Log Details</h2>
-              <button className="inline-btn" onClick={handleCloseDetails}>Close</button>
+              <button className="inline-btn" onClick={handleCloseDetails}>CLOSE</button>
             </div>
             <div className="details-popup-body">
               <p><strong>Timestamp:</strong> {showDetails.timestamp}</p>

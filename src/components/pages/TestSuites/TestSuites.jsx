@@ -27,7 +27,7 @@ function TestSuites() {
               <tr>
                 <th>Test Suite Name</th>
                 <th>Actions&nbsp;&nbsp;
-                  <button className="grid-btn" onClick={() => navigate("/add-calibration")}>Add</button>
+                  <button className="grid-btn" onClick={() => navigate("/add-calibration")}>ADD</button>
                 </th>
               </tr>
             </thead>
@@ -36,13 +36,13 @@ function TestSuites() {
                 <tr key={index}>
                   <td>{item.testSuiteName}</td>
                   <td>
-                    <button className="grid-btn" onClick={() => navigate(`/edit-test-suite/${item.testSuiteName}`)}>Edit</button>
+                    <button className="grid-btn" onClick={() => navigate(`/edit-test-suite/${item.testSuiteName}`)}>EDIT</button>
                  
-                    <button className="grid-btn" style={{ marginLeft: "1rem" }} onClick={() => navigate(`/edit-test-suite/${item.testSuiteName}`)}>Delete</button>
+                    <button className="grid-btn" style={{ marginLeft: "1rem" }} onClick={() => navigate(`/edit-test-suite/${item.testSuiteName}`)}>DELETE</button>
                  
-                    <button className="grid-btn"  style={{ marginLeft: "1rem" }}onClick={() => navigate(`/edit-test-suite/${item.testSuiteName}`)}>View</button>
+                    <button className="grid-btn"  style={{ marginLeft: "1rem" }}onClick={() => navigate(`/edit-test-suite/${item.testSuiteName}`)}>VIEW</button>
                   
-                    <button className="grid-btn" style={{ marginLeft: "1rem" }} onClick={() => navigate(`/edit-test-suite/${item.testSuiteName}`)}>Execute</button>
+                    <button className="grid-btn" style={{ marginLeft: "1rem" }} onClick={() => navigate(`/edit-test-suite/${item.testSuiteName}`)}>EXECUTE</button>
                   </td>
                 </tr>
               ))}

@@ -60,8 +60,8 @@ function DetectedProduct() {
           </select>
 
           <div className="status-actions">
-            <button className="secondary-btn" onClick={() => navigate('/edit-device/1')}>Edit</button>
-            <button className="secondary-btn">View Reports</button>
+            <button className="btn-secondary" onClick={() => navigate('/edit-device/1')}>EDIT</button>
+            <button className="btn-secondary">VIEW REPORTS</button>
           </div>
         </div>
 
@@ -79,7 +79,7 @@ function DetectedProduct() {
             <span className="btn-icon" aria-hidden>
               ▶
             </span>{" "}
-            Run Test
+            RUN TEST
           </button>
 
           <div className="runs-field">
@@ -102,13 +102,13 @@ function DetectedProduct() {
               className={`mode-btn ${activeMode === "production" ? "active" : ""}`}
               onClick={() => setActiveMode("production")}
             >
-              Production
+              PRODUCTION
             </button>
             <button
               className={`mode-btn ${activeMode === "customized" ? "active" : ""}`}
               onClick={() => setActiveMode("customized")}
             >
-              Customized
+              CUSTOMIZED
             </button>
           </div>
         </div>

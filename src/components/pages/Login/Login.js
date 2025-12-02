@@ -78,10 +78,10 @@ function Login() {
             </label>
 
             <div className="row-between">
-              <a className="forgot" href="/reset-password">Forget Password?</a>
+              <a className="forgot" href="/reset-password">FORGET PASSWORD?</a>
             </div>
             <div className="center">
-              <button className="primary-btn" type="submit">Login</button>
+              <button className="btn-primary" type="submit">LOGIN</button>
             </div>
           </form>
         </div>

@@ -153,8 +153,8 @@ html,
 /* Password icon */
 
 /* Buttons */
-.primary-btn,
-.secondary-btn {
+.btn-primary,
+.btn-secondary {
   min-width: 75px;
   height: 40px;
   border-radius: 5px;
@@ -164,25 +164,28 @@ html,
   transition: transform 80ms ease, box-shadow 120ms ease, background 120ms ease;
 }
 
-.primary-btn {
+.btn-primary {
   background: var(--color-primary);
+  /* border: 1px solid var(--color-secondary); */
   color: var(--color-secondary);
 }
 
-.secondary-btn {
+.btn-secondary {
   background: var(--color-secondary);
-  color: var(--color-primary);
   border: 1px solid var(--color-primary);
+  color: var(--color-primary);
 }
 
-.primary-btn:hover {
+.btn-primary:hover {
   background: var(--color-secondary);
-  color: var(--color-primary);
   border: 1px solid var(--color-primary);
+  color: var(--color-primary);
 }
 
-.secondary-btn:hover {
+.btn-secondary:hover {
   background: var(--color-primary);
+  border: 1px solid var(--color-secondary);
+  color: var(--color-secondary);
 }
 /* Buttons*/
 

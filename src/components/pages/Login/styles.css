@@ -62,5 +62,5 @@
 @media (max-width: 600px) {
   .center-wrap { margin: 28px auto; }
   .card.login-card { padding: 18px 20px; }
-  .primary-btn { min-width: 140px; }
+  .btn-primary { min-width: 140px; }
 }
