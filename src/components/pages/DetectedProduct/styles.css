@@ -21,12 +21,6 @@
   font-weight: bold;
 }
 
-.detected-product {
-  color: #2b5a9a;
-  text-decoration: none;
-  font-weight: 600;
-}
-
 .status-actions {
   margin-left: auto;
   display: flex;
@@ -56,19 +50,6 @@
   background-color: #fff;
   font-weight: 600;
   cursor: pointer;
-}
-
-.runs-field {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.runs-input {
-  width: 50px;
-  padding: 6px;
-  border: 1px solid #dcdfe6;
-  border-radius: 6px;
 }
 
 .mode-switch {
@@ -102,4 +83,8 @@
 
 .group-item:last-child {
   border-bottom: none;
+}
+
+.input.runs-input {
+  width: 60px;
 }

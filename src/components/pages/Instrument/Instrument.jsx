@@ -53,7 +53,7 @@ function Instrument() {
                 <tr key={index}>
                   <td>{item.name}</td>
                   <td>
-                    <select className="custom-select" defaultValue={item.port}>
+                    <select className="select" defaultValue={item.port}>
                       {portOptions.map((port, portIndex) => (
                         <option key={portIndex} value={port}>
                           {port}

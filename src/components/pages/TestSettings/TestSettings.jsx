@@ -35,11 +35,11 @@ function TestSettings() {
     <div className="page-bg">
       <main className="page-wrap">
         <h1 className="page-title">Test Settings</h1>
-        <div className="header-controls">
-            <select className="custom-select">
+        <div className="action-btns">
+            <select className="select">
                 <option>79281300AA AC-DC Battery Charger</option>
             </select>
-            <button className="btn-secondary grid-btn" onClick={() => navigate("/add-test-settings")}>Add</button>
+            <button className="btn-secondary" onClick={() => navigate("/add-test-settings")}>ADD</button>
         </div>
         <div className="table-container">
           <table className="page-table">
@@ -65,8 +65,8 @@ function TestSettings() {
                   <td>{item.highLt}</td>
                   <td>{item.unit}</td>
                   <td>{item.stringLt}</td>
-                  <td className="action-cell">
-                    <button className="btn-secondary grid-btn" onClick={() => navigate(`/edit-test-settings/${item.step}`)}>Edit</button>
+                  <td className="action-btns">
+                    <button className="btn-secondary" onClick={() => navigate(`/edit-test-settings/${item.step}`)}>EDIT</button>
                   </td>
                 </tr>
               ))}

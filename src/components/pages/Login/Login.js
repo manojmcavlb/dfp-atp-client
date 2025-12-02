@@ -38,7 +38,7 @@ function Login() {
         <div className="card login-card">
           <h2 className="card-title">Login</h2>
 
-          {error && <div className="error-msg" role="alert">{error}</div>}
+          {error && <div className="msg error-msg" role="alert">{error}</div>}
 
           <form onSubmit={handleSubmit} className="form">
             <label className="label">
@@ -77,7 +77,7 @@ function Login() {
               </div>
             </label>
 
-            <div className="row-between">
+            <div className="action-btns">
               <a className="link" href="/reset-password">FORGET PASSWORD?</a>
             </div>
             <div className="center">

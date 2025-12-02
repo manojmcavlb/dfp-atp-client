@@ -151,7 +151,7 @@ function ResetPassword() {
                 </div>
               </label>
 
-              <div className="row-between">
+              <div className="action-btns">
                 <button
                   type="button"
                   className="btn-secondary"
@@ -169,7 +169,7 @@ function ResetPassword() {
                 </button>
               </div>
 
-              {message && <div className="info-msg">{message}</div>}
+              {message && <div className="msg info-msg">{message}</div>}
             </form>
           </div>
 

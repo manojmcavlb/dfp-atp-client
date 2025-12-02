@@ -110,7 +110,7 @@ function AddEditUser() {
                 </button>
               </div>
             </label>
-            <div className="row-between">
+            <div className="action-btns">
               <button
                 type="button"
                 className="btn-secondary"

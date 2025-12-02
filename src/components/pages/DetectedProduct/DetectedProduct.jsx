@@ -48,7 +48,7 @@ function DetectedProduct() {
           </div>
           <span className="status-label">Detected Product:&nbsp;</span>
           <select
-            className="detected-product"
+            className="select"
             value={productName}
             onChange={(e) => setDetectedProduct({ name: e.target.value })}
           >
@@ -77,9 +77,8 @@ function DetectedProduct() {
 
           <button className="inline-btn" onClick={handleRunTest}>
             <span className="btn-icon" aria-hidden>
-              ▶
-            </span>{" "}
-            RUN TEST
+              ▶ RUN TEST
+            </span>
           </button>
 
           <div className="runs-field">
@@ -88,7 +87,7 @@ function DetectedProduct() {
             </label>
             <input
               id="runs"
-              className="runs-input"
+              className="input runs-input"
               type="number"
               min={1}
               max={99}

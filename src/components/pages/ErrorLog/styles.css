@@ -8,10 +8,6 @@
   align-items: center;
 }
 
-.header-buttons > button {
-  margin-left: 10px;
-}
-
 .filters-panel {
   display: flex;
   flex-wrap: wrap;
@@ -87,23 +83,4 @@
     margin-top: 15px;
     padding-top: 15px;
     border-top: 1px solid #eee;
-}
-
-.runs-input {
-  width: 75px;
-  padding: 6px;
-  border: 1px solid #dcdfe6;
-  border-radius: 6px;
-}
-
-.inline-btn {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 12px;
-  border: 1px solid #dcdfe6;
-  border-radius: 6px;
-  background-color: #fff;
-  font-weight: 600;
-  cursor: pointer;
 }

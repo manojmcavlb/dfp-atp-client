@@ -7,15 +7,15 @@ const AddEditDevice = () => {
   const { id } = useParams();
   const isEditMode = id !== undefined;
 
-  const [product, setProduct] = useState('');
-  const [serialNumber, setSerialNumber] = useState('');
-  const [manufacturerName, setManufacturerName] = useState('');
-  const [manufacturingCageCode, setManufacturingCageCode] = useState('');
-  const [executeDateTime, setExecuteDateTime] = useState('');
-  const [hardwarePartNumber, setHardwarePartNumber] = useState('');
-  const [manufacturingDate, setManufacturingDate] = useState('');
-  const [modDot, setModDot] = useState('');
-  const [pmaNumber, setPmaNumber] = useState('');
+  const [product, setProduct] = useState('Remote Head');
+  const [serialNumber, setSerialNumber] = useState('12345');
+  const [manufacturerName, setManufacturerName] = useState('Acme Corp');
+  const [manufacturingCageCode, setManufacturingCageCode] = useState('CAGE123');
+  const [executeDateTime, setExecuteDateTime] = useState(new Date().toISOString().slice(0, 16));
+  const [hardwarePartNumber, setHardwarePartNumber] = useState('HW-54321');
+  const [manufacturingDate, setManufacturingDate] = useState('2023-01-01');
+  const [modDot, setModDot] = useState('MD-67890');
+  const [pmaNumber, setPmaNumber] = useState('PMA-11223');
 
   const handleSave = () => {
     // Implement save logic here
@@ -78,7 +78,7 @@ const AddEditDevice = () => {
                   <input className="input" type="text" value={pmaNumber} onChange={(e) => setPmaNumber(e.target.value)} />
                 </label>
             </div>
-            <div className="row-between" style={{ marginTop: '1rem' }}>
+            <div className="action-btns">
               <button type="button" className="btn-secondary" onClick={handleCancel}>CANCEL</button>
               <button type="button" className="btn-primary" onClick={handleSave}>SAVE</button>
             </div>

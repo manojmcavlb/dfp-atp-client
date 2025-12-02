@@ -59,7 +59,7 @@ const AddEditTestSettings = () => {
               String Lt:
               <input className="input" type="text" value={stringLt} onChange={(e) => setStringLt(e.target.value)} />
             </label>
-            <div className="row-between">
+            <div className="action-btns">
               <button
                 type="button"
                 className="btn-secondary"

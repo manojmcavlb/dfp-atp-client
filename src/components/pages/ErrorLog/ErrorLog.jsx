@@ -46,7 +46,7 @@ const ErrorLog = () => {
   const [endDate, setEndDate] = useState(today);
 
   const handleViewDetails = (log) => {
-    setShowDetails(log);
+    setShowDetails(log);  
   };
 
   const handleCloseDetails = () => {
@@ -70,7 +70,7 @@ const ErrorLog = () => {
     <div className="error-log-container">
       <div className="error-log-header">
         <h1>Error / Event Log</h1>
-        <div className="header-buttons">
+        <div className="action-btns">
           <button className="btn-secondary">REFRESH</button>
           <button className="btn-secondary">CLEAR LOG</button>
           <button className="btn-secondary">EXPORT</button>
@@ -82,20 +82,20 @@ const ErrorLog = () => {
           <label>Date Range:</label>
           <input
             type="date"
-            className="runs-input"
+            className="date runs-input"
             value={startDate}
             onChange={(e) => setStartDate(e.target.value)}
           />
           <input
             type="date"
-            className="runs-input"
+            className="date runs-input"
             value={endDate}
             onChange={(e) => setEndDate(e.target.value)}
           />
         </div>
         <div className="filter-group">
           <label>Log Type:</label>
-          <select className="runs-input">
+          <select className="select runs-input">
             <option>All</option>
             <option>Error</option>
             <option>Warning</option>
@@ -105,7 +105,7 @@ const ErrorLog = () => {
         </div>
         <div className="filter-group">
           <label>Severity:</label>
-          <select className="runs-input">
+          <select className="select runs-input">
             <option>All</option>
             <option>Low</option>
             <option>Medium</option>
@@ -115,16 +115,17 @@ const ErrorLog = () => {
         </div>
         <div className="filter-group">
           <label>Module:</label>
-          <select className="runs-input">
+          <select className="select runs-input">
             <option>All</option>
-            {/* Add other modules here */}
           </select>
         </div>
         <div className="filter-group">
-          <input type="text" placeholder="Search..." className="runs-input" />
+          <input type="text" placeholder="Search..." className="input runs-input" />
         </div>
-        <button className="inline-btn">APPLY</button>
-        <button className="inline-btn">RESET</button>
+        <div className="action-btns">
+          <button className="btn-primary">APPLY</button>
+          <button className="btn-secondary">RESET</button>
+        </div>
       </div>
 
       <div className="error-log-grid">
@@ -150,7 +151,7 @@ const ErrorLog = () => {
                 <td>{log.severity}</td>
                 <td>{log.message}</td>
                 <td>
-                  <button className="inline-btn" onClick={() => handleViewDetails(log)}>
+                  <button className="btn-secondary" onClick={() => handleViewDetails(log)}>
                     VIEW DETAILS
                   </button>
                 </td>
@@ -165,7 +166,7 @@ const ErrorLog = () => {
           <div className="details-popup-content">
             <div className="details-popup-header">
               <h2>Log Details</h2>
-              <button className="inline-btn" onClick={handleCloseDetails}>CLOSE</button>
+              <button className="btn-secondary" onClick={handleCloseDetails}>CLOSE</button>
             </div>
             <div className="details-popup-body">
               <p><strong>Timestamp:</strong> {showDetails.timestamp}</p>

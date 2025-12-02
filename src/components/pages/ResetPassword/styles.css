@@ -40,16 +40,6 @@
   margin-bottom: 10px;
 }
 
-/* Info message */
-.info-msg {
-  margin-top: 12px;
-  padding: 10px 12px;
-  border-radius: 10px;
-  background: #f1f8ff;
-  border: 1px solid #cfe4ff;
-  color: #0b3b7a;
-}
-
 /* ===== Rules List (right card) ===== */
 .rule-list {
   list-style: none;
