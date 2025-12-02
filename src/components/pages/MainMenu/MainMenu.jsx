@@ -40,7 +40,7 @@ const MainMenu = () => {
                     </button>
                 </div>
                 <div className="button-container">
-                    <button className="btn-secondary" onClick={() => handleNavigation('/atp-health-status')}>
+                    <button className="btn-secondary" onClick={() => handleNavigation2('/atp-health-status')}>
                         ATP HEALTH STATUS
                     </button>
                     <button className="btn-secondary" onClick={() => handleNavigation('/error-log')}>

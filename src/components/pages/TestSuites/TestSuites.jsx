@@ -20,7 +20,7 @@ function TestSuites() {
   return (
     <div className="page-bg">
       <main className="page-wrap">
-        <h2 className="page-title">Test Suites</h2>
+        <h2 className="page-title">Manual-Test Suites</h2>
         <div className="table-container">
           <table className="page-table">
             <thead>

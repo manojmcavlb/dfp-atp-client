@@ -37,8 +37,9 @@ function DetectedProduct() {
   ];
 
   return (
-    <div>
+    <div className="page-bg">
       <main className="page-wrap">
+        <h2 className="page-title">Production-Test Suites</h2>
         <div className="status-row">
           <div className="status-item">
             <span className="status-icon" onClick={handleRefresh}>

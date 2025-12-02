@@ -39,14 +39,72 @@ const ErrorLog = () => {
       message: 'Temperature nearing limit',
       details: {},
     },
+    {
+      timestamp: '2025-12-01 14:25:00',
+      type: 'Debug',
+      code: 'D001',
+      source: 'IoT Gateway',
+      severity: 'Low',
+      message: 'Connection established',
+      details: {
+        ip: '192.168.1.1'
+      },
+    },
+    {
+      timestamp: '2025-12-01 14:30:15',
+      type: 'Error',
+      code: 'E105',
+      source: 'Remote Head',
+      severity: 'Critical',
+      message: 'Failed to initialize',
+      details: {
+        reason: 'timeout'
+      },
+    },
+    {
+      timestamp: '2025-12-01 14:32:00',
+      type: 'Event',
+      code: 'EVT24',
+      source: 'Application',
+      severity: 'Info',
+      message: 'User logged in',
+      details: {
+        user: 'testuser'
+      },
+    },
+    {
+      timestamp: '2025-12-01 14:35:10',
+      type: 'Warning',
+      code: 'W068',
+      source: 'IO-Board',
+      severity: 'Medium',
+      message: 'Low battery',
+      details: {
+        level: '15%'
+      },
+    },
+    {
+      timestamp: '2025-12-01 14:40:00',
+      type: 'Error',
+      code: 'E106',
+      source: 'Sensor Module',
+      severity: 'High',
+      message: 'Sensor communication failed',
+      details: {
+        sensorId: 'S-5'
+      },
+    },
   ]);
   const [showDetails, setShowDetails] = useState(null);
   const today = new Date().toISOString().split('T')[0];
   const [startDate, setStartDate] = useState(today);
   const [endDate, setEndDate] = useState(today);
+  const [logType, setLogType] = useState('Error');
+  const [severity, setSeverity] = useState('High');
+  const [module, setModule] = useState('IoT Gateway');
 
   const handleViewDetails = (log) => {
-    setShowDetails(log);  
+    setShowDetails(log);
   };
 
   const handleCloseDetails = () => {
@@ -67,16 +125,14 @@ const ErrorLog = () => {
   };
 
   return (
-    <div className="error-log-container">
-      <div className="error-log-header">
-        <h1>Error / Event Log</h1>
-        <div className="action-btns">
+    <div className="page-bg">
+      <main className="page-wrap">
+        <h2 className="page-title">Error / Event Log</h2>
+        <div className="action-btns error-log-header">
           <button className="btn-secondary">REFRESH</button>
           <button className="btn-secondary">CLEAR LOG</button>
           <button className="btn-secondary">EXPORT</button>
         </div>
-      </div>
-
       <div className="filters-panel">
         <div className="filter-group">
           <label>Date Range:</label>
@@ -95,7 +151,7 @@ const ErrorLog = () => {
         </div>
         <div className="filter-group">
           <label>Log Type:</label>
-          <select className="select runs-input">
+          <select className="select runs-input" value={logType} onChange={(e) => setLogType(e.target.value)}>
             <option>All</option>
             <option>Error</option>
             <option>Warning</option>
@@ -105,7 +161,7 @@ const ErrorLog = () => {
         </div>
         <div className="filter-group">
           <label>Severity:</label>
-          <select className="select runs-input">
+          <select className="select runs-input" value={severity} onChange={(e) => setSeverity(e.target.value)}>
             <option>All</option>
             <option>Low</option>
             <option>Medium</option>
@@ -115,12 +171,14 @@ const ErrorLog = () => {
         </div>
         <div className="filter-group">
           <label>Module:</label>
-          <select className="select runs-input">
+          <select className="select runs-input" value={module} onChange={(e) => setModule(e.target.value)}>
             <option>All</option>
+            <option>IoT Gateway</option>
+            <option>Remote Head</option>
           </select>
         </div>
         <div className="filter-group">
-          <input type="text" placeholder="Search..." className="input runs-input" />
+          <input type="text" placeholder="Search..." className="input input-search runs-input" />
         </div>
         <div className="action-btns">
           <button className="btn-primary">APPLY</button>
@@ -165,19 +223,20 @@ const ErrorLog = () => {
         <div className="details-popup">
           <div className="details-popup-content">
             <div className="details-popup-header">
-              <h2>Log Details</h2>
-              <button className="btn-secondary" onClick={handleCloseDetails}>CLOSE</button>
+              <h3>Details</h3>
+              <button onClick={handleCloseDetails} className="btn-close">&times;</button>
             </div>
             <div className="details-popup-body">
               <p><strong>Timestamp:</strong> {showDetails.timestamp}</p>
               <p><strong>Log Type:</strong> {showDetails.type}</p>
+              <p><strong>Error/Event Code:</strong> {showDetails.code}</p>
               <p><strong>Severity:</strong> {showDetails.severity}</p>
               <p><strong>Source/Module:</strong> {showDetails.source}</p>
               <p><strong>Error Code:</strong> {showDetails.code}</p>
               <p><strong>Message:</strong> {showDetails.message}</p>
               {Object.keys(showDetails.details).length > 0 && (
                 <div className="additional-details">
-                  <h3>Additional Data</h3>
+                  <h4>Additional Details:</h4>
                   {Object.entries(showDetails.details).map(([key, value]) => (
                     <p key={key}><strong>{key}:</strong> {value}</p>
                   ))}
@@ -187,6 +246,7 @@ const ErrorLog = () => {
           </div>
         </div>
       )}
+      </main>
     </div>
   );
 };

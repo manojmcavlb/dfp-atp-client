@@ -1,11 +1,5 @@
-.error-log-container {
-  padding: 20px;
-}
-
 .error-log-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: right;
 }
 
 .filters-panel {
@@ -79,8 +73,18 @@
   margin-bottom: 15px;
 }
 
+.details-popup-body {
+  max-height: 60vh;
+  overflow: auto;
+  padding-right: 15px;
+}
+
 .additional-details {
     margin-top: 15px;
     padding-top: 15px;
     border-top: 1px solid #eee;
+}
+
+.input-search {
+    min-width: 175px;
 }

@@ -101,7 +101,7 @@ html,
 .label {
   display: block;
   color: var(--color-gray-dark);
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 500;
   margin-bottom: 6px;
 }
@@ -112,7 +112,8 @@ html,
   border: 1px solid var(--color-body);
   font-size: 16px;
   font-weight: 400;
-  padding: 8px 10px;
+  /* padding: 8px 10px; */
+  padding: 5px;
   border-radius: 5px;
   box-sizing: border-box;
 }
@@ -136,7 +137,7 @@ html,
 .btn-primary,
 .btn-secondary {
   min-width: 75px;
-  height: 40px;
+  height: 30px;
   border-radius: 5px;
   border: 1px solid transparent;
   font-size: 14px;
@@ -312,12 +313,14 @@ html,
 
 /* Page */
 .page-wrap {
-  padding: 16px 24px;
+  /* padding: 16px 24px; */
 }
 
 .page-table {
   width: 100%;
   border-collapse: collapse;
+  /* white-space: nowrap; */
+  /* text-wrap-mode: nowrap; */
 }
 
 .page-table th,
@@ -338,9 +341,8 @@ html,
 }
 
 .page-title {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
-  margin-bottom: 16px;
   text-align: center;
 }
 
