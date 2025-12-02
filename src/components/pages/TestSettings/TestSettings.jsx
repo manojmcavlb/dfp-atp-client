@@ -39,7 +39,7 @@ function TestSettings() {
             <select className="custom-select">
                 <option>79281300AA AC-DC Battery Charger</option>
             </select>
-            <button className="grid-btn" onClick={() => navigate("/add-test-settings")}>Add</button>
+            <button className="btn-secondary grid-btn" onClick={() => navigate("/add-test-settings")}>Add</button>
         </div>
         <div className="table-container">
           <table className="page-table">
@@ -66,7 +66,7 @@ function TestSettings() {
                   <td>{item.unit}</td>
                   <td>{item.stringLt}</td>
                   <td className="action-cell">
-                    <button className="grid-btn" onClick={() => navigate(`/edit-test-settings/${item.step}`)}>Edit</button>
+                    <button className="btn-secondary grid-btn" onClick={() => navigate(`/edit-test-settings/${item.step}`)}>Edit</button>
                   </td>
                 </tr>
               ))}

@@ -17,7 +17,7 @@ function Login() {
     e.preventDefault();
     if (!username || !password) {
       setError(
-        "We didn't recognize the username or password you entered. Please try again."
+        "Please enter both username and password to continue."
       );
       return;
     }
@@ -78,7 +78,7 @@ function Login() {
             </label>
 
             <div className="row-between">
-              <a className="forgot" href="/reset-password">FORGET PASSWORD?</a>
+              <a className="link" href="/reset-password">FORGET PASSWORD?</a>
             </div>
             <div className="center">
               <button className="btn-primary" type="submit">LOGIN</button>

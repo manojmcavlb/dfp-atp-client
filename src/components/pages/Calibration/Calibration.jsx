@@ -112,7 +112,7 @@ function Calibration() {
                 <th>Calibration Due Date</th>
                 <th>Status</th>
                 <th>Actions&nbsp;&nbsp;
-                  <button className="grid-btn" onClick={() => navigate("/add-calibration")}>Add</button>
+                  <button className="btn-secondary grid-btn" onClick={() => navigate("/add-calibration")}>Add</button>
                 </th>
               </tr>
             </thead>
@@ -128,7 +128,7 @@ function Calibration() {
                     <span className={`status-box status-${item.status.toLowerCase()}`}>{item.status}</span>
                   </td>
                   <td className="action-cell">
-                    <button className="grid-btn" onClick={() => navigate(`/edit-calibration/${item.serialNumber}`)}>Edit</button>
+                    <button className="btn-secondary grid-btn" onClick={() => navigate(`/edit-calibration/${item.serialNumber}`)}>Edit</button>
                   </td>
                 </tr>
               ))}

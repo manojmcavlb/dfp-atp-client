@@ -65,7 +65,7 @@ function ManageUser() {
                 <th>Role</th>
                 <th>Privileges</th>
                 <th>Actions&nbsp;&nbsp;
-                  <button className="grid-btn" onClick={handleAddUser}>ADD</button>
+                  <button className="btn-secondary grid-btn" onClick={handleAddUser}>ADD</button>
                 </th>
               </tr>
             </thead>
@@ -77,9 +77,9 @@ function ManageUser() {
                   <td>{user.role}</td>
                   <td>{user.privileges}</td>
                   <td className="action-cell">
-                    <button className="grid-btn" onClick={() => handleEditUser(user.id)}>EDIT</button>
+                    <button className="btn-secondary grid-btn" onClick={() => handleEditUser(user.id)}>EDIT</button>
                     <button
-                      className="grid-btn"
+                      className="btn-secondary grid-btn"
                       disabled={user.username === "Super Admin"}
                     >
                       DELETE

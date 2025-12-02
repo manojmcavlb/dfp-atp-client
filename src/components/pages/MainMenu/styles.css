@@ -30,5 +30,6 @@
 }
 
 .button-container > button {
+    min-width: 175px;
     margin: 0 100px;
 }

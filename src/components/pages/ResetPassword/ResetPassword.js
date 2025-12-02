@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";import usersData from "../../../utils/users.json";
+import { useNavigate } from "react-router-dom";
+import usersData from "../../../utils/users.json";
+import SessionExpiredAlert from "../../ui/SessionExpiredAlert";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import "../../../assets/styles/main.css";
 import "./styles.css";
-
 /* ---------- utils ---------- */
 function hasSequentialString(s, length = 3) {
   if (!s) return false;
@@ -24,6 +25,7 @@ function ResetPassword() {
   const [showConfirmPwd, setShowConfirmPwd] = useState(false);
   const [message, setMessage] = useState("");
   const [localUsers, setLocalUsers] = useState(usersData.users);
+  const [showSessionExpiredAlert, setShowSessionExpiredAlert] = useState(false);
   const navigate = useNavigate();
 
   function validatePassword(p) {
@@ -85,6 +87,7 @@ function ResetPassword() {
 
   return (
     <div className="page-bg">
+      {showSessionExpiredAlert && <SessionExpiredAlert onLogin={() => navigate('/login')} />}
       <main className="center-wrap">
         {/* NEW: side-by-side container */}
         <div className="split-wrap">
@@ -160,7 +163,7 @@ function ResetPassword() {
                 <button
                   type="button"
                   className="btn-secondary"
-                  onClick={() => SessionExpiredAlert()}
+                  onClick={() => setShowSessionExpiredAlert(true)}
                 >
                   TEST-SESSION EXPIRED
                 </button>

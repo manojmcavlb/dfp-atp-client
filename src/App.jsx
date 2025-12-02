@@ -118,133 +118,129 @@ class App extends React.Component {
           )} */}
           <div className="jumbotron">
             <div className="container">
-              <div className="row">
-                <div className="col-md-6 offset-md-3">
-                  <Routes>
-                    {/* <Route
-                      path="/"
-                      element={
-                        <PrivateRoute>
-                          <HomePage />
-                        </PrivateRoute>
-                      }
-                    /> */}
-                    <Route path="/login" element={<Login />} />
-                    <Route
-                      path="/reset-password"
-                      element={
-                        <ResetPassword />
-                      }
-                    />
-                    <Route
-                      path="/main-menu"
-                      element={
-                        <PrivateRoute>
-                          <MainMenu />
-                        </PrivateRoute>
-                      }
-                    />
-                    <Route
-                      path="/drivers"
-                      element={
-                        <PrivateRoute roles={[Role.Admin]}>
-                          <Drivers />
-                        </PrivateRoute>
-                      }
-                    />
-                    <Route
-                      path="/manage-user"
-                      element={
-                        <PrivateRoute roles={[Role.Admin]}>
-                          <ManageUser />
-                        </PrivateRoute>
-                      }
-                    />
-                    <Route
-                      path="/add-user"
-                      element={
-                        <PrivateRoute roles={[Role.Admin]}>
-                          <AddEditUser />
-                        </PrivateRoute>
-                      }
-                    />
-                    <Route
-                      path="/edit-user/:id"
-                      element={
-                        <PrivateRoute roles={[Role.Admin]}>
-                          <AddEditUser />
-                        </PrivateRoute>
-                      }
-                    />
-                    <Route
-                      path="/add-device"
-                      element={
-                        <PrivateRoute>
-                          <AddEditDevice />
-                        </PrivateRoute>
-                      }
-                    />
-                    <Route
-                      path="/edit-device/:id"
-                      element={
-                        <PrivateRoute>
-                          <AddEditDevice />
-                        </PrivateRoute>
-                      }
-                    />
-                    <Route
-                      path="/detected-product"
-                      element={
-                        <PrivateRoute>
-                          <DetectedProduct />
-                        </PrivateRoute>
-                      }
-                    />
-                    <Route
-                      path="/detected-product?product=remote-head"
-                      element={
-                        <PrivateRoute>
-                          <DetectedProduct product="remote-head" />
-                        </PrivateRoute>
-                      }
-                    />
-                    <Route
-                      path="/detected-product?product=iot-gateway"
-                      element={
-                        <PrivateRoute>
-                          <DetectedProduct product="iot-gateway" />
-                        </PrivateRoute>
-                      }
-                    />
-                    <Route
-                      path="/calibration"
-                      element={
-                        <PrivateRoute>
-                          <Calibration />
-                        </PrivateRoute>
-                      }
-                    />
-                    <Route
-                      path="/instrument"
-                      element={
-                        <PrivateRoute>
-                          <Instrument />
-                        </PrivateRoute>
-                      }
-                    />
-                    <Route path="/test-settings" element={<PrivateRoute><TestSettings /></PrivateRoute>} />
-                    <Route path="/add-test-settings" element={<PrivateRoute><AddEditTestSettings /></PrivateRoute>} />
-                    <Route path="/edit-test-settings/:id" element={<PrivateRoute><AddEditTestSettings /></PrivateRoute>} />
-                    <Route path="/add-calibration" element={<PrivateRoute><AddEditCalibration /></PrivateRoute>} />
-                    <Route path="/edit-calibration/:id" element={<PrivateRoute><AddEditCalibration /></PrivateRoute>} />
-                    <Route path="/test-suite" element={<PrivateRoute><TestSuites /></PrivateRoute>} />
-                    <Route path="/atp-health-status" element={<PrivateRoute><AtpHealthStatus /></PrivateRoute>} />
-                    <Route path="/error-log" element={<PrivateRoute><ErrorLog /></PrivateRoute>} />
-                    {/* <Route path="/add-test-suite" element={<PrivateRoute><AddEditTestSuite /></PrivateRoute>} />
-                    <Route path="/edit-test-suite/:id" element={<PrivateRoute><AddEditTestSuite /></PrivateRoute>} /> */}
-                  </Routes>
-                </div>
-              </div>
+              <Routes>
+                {/* <Route
+                  path="/"
+                  element={
+                    <PrivateRoute>
+                      <HomePage />
+                    </PrivateRoute>
+                  }
+                /> */}
+                <Route path="/login" element={<Login />} />
+                <Route
+                  path="/reset-password"
+                  element={
+                    <ResetPassword />
+                  }
+                />
+                <Route
+                  path="/main-menu"
+                  element={
+                    <PrivateRoute>
+                      <MainMenu />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/drivers"
+                  element={
+                    <PrivateRoute roles={[Role.Admin]}>
+                      <Drivers />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/manage-user"
+                  element={
+                    <PrivateRoute roles={[Role.Admin]}>
+                      <ManageUser />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/add-user"
+                  element={
+                    <PrivateRoute roles={[Role.Admin]}>
+                      <AddEditUser />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/edit-user/:id"
+                  element={
+                    <PrivateRoute roles={[Role.Admin]}>
+                      <AddEditUser />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/add-device"
+                  element={
+                    <PrivateRoute>
+                      <AddEditDevice />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/edit-device/:id"
+                  element={
+                    <PrivateRoute>
+                      <AddEditDevice />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/detected-product"
+                  element={
+                    <PrivateRoute>
+                      <DetectedProduct />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/detected-product?product=remote-head"
+                  element={
+                    <PrivateRoute>
+                      <DetectedProduct product="remote-head" />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/detected-product?product=iot-gateway"
+                  element={
+                    <PrivateRoute>
+                      <DetectedProduct product="iot-gateway" />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/calibration"
+                  element={
+                    <PrivateRoute>
+                      <Calibration />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/instrument"
+                  element={
+                    <PrivateRoute>
+                      <Instrument />
+                    </PrivateRoute>
+                  }
+                />
+                <Route path="/test-settings" element={<PrivateRoute><TestSettings /></PrivateRoute>} />
+                <Route path="/add-test-settings" element={<PrivateRoute><AddEditTestSettings /></PrivateRoute>} />
+                <Route path="/edit-test-settings/:id" element={<PrivateRoute><AddEditTestSettings /></PrivateRoute>} />
+                <Route path="/add-calibration" element={<PrivateRoute><AddEditCalibration /></PrivateRoute>} />
+                <Route path="/edit-calibration/:id" element={<PrivateRoute><AddEditCalibration /></PrivateRoute>} />
+                <Route path="/test-suite" element={<PrivateRoute><TestSuites /></PrivateRoute>} />
+                <Route path="/atp-health-status" element={<PrivateRoute><AtpHealthStatus /></PrivateRoute>} />
+                <Route path="/error-log" element={<PrivateRoute><ErrorLog /></PrivateRoute>} />
+                {/* <Route path="/add-test-suite" element={<PrivateRoute><AddEditTestSuite /></PrivateRoute>} />
+                <Route path="/edit-test-suite/:id" element={<PrivateRoute><AddEditTestSuite /></PrivateRoute>} /> */}
+              </Routes>
             </div>
           </div>
         </div>

@@ -25,7 +25,7 @@ export function configureFakeBackend() {
                 if (url.endsWith('/users/authenticate') && opts.method === 'POST') {
                     const params = JSON.parse(opts.body);
                     const user = users.find(x => x.username === params.username && x.password === params.password);
-                    if (!user) return error('Username or password is incorrect');
+                    if (!user) return error('We didn\'t recognize the username or password you entered. Please try again.');
                     return ok({
                         id: user.id,
                         username: user.username,

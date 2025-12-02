@@ -99,13 +99,17 @@ function DetectedProduct() {
 
           <div className="mode-switch">
             <button
-              className={`mode-btn ${activeMode === "production" ? "active" : ""}`}
+              className={`mode-btn ${
+                activeMode === "production" ? "btn-primary" : "btn-secondary"
+              }`}
               onClick={() => setActiveMode("production")}
             >
               PRODUCTION
             </button>
             <button
-              className={`mode-btn ${activeMode === "customized" ? "active" : ""}`}
+              className={`mode-btn ${
+                activeMode === "customized" ? "btn-primary" : "btn-secondary"
+              }`}
               onClick={() => setActiveMode("customized")}
             >
               CUSTOMIZED

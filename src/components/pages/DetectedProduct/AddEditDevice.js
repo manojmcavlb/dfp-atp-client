@@ -42,9 +42,9 @@ const AddEditDevice = () => {
       <main className="center-wrap">
         <div className="card form-card">
           <h2 className="card-title">{isEditMode ? 'Edit Device' : 'Add Device'}</h2>
+          
           <form className="form">
-            <div style={{ display: 'flex', gap: '2rem' }}>
-              <div style={{ flex: 1 }}>
+            <div >
                 <label className="label">
                   Product:
                   <input className="input" type="text" value={product} onChange={(e) => setProduct(e.target.value)} />
@@ -61,8 +61,6 @@ const AddEditDevice = () => {
                   Manufacturing Cage Code:
                   <input className="input" type="text" value={manufacturingCageCode} onChange={(e) => setManufacturingCageCode(e.target.value)} />
                 </label>
-              </div>
-              <div style={{ flex: 1 }}>
                 <label className="label">
                   Hardware Part Number:
                   <input className="input" type="text" value={hardwarePartNumber} onChange={(e) => setHardwarePartNumber(e.target.value)} />
@@ -79,7 +77,6 @@ const AddEditDevice = () => {
                   PMA Number:
                   <input className="input" type="text" value={pmaNumber} onChange={(e) => setPmaNumber(e.target.value)} />
                 </label>
-              </div>
             </div>
             <div className="row-between" style={{ marginTop: '1rem' }}>
               <button type="button" className="btn-secondary" onClick={handleCancel}>CANCEL</button>
