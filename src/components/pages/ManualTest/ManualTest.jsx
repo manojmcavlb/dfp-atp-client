@@ -14,7 +14,7 @@ const testSuiteData = [
   },
 ];
 
-function TestSuites() {
+function ManualTest() {
   const navigate = useNavigate();
 
   return (
@@ -36,13 +36,13 @@ function TestSuites() {
                 <tr key={index}>
                   <td>{item.testSuiteName}</td>
                   <td>
-                    <button className="btn-secondary" onClick={() => navigate(`/edit-test-suite/${item.testSuiteName}`)}>EDIT</button>
+                    <button className="btn-secondary" onClick={() => navigate(`/edit-manual-test/${item.testSuiteName}`)}>EDIT</button>
                  
-                    <button className="btn-secondary" style={{ marginLeft: "1rem" }} onClick={() => navigate(`/edit-test-suite/${item.testSuiteName}`)}>DELETE</button>
+                    <button className="btn-secondary" style={{ marginLeft: "1rem" }} onClick={() => navigate(`/edit-manual-test/${item.testSuiteName}`)}>DELETE</button>
                  
-                    <button className="btn-secondary"  style={{ marginLeft: "1rem" }}onClick={() => navigate(`/edit-test-suite/${item.testSuiteName}`)}>VIEW</button>
+                    <button className="btn-secondary"  style={{ marginLeft: "1rem" }}onClick={() => navigate(`/edit-manual-test/${item.testSuiteName}`)}>VIEW</button>
                   
-                    <button className="btn-secondary" style={{ marginLeft: "1rem" }} onClick={() => navigate(`/edit-test-suite/${item.testSuiteName}`)}>EXECUTE</button>
+                    <button className="btn-secondary" style={{ marginLeft: "1rem" }} onClick={() => navigate(`/edit-manual-test/${item.testSuiteName}`)}>EXECUTE</button>
                   </td>
                 </tr>
               ))}
@@ -54,4 +54,4 @@ function TestSuites() {
   );
 }
 
-export default TestSuites;
+export default ManualTest;

@@ -42,11 +42,11 @@ const AddEditCalibration = () => {
               <input className="input" type="text" value={serialNumber} onChange={(e) => setSerialNumber(e.target.value)} />
             </label>
             <label className="label">
-              Calibration Date:
+              Calib Date:
               <input className="input" type="date" value={calibrationDate} onChange={(e) => setCalibrationDate(e.target.value)} />
             </label>
             <label className="label">
-              Calibration Due Date:
+              Due Date:
               <input className="input" type="date" value={calibrationDueDate} onChange={(e) => setCalibrationDueDate(e.target.value)} />
             </label>
             <div className="action-btns">

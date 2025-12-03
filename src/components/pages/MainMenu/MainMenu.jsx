@@ -16,11 +16,11 @@ const MainMenu = () => {
         <div className="main-menu">
             <main className="content">
                 <div className="button-container">
-                    <button className="btn-secondary" onClick={() => handleNavigation2('/detected-product?product=remote-head')}>
-                        PRODUCTION
+                    <button className="btn-secondary" onClick={() => handleNavigation2('/auto-test?product=remote-head')}>
+                        AUTO TEST
                     </button>
-                    <button className="btn-secondary" onClick={() => handleNavigation('/test-suite')}>
-                        MANUAL
+                    <button className="btn-secondary" onClick={() => handleNavigation('/manual-test')}>
+                        MANUAL TEST
                     </button>
                 </div>
                 <div className="button-container">
@@ -40,8 +40,8 @@ const MainMenu = () => {
                     </button>
                 </div>
                 <div className="button-container">
-                    <button className="btn-secondary" onClick={() => handleNavigation2('/atp-health-status')}>
-                        ATP HEALTH STATUS
+                    <button className="btn-secondary" onClick={() => handleNavigation2('/health-status')}>
+                        HEALTH STATUS
                     </button>
                     <button className="btn-secondary" onClick={() => handleNavigation('/error-log')}>
                         ERROR/EVENT LOG

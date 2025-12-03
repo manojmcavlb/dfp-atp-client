@@ -108,8 +108,8 @@ function Calibration() {
                 <th>Device Name</th>
                 <th>Part Number</th>
                 <th>Serial Number</th>
-                <th>Calibration Date</th>
-                <th>Calibration Due Date</th>
+                <th>Calib Date</th>
+                <th>Due Date</th>
                 <th>Status</th>
                 <th>Actions&nbsp;&nbsp;
                   <button className="btn-secondary" onClick={() => navigate("/add-calibration")}>ADD</button>

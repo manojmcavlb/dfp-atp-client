@@ -169,7 +169,7 @@ function ResetPassword() {
                 </button>
               </div>
 
-              {message && <div className="msg info-msg">{message}</div>}
+              {message && <div className="msg msg-info">{message}</div>}
             </form>
           </div>
 

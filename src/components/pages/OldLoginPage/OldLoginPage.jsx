@@ -58,7 +58,7 @@ class LoginPage extends React.Component {
                                 <ErrorMessage name="password" component="div" className="invalid-feedback" />
                             </div>
                             <div className="form-group">
-                                <a href="#" style={{ }}>Forget Password?</a>
+                                <a href="#">Forget Password?</a>
                             </div>
                             <div className="form-group">
                                 <button type="submit" className="btn btn-primary" disabled={isSubmitting}>

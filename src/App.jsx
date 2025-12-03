@@ -11,14 +11,14 @@ import AddEditUser from "./components/pages/ManageUser/AddEditUser";
 import { Login } from "./components/pages/Login";
 import Drivers from "./components/pages/Drivers/index";
 import MainMenu from "./components/pages/MainMenu/MainMenu";
-import { DetectedProduct } from "./components/pages/DetectedProduct";
-import AddEditDevice from "./components/pages/DetectedProduct/AddEditDevice";
+import { AutoTest } from "./components/pages/AutoTest";
+import AddEditDevice from "./components/pages/AutoTest/AddEditDevice";
 import Calibration from "./components/pages/Calibration";
 import AddEditCalibration from "./components/pages/Calibration/AddEditCalibration";
 import TestSettings from "./components/pages/TestSettings/TestSettings";
 import AddEditTestSettings from "./components/pages/TestSettings/AddEditTestSettings";
 import Instrument from "./components/pages/Instrument";
-import TestSuites from "./components/pages/TestSuites/TestSuites";
+import ManualTest from "./components/pages/ManualTest/ManualTest";
 import AtpHealthStatus from "./components/pages/AtpHealthStatus/AtpHealthStatus";
 import ErrorLog from "./components/pages/ErrorLog/ErrorLog";
 
@@ -189,26 +189,26 @@ class App extends React.Component {
               }
             />
             <Route
-              path="/detected-product"
+              path="/auto-test"
               element={
                 <PrivateRoute>
-                  <DetectedProduct />
+                  <AutoTest />
                 </PrivateRoute>
               }
             />
             <Route
-              path="/detected-product?product=remote-head"
+              path="/auto-test?product=remote-head"
               element={
                 <PrivateRoute>
-                  <DetectedProduct product="remote-head" />
+                  <AutoTest product="remote-head" />
                 </PrivateRoute>
               }
             />
             <Route
-              path="/detected-product?product=iot-gateway"
+              path="/auto-test?product=iot-gateway"
               element={
                 <PrivateRoute>
-                  <DetectedProduct product="iot-gateway" />
+                  <AutoTest product="iot-gateway" />
                 </PrivateRoute>
               }
             />
@@ -233,11 +233,11 @@ class App extends React.Component {
             <Route path="/edit-test-settings/:id" element={<PrivateRoute><AddEditTestSettings /></PrivateRoute>} />
             <Route path="/add-calibration" element={<PrivateRoute><AddEditCalibration /></PrivateRoute>} />
             <Route path="/edit-calibration/:id" element={<PrivateRoute><AddEditCalibration /></PrivateRoute>} />
-            <Route path="/test-suite" element={<PrivateRoute><TestSuites /></PrivateRoute>} />
-            <Route path="/atp-health-status" element={<PrivateRoute><AtpHealthStatus /></PrivateRoute>} />
+            <Route path="/manual-test" element={<PrivateRoute><ManualTest /></PrivateRoute>} />
+            <Route path="/health-status" element={<PrivateRoute><AtpHealthStatus /></PrivateRoute>} />
             <Route path="/error-log" element={<PrivateRoute><ErrorLog /></PrivateRoute>} />
-            {/* <Route path="/add-test-suite" element={<PrivateRoute><AddEditTestSuite /></PrivateRoute>} />
-            <Route path="/edit-test-suite/:id" element={<PrivateRoute><AddEditTestSuite /></PrivateRoute>} /> */}
+            {/* <Route path="/add-manual-test" element={<PrivateRoute><AddEditTestSuite /></PrivateRoute>} />
+            <Route path="/edit-manual-test/:id" element={<PrivateRoute><AddEditTestSuite /></PrivateRoute>} /> */}
           </Routes>
         </div>
       </Router>

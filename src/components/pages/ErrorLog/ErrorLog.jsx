@@ -138,13 +138,13 @@ const ErrorLog = () => {
           <label>Date Range:</label>
           <input
             type="date"
-            className="date runs-input"
+            className="date date-log runs-input"
             value={startDate}
             onChange={(e) => setStartDate(e.target.value)}
           />
           <input
             type="date"
-            className="date runs-input"
+            className="date date-log runs-input"
             value={endDate}
             onChange={(e) => setEndDate(e.target.value)}
           />
@@ -178,6 +178,7 @@ const ErrorLog = () => {
           </select>
         </div>
         <div className="filter-group">
+          Message Summary:
           <input type="text" placeholder="Search..." className="input input-search runs-input" />
         </div>
         <div className="action-btns">

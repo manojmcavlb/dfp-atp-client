@@ -7,13 +7,13 @@ const AddEditTestSettings = () => {
   const { id } = useParams();
   const isEditMode = id !== undefined;
 
-  const [step, setStep] = useState('');
-  const [stepName, setStepName] = useState('');
-  const [comparison, setComparison] = useState('');
-  const [lowLt, setLowLt] = useState('');
-  const [highLt, setHighLt] = useState('');
-  const [unit, setUnit] = useState('');
-  const [stringLt, setStringLt] = useState('');
+  const [step, setStep] = useState('01');
+  const [stepName, setStepName] = useState('Initial Verification');
+  const [comparison, setComparison] = useState('Equal');
+  const [lowLt, setLowLt] = useState('10');
+  const [highLt, setHighLt] = useState('20');
+  const [unit, setUnit] = useState('cm');
+  const [stringLt, setStringLt] = useState('Initial');
 
   const handleSave = () => {
     // Implement save logic here
