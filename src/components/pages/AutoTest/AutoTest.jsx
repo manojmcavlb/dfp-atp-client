@@ -11,6 +11,7 @@ import {
 } from "react-icons/fa";
 import "../../../assets/styles/main.css";
 import "./styles.css";
+import Serial from "../Drivers/Serial";
 
 function AutoTest() {
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ function AutoTest() {
   const [isRunning, setIsRunning] = useState(false);
   const [healthStatus, setHealthStatus] = useState("green");
   const [showTestResult, setShowTestResult] = useState(false);
-  const [groups, setGroups] = useState([
+  const [devices, setDevices] = useState([
     { name: 'Device Info', selected: true, status: 'pending', items: [] },
     { name: 'Power', selected: true, status: 'pending', items: [] },
     { name: 'Mainboard', selected: true, status: 'pending', items: [] },
@@ -52,30 +53,30 @@ function AutoTest() {
   const handleRefresh = () => {
     setIsRunning(false);
     setShowTestResult(false);
-    const initialGroups = groups.map(g => ({
+    const initialDevices = devices.map(g => ({
       ...g,
       status: 'pending',
       loading: false,
     }));
-    setGroups(initialGroups);
+    setDevices(initialDevices);
   };
 
   const handleRunTest = () => {
     setIsRunning(true);
     setShowTestResult(false);
 
-    const newGroups = groups.map((g) => {
+    const newDevices = devices.map((g) => {
         if (g.name === 'AAAAAA') {
             return { ...g, loading: true };
         }
         return g;
     });
-    setGroups(newGroups);
+    setDevices(newDevices);
 
     setTimeout(() => {
       setIsRunning(false);
       setShowTestResult(true);
-      const finalGroups = groups.map((g) => {
+      const finalDevices = devices.map((g) => {
         let status = 'pending';
         if (g.name === 'Device Info' || g.name === 'Power') {
             status = 'pass';
@@ -89,27 +90,27 @@ function AutoTest() {
 
         return { ...g, status };
       });
-      setGroups(finalGroups);
+      setDevices(finalDevices);
     }, 3000);
   };
 
   const handleSelectAll = (e) => {
     const checked = e.target.checked;
     setSelectAll(checked);
-    setGroups(groups.map((group) => ({ ...group, selected: checked })));
+    setDevices(devices.map((device) => ({ ...device, selected: checked })));
   };
 
-  const handleGroupChange = (index) => {
-    const newGroups = [...groups];
-    newGroups[index].selected = !newGroups[index].selected;
-    setGroups(newGroups);
+  const handleDeviceChange = (index) => {
+    const newdevices = [...devices];
+    newDevices[index].selected = !newDevices[index].selected;
+    setDevices(newDevices);
   };
 
   const handleModeChange = (mode) => {
     setActiveMode(mode);
     if (mode === "full") {
       setSelectAll(true);
-      setGroups(groups.map((g) => ({ ...g, selected: true })));
+      setDevices(devices.map((g) => ({ ...g, selected: true })));
     }
   };
 
@@ -201,22 +202,27 @@ function AutoTest() {
           </div>
         </div>
 
-        <div className="test-groups-table">
-          {groups.map((group, index) => (
-            <div key={index} className="group-item">
+        <div className="test-devices-table">
+          {devices.map((device, index) => (
+            <div key={index} className="device-item">
               <label className="checkbox">
                 <input
                   type="checkbox"
-                  checked={group.selected}
-                  onChange={() => handleGroupChange(index)}
+                  checked={device.selected}
+                  onChange={() => handleDeviceChange(index)}
                   disabled={activeMode === "full"}
                 />
-                <span>{group.name}</span>
+                <span>{device.name}</span>
               </label>
-              <div className={`status-indicator ${group.status}`}></div>
+              <div className={`status-indicator ${device.status}`}></div>
             </div>
           ))}
         </div>
+        <Serial isTestRun={isRunning} />
+
+        {/* useContext/Redux Approach -> get back the test results of Serial Page & Display Pass/Fail*/}
+
+
         {showTestResult && (
           <div className="test-result-logs">
             <h2>Test Result Logs</h2>

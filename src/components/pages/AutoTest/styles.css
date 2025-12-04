@@ -50,14 +50,14 @@
   background-color: #e0e0e0;
 }
 
-.test-groups-table {
+.test-devices-table {
   background-color: #fff;
   border: 1px solid #dcdfe6;
   border-radius: 8px;
   padding: 16px;
 }
 
-.group-item {
+.device-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -65,7 +65,7 @@
   border-bottom: 1px solid #f0f2f5;
 }
 
-.group-item:last-child {
+.device-item:last-child {
   border-bottom: none;
 }
 
