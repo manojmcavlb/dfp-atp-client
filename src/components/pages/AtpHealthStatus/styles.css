@@ -10,18 +10,3 @@
   flex-direction: column;
   align-items: center;
 }
-
-.status-indicator-circle {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  margin-top: 0.5rem;
-}
-
-.status-fail {
-  background-color: red;
-}
-
-.status-pass {
-  background-color: green;
-}

@@ -7,6 +7,7 @@ import {
   FaSyncAlt,
   FaArrowsAltV,
   FaCircle,
+  FaSpinner,
 } from "react-icons/fa";
 import "../../../assets/styles/main.css";
 import "./styles.css";
@@ -20,34 +21,77 @@ function AutoTest() {
   const [selectAll, setSelectAll] = useState(true);
   const [isRunning, setIsRunning] = useState(false);
   const [healthStatus, setHealthStatus] = useState("green");
+  const [showTestResult, setShowTestResult] = useState(false);
   const [groups, setGroups] = useState([
-    { name: "Device Info", selected: true, status: "pending" },
-    { name: "Power", selected: true, status: "pending" },
-    { name: "Mainboard", selected: true, status: "pending" },
-    { name: "Sensors", selected: true, status: "pending" },
-    { name: "AAAAAA", selected: true, status: "pending" },
-    { name: "BBBBBB", selected: true, status: "pending" },
-    { name: "CCCCCC", selected: true, status: "pending" },
-    { name: "DDDDDDDDDDDD...", selected: true, status: "pending" },
-    { name: "EEEEEE", selected: true, status: "pending" },
+    { name: 'Device Info', selected: true, status: 'pending', items: [] },
+    { name: 'Power', selected: true, status: 'pending', items: [] },
+    { name: 'Mainboard', selected: true, status: 'pending', items: [] },
+    {
+      name: 'Sensors',
+      isHeader: true,
+    },
+    {
+      name: 'AAAAAA',
+      selected: true,
+      status: 'pending',
+      items: [],
+      loading: false,
+    },
+    { name: 'BBBBBB', selected: false, status: 'pending', items: [] },
+    { name: 'CCCCCC', selected: false, status: 'pending', items: [] },
+    {
+      name: 'DDDDDDDDDDDDDD...',
+      selected: false,
+      status: 'pending',
+      items: [],
+    },
+    { name: 'EEEEEE', selected: false, status: 'pending', items: [] },
+    { name: '---', selected: false, status: 'pending', items: [] },
   ]);
 
-  const productName = AutoTest?.name ?? "None";
-  const productOptions = ["Remote Head", "IoT Gateway", "Product C"];
+  const handleRefresh = () => {
+    setIsRunning(false);
+    setShowTestResult(false);
+    const initialGroups = groups.map(g => ({
+      ...g,
+      status: 'pending',
+      loading: false,
+    }));
+    setGroups(initialGroups);
+  };
 
-  useEffect(() => {
-    const allSelected = groups.every((group) => group.selected);
-    setSelectAll(allSelected);
-  }, [groups]);
+  const handleRunTest = () => {
+    setIsRunning(true);
+    setShowTestResult(false);
 
-  function handleRefresh() {
-    setAutoTest(AutoTest ? null : { name: "Remote Head" });
-  }
+    const newGroups = groups.map((g) => {
+        if (g.name === 'AAAAAA') {
+            return { ...g, loading: true };
+        }
+        return g;
+    });
+    setGroups(newGroups);
 
-  function handleRunTest() {
-    setIsRunning(!isRunning);
-    alert(`Running ${runs} time(s) on ${selectAll ? "all" : "selected"} groups`);
-  }
+    setTimeout(() => {
+      setIsRunning(false);
+      setShowTestResult(true);
+      const finalGroups = groups.map((g) => {
+        let status = 'pending';
+        if (g.name === 'Device Info' || g.name === 'Power') {
+            status = 'pass';
+        } else if (g.name === 'Mainboard') {
+            status = 'fail';
+        }
+        
+        if (g.name === 'AAAAAA') {
+            return { ...g, loading: false, status: 'pass' };
+        }
+
+        return { ...g, status };
+      });
+      setGroups(finalGroups);
+    }, 3000);
+  };
 
   const handleSelectAll = (e) => {
     const checked = e.target.checked;
@@ -69,6 +113,8 @@ function AutoTest() {
     }
   };
 
+  const productOptions = ["Remote Head"];
+
   return (
     <div className="page-bg">
       <main className="page-wrap">
@@ -82,7 +128,7 @@ function AutoTest() {
           <span className="status-label">Detected Product:&nbsp;</span>
           <select
             className="select"
-            value={productName}
+            value={AutoTest.name}
             onChange={(e) => setAutoTest({ name: e.target.value })}
           >
             {productOptions.map((product) => (
@@ -109,8 +155,8 @@ function AutoTest() {
             <span>Select All</span>
           </label>
 
-          <button className="btn-primary" onClick={handleRunTest}>
-            {isRunning ? <FaStop /> : <FaPlay />}
+          <button className="btn-primary" onClick={handleRunTest} disabled={isRunning}>
+            {isRunning ? <FaSpinner className="spinner" /> : <FaPlay />}
             &nbsp;RUN TEST
           </button>
 
@@ -171,6 +217,56 @@ function AutoTest() {
             </div>
           ))}
         </div>
+        {showTestResult && (
+          <div className="test-result-logs">
+            <h2>Test Result Logs</h2>
+            <div className="device-info-box">
+              <h3>Device Info</h3>
+              <div className="info-grid">
+                <span>Product:</span><span>Remote Head</span>
+                <span>Hardware Part Number:</span><span>DFP-XX-YYY</span>
+                <span>Serial Number:</span><span>aaa-bbb-ccc-ddd</span>
+                <span>Manufacturing Date:</span><span>10/09/2025</span>
+                <span>Manufacturer's Name:</span><span>ABC</span>
+                <span>Mod Dot:</span><span>-</span>
+                <span>Manufacturing Cage Code:</span><span>000</span>
+                <span>PMA Number:</span><span>123456</span>
+                <span>Execute Date/Time:</span><span>10 October 2025 11:00:00</span>
+              </div>
+            </div>
+
+            <div className="test-steps-box">
+              <h3>Mainboard:</h3>
+              <div className="fail-chip">FAIL</div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Item</th>
+                    <th>Expected</th>
+                    <th>Result</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>xxxxx</td>
+                    <td>yyyyy</td>
+                    <td>FAIL</td>
+                  </tr>
+                   <tr>
+                    <td>xxxxx</td>
+                    <td>yyyyy</td>
+                    <td>FAIL</td>
+                  </tr>
+                   <tr>
+                    <td>xxxxx</td>
+                    <td>yyyyy</td>
+                    <td>FAIL</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
       </main>
     </div>
   );

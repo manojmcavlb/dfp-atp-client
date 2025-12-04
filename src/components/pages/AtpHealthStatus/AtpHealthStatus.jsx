@@ -23,7 +23,7 @@ function AtpHealthStatus() {
               <div key={index} className="health-status-item">
                 <span>{item.name}</span>
                 <div
-                  className={`status-indicator-circle status-${item.status}`}
+                  className={`health-status ${item.status}`}
                 ></div>
               </div>
             ))}

@@ -375,19 +375,26 @@ html,
   background-color: var(--color-success);
 }
 
+.health-status {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-top: 0.5rem;
+}
+
+.fail {
+  background-color: var(--color-error);
+}
+
+.pass {
+  background-color: var(--color-success);
+}
+
 .status-indicator {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background-color: var(--color-white);
-}
-
-.status-indicator.success {
-  background-color: var(--color-success);
-}
-
-.status-indicator.failed {
-  background-color: var(--color-error);
+  background-color: var(--color-gray-dark);
 }
 /* Grid */
 
