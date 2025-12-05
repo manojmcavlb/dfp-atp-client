@@ -114,7 +114,7 @@ function AutoTest() {
     }
   };
 
-  const productOptions = ["Remote Head"];
+  const productOptions = ["None", "Remote Head", "IoT Gateway"];
 
   return (
     <div className="page-bg">
@@ -141,7 +141,7 @@ function AutoTest() {
 
           <div className="status-actions">
             <button className="btn-secondary" onClick={() => navigate('/edit-device/1')}>EDIT</button>
-            <button className="btn-secondary">VIEW REPORTS</button>
+            <button className="btn-secondary" disabled={isRunning}>VIEW REPORTS</button>
           </div>
         </div>
 

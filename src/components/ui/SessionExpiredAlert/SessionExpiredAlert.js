@@ -1,13 +1,24 @@
-import React from 'react';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import "./styles.css";
 import "../../../assets/styles/main.css";
-import './styles.css';
 
-const SessionExpiredAlert = ({ onLogin }) => {
+const SessionExpiredAlert = ({ onLoginRedirect }) => {
+  const navigate = useNavigate();
+
+  const handleLoginRedirect = () => {
+    if (onLoginRedirect) {
+      onLoginRedirect();
+    }
+    navigate("/login");
+  };
+
   return (
-    <div className="session-expired-alert-overlay">
+    <div className="session-expired-container">
       <div className="session-expired-alert">
-        <p>Your session has expired. Please login again.</p>
-        <button className="btn-primary" onClick={onLogin}>Login</button>
+        <h2 className="page-title">Session Expired</h2>
+        <p>Your session has expired. Please log in again.</p>
+        <button className="btn-primary" onClick={handleLoginRedirect}>Login</button>
       </div>
     </div>
   );

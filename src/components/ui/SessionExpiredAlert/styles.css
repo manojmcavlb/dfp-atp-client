@@ -1,4 +1,4 @@
-.session-expired-alert-overlay {
+.session-expired-container {
   position: fixed;
   top: 0;
   left: 0;
@@ -12,29 +12,15 @@
 }
 
 .session-expired-alert {
-  background: white;
+  background: var(--color-background);
+  color: var(--color-body);
   padding: 20px;
-  border-radius: 5px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  width: 300px;
 }
 
-.session-expired-alert p {
-  margin: 0 0 15px;
-  font-size: 16px;
-}
-
-.session-expired-alert button {
-  padding: 10px 20px;
-  border: 1px solid #ccc;
-  background-color: #f0f0f0;
-  color: black;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-.session-expired-alert button:hover {
-  background-color: #e0e0e0;
+.session-expired-alert h2 {
+  margin-top: 0;
+  color: #333;
 }

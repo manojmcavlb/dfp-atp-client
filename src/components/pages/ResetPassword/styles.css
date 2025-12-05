@@ -6,13 +6,13 @@
   align-items: start;
 }
 
-.rule-card {
+.card-rules-overlay {
   padding: 16px 18px;
   position: relative;
 }
 
 /* Optional: subtle connector arrow pointing from rules to form */
-.rule-card::before {
+.card-rules-overlay::before {
   content: "";
   position: absolute;
   left: -14px;
@@ -23,7 +23,7 @@
   border-bottom: 8px solid transparent;
   border-right: 14px solid #e0e2e6; /* outer border color */
 }
-.rule-card::after {
+.card-rules-overlay::after {
   content: "";
   position: absolute;
   left: -12px;
@@ -35,7 +35,7 @@
   border-right: 12px solid #fff; /* inner fill to match card */
 }
 
-.rule-card-title {
+.rule-title {
   font-weight: 700;
   margin-bottom: 10px;
 }
@@ -68,8 +68,8 @@
   .split-wrap {
     grid-template-columns: 1fr; /* stack vertically on small screens */
   }
-  .rule-card::before,
-  .rule-card::after {
+  .card-rules-overlay::before,
+  .card-rules-overlay::after {
     display: none; /* remove connector on mobile */
   }
 }

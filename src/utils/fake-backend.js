@@ -3,7 +3,8 @@ import { Role } from './'
 export function configureFakeBackend() {
     let users = [
         { id: 1, username: 'admin', password: 'admin', firstName: 'Admin', lastName: 'User', role: Role.Admin },
-        { id: 2, username: 'user', password: 'user', firstName: 'Normal', lastName: 'User', role: Role.User }
+        { id: 2, username: 'manoj', password: 'Manoj@123All', firstName: 'Manoj', lastName: 'M', role: Role.Admin },
+        { id: 3, username: 'user', password: 'user', firstName: 'Normal', lastName: 'User', role: Role.User }
     ];
     let realFetch = window.fetch;
     window.fetch = function (url, opts) {

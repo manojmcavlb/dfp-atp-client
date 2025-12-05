@@ -5,6 +5,10 @@
       "password": "Admin#123"
     },
     {
+      "username": "manoj",
+      "password": "Manoj@123All"
+    },
+    {
       "username": "user",
       "password": "User#123"
     }

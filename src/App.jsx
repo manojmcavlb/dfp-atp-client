@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { Role } from "./utils";
 import { authenticationService } from "./services";
@@ -21,6 +21,15 @@ import Instrument from "./components/pages/Instrument";
 import ManualTest from "./components/pages/ManualTest/ManualTest";
 import AtpHealthStatus from "./components/pages/AtpHealthStatus/AtpHealthStatus";
 import ErrorLog from "./components/pages/ErrorLog/ErrorLog";
+import SessionExpiredAlert from "./components/ui/SessionExpiredAlert/SessionExpiredAlert";
+import { COOKIE_CHECK_INTERVAL } from "./utils/constants";
+
+// Helper function to get a cookie by name
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+}
 
 class App extends React.Component {
   constructor(props) {
@@ -28,6 +37,7 @@ class App extends React.Component {
     this.state = {
       currentUser: null,
       isAdmin: false,
+      sessionExpired: false,
     };
   }
 
@@ -38,18 +48,44 @@ class App extends React.Component {
         isAdmin: x && x.role === Role.Admin,
       })
     );
+    this.sessionInterval = setInterval(this.checkSession, COOKIE_CHECK_INTERVAL); // Check session every 1 min
   }
 
   componentWillUnmount() {
     this.subscription.unsubscribe();
+    clearInterval(this.sessionInterval);
   }
 
+  checkSession = () => {
+    if (this.state.currentUser && !this.state.sessionExpired) {
+      const sessionCookie = getCookie("session");
+      if (sessionCookie) {
+        try {
+          const { expiry } = JSON.parse(decodeURIComponent(sessionCookie));
+          if (new Date().getTime() > expiry) {
+            this.setState({ sessionExpired: true });
+          }
+        } catch (e) {
+          this.setState({ sessionExpired: true });
+        }
+      } else {
+        this.setState({ sessionExpired: true });
+      }
+    }
+  };
+
+  handleLoginRedirect = () => {
+    authenticationService.logout();
+    this.setState({ sessionExpired: false });
+  };
+
   render() {
-    const { currentUser, isAdmin } = this.state;
+    const { currentUser, isAdmin, sessionExpired } = this.state;
 
     return (
       <Router>
         <div>
+          {sessionExpired && <SessionExpiredAlert onLoginRedirect={this.handleLoginRedirect} />}
           <Header />
           {/* {currentUser && (
             <nav

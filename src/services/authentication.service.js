@@ -28,7 +28,8 @@ function login(username, password) {
 }
 
 function logout() {
-    // remove user from local storage to log user out
-    localStorage.removeItem('currentUser');
-    currentUserSubject.next(null);
+  // remove user from local storage to log user out
+  localStorage.removeItem("currentUser");
+  document.cookie = "session=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  currentUserSubject.next(null);
 }

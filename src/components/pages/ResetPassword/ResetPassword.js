@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import usersData from "../../../utils/users.json";
-import SessionExpiredAlert from "../../ui/SessionExpiredAlert";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import "../../../assets/styles/main.css";
 import "./styles.css";
@@ -24,8 +23,8 @@ function ResetPassword() {
   const [showPwd, setShowPwd] = useState(false);
   const [showConfirmPwd, setShowConfirmPwd] = useState(false);
   const [message, setMessage] = useState("");
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [localUsers, setLocalUsers] = useState(usersData.users);
-  const [showSessionExpiredAlert, setShowSessionExpiredAlert] = useState(false);
   const navigate = useNavigate();
 
   function validatePassword(p) {
@@ -58,12 +57,14 @@ function ResetPassword() {
       updated = [...localUsers];
       updated[idx].password = pwd;
       setLocalUsers(updated);
-      setMessage("Password updated in session. Download updated users.json to persist.");
     } else {
       updated = [...localUsers, { username, password: pwd }];
       setLocalUsers(updated);
-      setMessage("User created in session. Download updated users.json to persist.");
     }
+    
+    setMessage("");
+    setShowSuccessModal(true);
+
     // Prepare downloadable JSON
     const payload = { users: updated };
     const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
@@ -87,9 +88,17 @@ function ResetPassword() {
 
   return (
     <div className="page-bg">
-      {showSessionExpiredAlert && <SessionExpiredAlert onLogin={() => navigate('/login')} />}
       <main className="center-wrap">
-        {/* NEW: side-by-side container */}
+        {showSuccessModal ? (
+          <div className="card" style={{ textAlign: 'center', padding: '2rem 4rem', margin: 'auto', maxWidth: '450px' }}>
+            <div style={{ fontSize: '48px', color: '#222', marginBottom: '1rem', fontWeight: '200' }}>✓</div>
+            <h2 className="card-title" style={{ marginBottom: '1rem' }}>Password Changed!</h2>
+            <p style={{ marginBottom: '2rem', color: '#555' }}>Your password has been changed successfully.</p>
+            <button className="btn-secondary" style={{padding: '0.5rem 2rem'}} onClick={() => navigate("/login")}>
+              Login
+            </button>
+          </div>
+        ) : (
         <div className="split-wrap">
           {/* LEFT: Reset Password card */}
           <div className="card form-card">
@@ -160,22 +169,15 @@ function ResetPassword() {
                   CANCEL
                 </button>
                 <button type="submit" className="btn-primary">RESET</button>
-                <button
-                  type="button"
-                  className="btn-secondary"
-                  onClick={() => setShowSessionExpiredAlert(true)}
-                >
-                  TEST-SESSION EXPIRED
-                </button>
               </div>
 
               {message && <div className="msg msg-info">{message}</div>}
             </form>
           </div>
 
-          {/* RIGHT: Password rules card */}
-          <aside className="card rule-card">
-            <div className="rule-card-title">Password must:</div>
+          {/* Reset Password - Rules Overlay’ */}
+          <aside className="card card-rules-overlay">
+            <div className="rule-title">Password must:</div>
             <ul className="rule-list">
               {rules.map((r, i) => (
                 <li key={i}>
@@ -186,6 +188,7 @@ function ResetPassword() {
             </ul>
           </aside>
         </div>
+        )}
       </main>
     </div>
   );
