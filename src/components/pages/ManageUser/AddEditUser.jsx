@@ -16,27 +16,40 @@ const screens = [
 
 const privilegeConfig = {
     view: { label: "View", enabled: screens },
-    addEdit: { label: "Add/Edit", enabled: ["AutoTest", "ManualTest", "TestSettings", "InstrumentSettings", "ManageUser"] },
-    delete: { label: "Delete", enabled: ["AutoTest", "ManualTest", "TestSettings", "ManageUser"] },
-    execute: { label: "Execute", enabled: ["AutoTest", "ManualTest"] }
+    addEdit: { label: "Add/Edit", enabled: ["Manual Test", "Test Settings", "Instrument Settings", "Manage User"] },
+    delete: { label: "Delete", enabled: ["Auto Test", "Manual Test", "Test Settings", "Manage User"] },
+    execute: { label: "Execute", enabled: ["Auto Test", "Manual Test"] }
 };
 
 const privilegeKeys = Object.keys(privilegeConfig);
 
-const initialPrivileges = screens.reduce((acc, screen) => {
-  acc[screen] = privilegeKeys.reduce((privs, key) => {
-    privs[key] = false;
+// Corresponds to View, Add/Edit, Delete, Execute for each screen
+const initialPrivilegeValues = [
+  // View, Add/Edit, Delete, Execute
+  [true, true, false, true],   // Auto Test
+  [true, true, true, true],   // Manual Test
+  [true, false, false, false], // Health Status
+  [true, true, true, false],  // Test Settings
+  [true, false, false, false], // Calibration Info.
+  [true, true, false, false], // Instrument Settings
+  [true, true, true, false],  // Manage User
+  [true, false, false, false], // Error/Event Log
+];
+
+const initialPrivileges = screens.reduce((acc, screen, screenIndex) => {
+  acc[screen] = privilegeKeys.reduce((privs, key, privIndex) => {
+    privs[key] = initialPrivilegeValues[screenIndex]?.[privIndex] || false;
     return privs;
   }, {});
   return acc;
 }, {});
 
 function AddEditUser() {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [role, setRole] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [username, setUsername] = useState("testuser");
+  const [email, setEmail] = useState("test@example.com");
+  const [role, setRole] = useState("Admin");
+  const [password, setPassword] = useState("password123");
+  const [confirmPassword, setConfirmPassword] = useState("password123");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [privileges, setPrivileges] = useState(initialPrivileges);
@@ -98,12 +111,14 @@ function AddEditUser() {
               </label>
               <label className="label">
                 Role:
-                <input
+                <select
                   className="input"
-                  type="text"
                   value={role}
                   onChange={(e) => setRole(e.target.value)}
-                />
+                >
+                  <option value="Admin">Admin</option>
+                  <option value="Technical Operator">Technical Operator</option>
+                </select>
               </label>
               <label className="label">
                 Password:

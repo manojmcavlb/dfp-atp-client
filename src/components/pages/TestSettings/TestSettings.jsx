@@ -36,10 +36,9 @@ function TestSettings() {
       <main className="page-wrap">
         <h1 className="page-title">Test Settings</h1>
         <div className="action-btns">
-            <select className="select">
-                <option>79281300AA AC-DC Battery Charger</option>
-            </select>
-            <button className="btn-secondary" onClick={() => navigate("/add-test-settings")}>ADD</button>
+          <select className="select">
+            <option>79281300AA AC-DC Battery Charger</option>
+          </select>
         </div>
         <div className="table-container">
           <table className="page-table">
@@ -52,7 +51,10 @@ function TestSettings() {
                 <th>High Lt</th>
                 <th>Unit</th>
                 <th>String Lt</th>
-                <th>Actions</th>
+                <th>Actions&nbsp;&nbsp;
+                  <button className="btn-secondary"
+                    onClick={() => navigate("/add-test-settings")}>ADD</button>
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -66,7 +68,14 @@ function TestSettings() {
                   <td>{item.unit}</td>
                   <td>{item.stringLt}</td>
                   <td className="action-btns">
-                    <button className="btn-secondary" onClick={() => navigate(`/edit-test-settings/${item.step}`)}>EDIT</button>
+                    <button
+                      className="btn-secondary"
+                      onClick={() =>
+                        navigate(`/edit-test-settings/${item.step}`)
+                      }
+                    >
+                      EDIT
+                    </button>
                   </td>
                 </tr>
               ))}
