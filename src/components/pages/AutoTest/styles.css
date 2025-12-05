@@ -1,3 +1,8 @@
+.label-update {
+  font-size: 16px;
+  font-weight: 500;
+}
+
 .status-row {
   display: flex;
   align-items: center;
@@ -71,4 +76,13 @@
 
 .input.runs-input {
   width: 60px;
+}
+
+.no-product-message {
+  text-align: center;
+  padding: 40px;
+  margin-top: 20px;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 5px;
 }

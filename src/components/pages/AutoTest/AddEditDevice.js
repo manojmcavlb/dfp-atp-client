@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import SoftwareUpdateModal from '../../ui/SoftwareUpdateModal';
 import '../../../assets/styles/main.css';
@@ -53,7 +53,25 @@ const AddEditDevice = () => {
   const [pmaNumber, setPmaNumber] = useState('PMA-11223');
   const [modalStep, setModalStep] = useState(null);
   const [isCameraOpen, setIsCameraOpen] = useState(false);
+  const [isCameraDetected, setIsCameraDetected] = useState(false);
   const [noSoftwareDetected, setNoSoftwareDetected] = useState(true);
+
+  useEffect(() => {
+    const detectCamera = async () => {
+      try {
+        const devices = await navigator.mediaDevices.enumerateDevices();
+        const hasCamera = devices.some(device => device.kind === 'videoinput');
+        setIsCameraDetected(hasCamera);
+        console.log("hasCamera try:", devices);
+      } catch (error) {
+        console.log("hasCamera err:", hasCamera);
+        console.error('Error detecting camera:', error);
+        setIsCameraDetected(false);
+      }
+    };
+
+    detectCamera();
+  }, []);
 
   const handleSave = () => {
     // Implement save logic here
@@ -83,7 +101,8 @@ const AddEditDevice = () => {
     setModalStep('installing');
     // Simulate installation
     setTimeout(() => {
-      setModalStep('completed');
+      // setModalStep('completed');
+      setModalStep('failed');
     }, 2000); // 2 seconds for demo
   };
 
@@ -105,6 +124,7 @@ const AddEditDevice = () => {
   };
 
   const handleCameraClick = () => {
+    console.log("camera:", isCameraOpen)
     setIsCameraOpen(true);
   };
 
@@ -153,10 +173,10 @@ const AddEditDevice = () => {
                   <input className="input" type="text" value={pmaNumber} onChange={(e) => setPmaNumber(e.target.value)} />
                 </label>
             </div>
-            <div className='label'>
-              Software update (1.0.1) is available.
+            <div>
+              <div className='label label-update msg-success'>Software update (1.0.1) is available.</div>
               <div className='action-btns action-btns-software' style={{ display: 'inline-block', marginLeft: '1rem' }}>
-                <button type='button' className='btn-secondary' onClick={handleCameraClick}>CAMERA</button>
+                <button type='button' className='btn-secondary' onClick={handleCameraClick} disabled={!isCameraDetected}>CAMERA</button>
                 <button type='button' className='btn-secondary' style={{ marginLeft: '8px' }} onClick={handleUpdateClick}>FACTORY RESET</button>
               </div>
             </div>

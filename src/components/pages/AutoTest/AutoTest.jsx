@@ -16,7 +16,7 @@ import Serial from "../Drivers/Serial";
 function AutoTest() {
   const navigate = useNavigate();
 
-  const [AutoTest, setAutoTest] = useState({ name: "Remote Head" });
+  const [detectedProduct, setDetectedProduct] = useState("None");
   const [runs, setRuns] = useState(1);
   const [activeMode, setActiveMode] = useState("full");
   const [selectAll, setSelectAll] = useState(true);
@@ -115,6 +115,7 @@ function AutoTest() {
   };
 
   const productOptions = ["None", "Remote Head", "IoT Gateway"];
+  const noProductDetected = detectedProduct === "None";
 
   return (
     <div className="page-bg">
@@ -129,8 +130,8 @@ function AutoTest() {
           <span className="status-label">Detected Product:&nbsp;</span>
           <select
             className="select"
-            value={AutoTest.name}
-            onChange={(e) => setAutoTest({ name: e.target.value })}
+            value={detectedProduct}
+            onChange={(e) => setDetectedProduct(e.target.value)}
           >
             {productOptions.map((product) => (
               <option key={product} value={product}>
@@ -140,138 +141,147 @@ function AutoTest() {
           </select>
 
           <div className="status-actions">
-            <button className="btn-secondary" onClick={() => navigate('/edit-device/1')}>EDIT</button>
+            <button className="btn-secondary" disabled={noProductDetected} onClick={() => navigate('/edit-device/1')}>EDIT</button>
             <button className="btn-secondary" disabled={isRunning}>VIEW REPORTS</button>
           </div>
         </div>
 
-        <div className="controls-row">
-          <label className="checkbox">
-            <input
-              type="checkbox"
-              checked={selectAll}
-              onChange={handleSelectAll}
-              disabled={activeMode === "full"}
-            />
-            <span>Select All</span>
-          </label>
-
-          <button className="btn-primary" onClick={handleRunTest} disabled={isRunning}>
-            {isRunning ? <FaSpinner className="spinner" /> : <FaPlay />}
-            &nbsp;RUN TEST
-          </button>
-
-          <div className="runs-field">
-            <label htmlFor="runs" className="runs-label">
-              # of Runs
-            </label>
-            <input
-              id="runs"
-              className="input runs-input"
-              type="number"
-              min={1}
-              max={99}
-              value={runs}
-              onChange={(e) => setRuns(Number(e.target.value))}
-            />
+        {noProductDetected ? (
+          <div className="no-product-message">
+            <p>No Product Detected.</p>
+            <p>Press Refresh button to rescan.</p>
           </div>
-          <div className="runs-field">
-            <a href="#" onClick={() => navigate("/health-status")}>
-              Overall Health Status:
-            </a>
-            <FaCircle color={healthStatus} size={20} />
-          </div>
-
-          <div className="mode-switch">
-            <button
-              className={`mode-btn ${
-                activeMode === "full" ? "btn-primary" : "btn-secondary"
-              }`}
-              onClick={() => handleModeChange("full")}
-            >
-              FULL
-            </button>
-            <button
-              className={`mode-btn ${
-                activeMode === "customized" ? "btn-primary" : "btn-secondary"
-              }`}
-              onClick={() => handleModeChange("customized")}
-            >
-              CUSTOMIZED
-            </button>
-          </div>
-        </div>
-
-        <div className="test-devices-table">
-          {devices.map((device, index) => (
-            <div key={index} className="device-item">
+        ) : (
+          <>
+            <div className="controls-row">
               <label className="checkbox">
                 <input
                   type="checkbox"
-                  checked={device.selected}
-                  onChange={() => handleDeviceChange(index)}
+                  checked={selectAll}
+                  onChange={handleSelectAll}
                   disabled={activeMode === "full"}
                 />
-                <span>{device.name}</span>
+                <span>Select All</span>
               </label>
-              <div className={`status-indicator ${device.status}`}></div>
-            </div>
-          ))}
-        </div>
-        <Serial isTestRun={isRunning} />
 
-        {/* useContext/Redux Approach -> get back the test results of Serial Page & Display Pass/Fail*/}
+              <button className="btn-primary" onClick={handleRunTest} disabled={isRunning}>
+                {isRunning ? <FaSpinner className="spinner" /> : <FaPlay />}
+                &nbsp;RUN TEST
+              </button>
 
+              <div className="runs-field">
+                <label htmlFor="runs" className="runs-label">
+                  # of Runs
+                </label>
+                <input
+                  id="runs"
+                  className="input runs-input"
+                  type="number"
+                  min={1}
+                  max={99}
+                  value={runs}
+                  onChange={(e) => setRuns(Number(e.target.value))}
+                />
+              </div>
+              <div className="runs-field">
+                <a href="#" onClick={() => navigate("/health-status")}>
+                  Overall Health Status:
+                </a>
+                <FaCircle color={healthStatus} size={20} />
+              </div>
 
-        {showTestResult && (
-          <div className="test-result-logs">
-            <h2>Test Result Logs</h2>
-            <div className="device-info-box">
-              <h3>Device Info</h3>
-              <div className="info-grid">
-                <span>Product:</span><span>Remote Head</span>
-                <span>Hardware Part Number:</span><span>DFP-XX-YYY</span>
-                <span>Serial Number:</span><span>aaa-bbb-ccc-ddd</span>
-                <span>Manufacturing Date:</span><span>10/09/2025</span>
-                <span>Manufacturer's Name:</span><span>ABC</span>
-                <span>Mod Dot:</span><span>-</span>
-                <span>Manufacturing Cage Code:</span><span>000</span>
-                <span>PMA Number:</span><span>123456</span>
-                <span>Execute Date/Time:</span><span>10 October 2025 11:00:00</span>
+              <div className="mode-switch">
+                <button
+                  className={`mode-btn ${
+                    activeMode === "full" ? "btn-primary" : "btn-secondary"
+                  }`}
+                  onClick={() => handleModeChange("full")}
+                >
+                  FULL
+                </button>
+                <button
+                  className={`mode-btn ${
+                    activeMode === "customized" ? "btn-primary" : "btn-secondary"
+                  }`}
+                  onClick={() => handleModeChange("customized")}
+                >
+                  CUSTOMIZED
+                </button>
               </div>
             </div>
 
-            <div className="test-steps-box">
-              <h3>Mainboard:</h3>
-              <div className="fail-chip">FAIL</div>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Item</th>
-                    <th>Expected</th>
-                    <th>Result</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>xxxxx</td>
-                    <td>yyyyy</td>
-                    <td>FAIL</td>
-                  </tr>
-                   <tr>
-                    <td>xxxxx</td>
-                    <td>yyyyy</td>
-                    <td>FAIL</td>
-                  </tr>
-                   <tr>
-                    <td>xxxxx</td>
-                    <td>yyyyy</td>
-                    <td>FAIL</td>
-                  </tr>
-                </tbody>
-              </table>
+            <div className="test-devices-table">
+              {devices.map((device, index) => (
+                <div key={index} className="device-item">
+                  <label className="checkbox">
+                    <input
+                      type="checkbox"
+                      checked={device.selected}
+                      onChange={() => handleDeviceChange(index)}
+                      disabled={activeMode === "full"}
+                    />
+                    <span>{device.name}</span>
+                  </label>
+                  <div className={`status-indicator ${device.status}`}></div>
+                </div>
+              ))}
             </div>
-          </div>
+            <Serial isTestRun={isRunning} />
+
+            {/* useContext/Redux Approach -> get back the test results of Serial Page & Display Pass/Fail*/}
+
+
+            {showTestResult && (
+              <div className="test-result-logs">
+                <h2>Test Result Logs</h2>
+                <div className="device-info-box">
+                  <h3>Device Info</h3>
+                  <div className="info-grid">
+                    <span>Product:</span><span>Remote Head</span>
+                    <span>Hardware Part Number:</span><span>DFP-XX-YYY</span>
+                    <span>Serial Number:</span><span>aaa-bbb-ccc-ddd</span>
+                    <span>Manufacturing Date:</span><span>10/09/2025</span>
+                    <span>Manufacturer's Name:</span><span>ABC</span>
+                    <span>Mod Dot:</span><span>-</span>
+                    <span>Manufacturing Cage Code:</span><span>000</span>
+                    <span>PMA Number:</span><span>123456</span>
+                    <span>Execute Date/Time:</span><span>10 October 2025 11:00:00</span>
+                  </div>
+                </div>
+
+                <div className="test-steps-box">
+                  <h3>Mainboard:</h3>
+                  <div className="fail-chip">FAIL</div>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Item</th>
+                        <th>Expected</th>
+                        <th>Result</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>xxxxx</td>
+                        <td>yyyyy</td>
+                        <td>FAIL</td>
+                      </tr>
+                       <tr>
+                        <td>xxxxx</td>
+                        <td>yyyyy</td>
+                        <td>FAIL</td>
+                      </tr>
+                       <tr>
+                        <td>xxxxx</td>
+                        <td>yyyyy</td>
+                        <td>FAIL</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            )}
+          </>
         )}
       </main>
     </div>

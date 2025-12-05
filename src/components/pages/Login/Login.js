@@ -79,7 +79,7 @@ function Login() {
         <div className="card login-card">
           <h2 className="card-title">Login</h2>
 
-          {error && <div className="msg msg-error" role="alert">{error}</div>}
+          {error && <div className="msg msg-error center" role="alert">{error}</div>}
 
           <form onSubmit={handleSubmit} className="form">
             <label className="label">
