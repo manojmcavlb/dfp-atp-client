@@ -171,7 +171,7 @@ function ResetPassword() {
                 <button type="submit" className="btn-primary">RESET</button>
               </div>
 
-              {message && <div className="msg msg-info">{message}</div>}
+              {message && <div className="msg msg-error">{message}</div>}
             </form>
           </div>
 

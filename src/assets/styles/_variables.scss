@@ -9,10 +9,13 @@ $color-primary: $gray-dark;
 $color-secondary: $gray-dark;
 $color-tertiary: $color-secondary;
 
-$color-error: #e74c3c;
-$color-info: #616d78;
-$color-success: #2ecc71;
-$color-warn: #f39c12;
+// $color-error: #DC143C;  // Crimson (too harsh)
+$color-error: #e74c3c;    // Softer danger red (replaces Crimson for less harshness)
+// $color-info: #616d78;
+$color-info: #3498db;     // Clear blue for information (more vibrant than gray)
+$color-success: #2ecc71;  // Keep unchanged (widely recommended green)
+$color-warn: #f39c12;     // Keep unchanged (standard warning orange)
+
 
 $color-white: #ffffff;
 $color-black: #000000;

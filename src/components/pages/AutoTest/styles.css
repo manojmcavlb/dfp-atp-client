@@ -80,9 +80,10 @@
 
 .no-product-message {
   text-align: center;
-  padding: 40px;
+  padding: 100px;
   margin-top: 20px;
-  background-color: #f8f9fa;
-  border: 1px solid #dee2e6;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--color-gray-dark);
   border-radius: 5px;
 }

@@ -131,6 +131,12 @@ html,
 .input.has-icon {
   padding-right: 42px; /* space for eye button */
 }
+
+.input-error {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-error);
+}
 /* Labels & Inputs */
 
 /* Buttons */

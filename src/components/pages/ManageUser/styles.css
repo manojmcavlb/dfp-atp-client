@@ -1,0 +1,21 @@
+ .td-checkbox {
+     text-align: center;
+ }
+
+ .two-column-layout {
+     justify-content: center;
+ }
+
+ .card-user {
+    width: 250px;    
+ }
+ .card-title-privileges
+ {
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 5px;
+ }
+
+ .card-privilege {
+    width: 420px;
+ }

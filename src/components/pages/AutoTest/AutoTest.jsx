@@ -123,8 +123,8 @@ function AutoTest() {
         <h2 className="page-title">Auto Test</h2>
         <div className="status-row">
           <div className="status-item">
-            <button className="btn-secondary"onClick={handleRefresh}>
-              <FaSyncAlt />&nbsp;Rescan
+            <button className="btn-secondary">
+              <FaSyncAlt onClick={handleRefresh}/>
             </button>
           </div>
           <span className="status-label">Detected Product:&nbsp;</span>
@@ -226,7 +226,7 @@ function AutoTest() {
                 </div>
               ))}
             </div>
-            <Serial isTestRun={isRunning} />
+            {/* <Serial isTestRun={isRunning} /> */}
 
             {/* useContext/Redux Approach -> get back the test results of Serial Page & Display Pass/Fail*/}
 

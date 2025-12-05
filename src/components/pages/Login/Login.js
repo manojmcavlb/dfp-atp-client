@@ -23,6 +23,8 @@ function Login() {
   const [password, setPassword] = useState("");
   const [showPwd, setShowPwd] = useState(false);
   const [error, setError] = useState("");
+  const [usernameError, setUsernameError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -47,10 +49,21 @@ function Login() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (!username || !password) {
-      setError(
-        "Please enter both username and password to continue."
-      );
+    setUsernameError("");
+    setPasswordError("");
+    setError("");
+
+    let hasError = false;
+    if (!username) {
+      setUsernameError("Please enter username");
+      hasError = true;
+    }
+    if (!password) {
+      setPasswordError("Please enter password");
+      hasError = true;
+    }
+
+    if (hasError) {
       return;
     }
     authenticationService.login(username, password).then(
@@ -91,6 +104,7 @@ function Login() {
                 placeholder=""
                 autoComplete="username"
               />
+              {usernameError && <div className="input-error">{usernameError}</div>}
             </label>
 
             <label className="label">
@@ -116,10 +130,11 @@ function Login() {
                   )}
                 </button>
               </div>
+              {passwordError && <div className="input-error">{passwordError}</div>}
             </label>
 
             <div className="action-btns">
-              <a className="link" href="/reset-password">FORGET PASSWORD?</a>
+              <a className="link" href="/reset-password">Forget Password?</a>
             </div>
             <div className="center">
               <button className="btn-primary" type="submit">LOGIN</button>
