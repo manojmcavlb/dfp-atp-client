@@ -1,41 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import SoftwareUpdateModal from '../../ui/SoftwareUpdateModal';
+import { CameraModal, detectCamera } from '../../utils/cameraUtils';
 import '../../../assets/styles/main.css';
 import './styles.css';
-
-const CameraModal = ({ onCancel }) => {
-  return (
-    <div className="modal-overlay">
-      <div className="modal-content">
-        <h2 className="modal-title">Camera</h2>
-        <p>Position the camera toward the device information area.</p>
-        <div className="camera-view" style={{
-          border: '1px solid #ccc',
-          height: '200px',
-          margin: '1rem 0',
-          position: 'relative'
-        }}>
-           <div style={{
-                position: 'absolute',
-                top: '0',
-                left: '0',
-                width: '100%',
-                height: '100%',
-           }}>
-                <svg width="100%" height="100%" >
-                    <line x1="0" y1="0" x2="100%" y2="100%" stroke="black" strokeWidth="1" />
-                    <line x1="100%" y1="0" x2="0" y2="100%" stroke="black" strokeWidth="1" />
-                </svg>
-           </div>
-        </div>
-        <div className="action-btns center">
-          <button className="btn-secondary" onClick={onCancel}>Cancel</button>
-        </div>
-      </div>
-    </div>
-  );
-};
 
 const AddEditDevice = () => {
   const navigate = useNavigate();
@@ -57,20 +25,7 @@ const AddEditDevice = () => {
   const [noSoftwareDetected, setNoSoftwareDetected] = useState(true);
 
   useEffect(() => {
-    const detectCamera = async () => {
-      try {
-        const devices = await navigator.mediaDevices.enumerateDevices();
-        const hasCamera = devices.some(device => device.kind === 'videoinput');
-        setIsCameraDetected(hasCamera);
-        console.log("hasCamera try:", devices);
-      } catch (error) {
-        console.log("hasCamera err:", hasCamera);
-        console.error('Error detecting camera:', error);
-        setIsCameraDetected(false);
-      }
-    };
-
-    detectCamera();
+    detectCamera(setIsCameraDetected);
   }, []);
 
   const handleSave = () => {
@@ -176,7 +131,7 @@ const AddEditDevice = () => {
             <div>
               <div className='label label-update msg-success'>Software update (1.0.1) is available.</div>
               <div className='action-btns action-btns-software' style={{ display: 'inline-block', marginLeft: '1rem' }}>
-                <button type='button' className='btn-secondary' onClick={handleCameraClick} disabled={!isCameraDetected}>CAMERA</button>
+                <button type='button' className='btn-secondary' onClick={handleCameraClick} disabled={!isCameraDetected}>SCAN PRODUCT</button>
                 <button type='button' className='btn-secondary' style={{ marginLeft: '8px' }} onClick={handleUpdateClick}>FACTORY RESET</button>
               </div>
             </div>

@@ -23,6 +23,7 @@ import AtpHealthStatus from "./components/pages/AtpHealthStatus/AtpHealthStatus"
 import ErrorLog from "./components/pages/ErrorLog/ErrorLog";
 import SessionExpiredAlert from "./components/ui/SessionExpiredAlert/SessionExpiredAlert";
 import { COOKIE_CHECK_INTERVAL } from "./utils/constants";
+import AddEditTestSuite from "./components/pages/ManualTest/AddEditTestSuite";
 
 // Helper function to get a cookie by name
 function getCookie(name) {
@@ -270,6 +271,8 @@ class App extends React.Component {
             <Route path="/add-calibration" element={<PrivateRoute><AddEditCalibration /></PrivateRoute>} />
             <Route path="/edit-calibration/:id" element={<PrivateRoute><AddEditCalibration /></PrivateRoute>} />
             <Route path="/manual-test" element={<PrivateRoute><ManualTest /></PrivateRoute>} />
+            <Route path="/add-test-suite" element={<PrivateRoute><AddEditTestSuite /></PrivateRoute>} />
+            <Route path="/edit-test-suite/:id" element={<PrivateRoute><AddEditTestSuite /></PrivateRoute>} />
             <Route path="/health-status" element={<PrivateRoute><AtpHealthStatus /></PrivateRoute>} />
             <Route path="/error-log" element={<PrivateRoute><ErrorLog /></PrivateRoute>} />
             {/* <Route path="/add-manual-test" element={<PrivateRoute><AddEditTestSuite /></PrivateRoute>} />

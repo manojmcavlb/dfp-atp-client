@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import DetectedProduct from '../../ui/DetectedProduct/DetectedProduct';
 import './styles.css';
 
 const MainMenu = () => {
@@ -19,16 +20,9 @@ const MainMenu = () => {
 
     return (
         <div className="main-menu">
-            <header className="status-bar">
-                <div className="status-item">
-                    <label htmlFor="product-select">Detected Product:</label>
-                    <select id="product-select" className="select" value={product} onChange={handleProductChange}>
-                        <option value="remote-head">Remote Head</option>
-                        <option value="iot-gateway">IoT Gateway</option>
-                        <option value="none">None</option>
-                    </select>
-                </div>
-            </header>
+            <div className="center">
+                <DetectedProduct product={product} handleProductChange={handleProductChange} />
+            </div>
             <main className="content">
                 <div className="two-column-layout">
                     <div className="column">

@@ -27,7 +27,7 @@ const privilegeKeys = Object.keys(privilegeConfig);
 const initialPrivilegeValues = [
   // View, Add/Edit, Delete, Execute
   [true, true, false, true],   // Auto Test
-  [true, true, true, true],   // Manual Test
+  [false, true, true, true],   // Manual Test
   [true, false, false, false], // Health Status
   [true, true, true, false],  // Test Settings
   [true, false, false, false], // Calibration Info.

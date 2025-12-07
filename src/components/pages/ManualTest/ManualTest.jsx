@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import DetectedProduct from "../../ui/DetectedProduct/DetectedProduct";
 import "../../../assets/styles/main.css";
 
 const testSuiteData = [
@@ -16,18 +17,26 @@ const testSuiteData = [
 
 function ManualTest() {
   const navigate = useNavigate();
+  const [product, setProduct] = useState('remote-head');
+  const handleProductChange = (event) => {
+      setProduct(event.target.value);
+  };
 
   return (
     <div className="page-bg">
       <main className="page-wrap">
-        <h2 className="page-title">Manual-Test Suites</h2>
+        <h2 className="page-title">MANUAL TEST - Test Suites</h2>
+        <header className="status-item center">
+            <DetectedProduct product={product} handleProductChange={handleProductChange} />
+        </header>
         <div className="table-container">
           <table className="page-table">
             <thead>
               <tr>
                 <th>Test Suite Name</th>
-                <th>Actions&nbsp;&nbsp;
-                  <button className="btn-secondary" onClick={() => navigate("/add-calibration")}>ADD</button>
+                <th>Actions
+                  {/* &nbsp;&nbsp;
+                  <button className="btn-secondary" onClick={() => navigate("/add-test-suite")}>ADD</button> */}
                 </th>
               </tr>
             </thead>
@@ -36,13 +45,13 @@ function ManualTest() {
                 <tr key={index}>
                   <td>{item.testSuiteName}</td>
                   <td>
-                    <button className="btn-secondary" onClick={() => navigate(`/edit-manual-test/${item.testSuiteName}`)}>EDIT</button>
+                    <button className="btn-secondary" onClick={() => navigate(`/edit-test-suite/${item.testSuiteName}`)}>EDIT</button>
                  
-                    <button className="btn-secondary" style={{ marginLeft: "1rem" }} onClick={() => navigate(`/edit-manual-test/${item.testSuiteName}`)}>DELETE</button>
+                    {/* <button className="btn-secondary" style={{ marginLeft: "1rem" }} onClick={() => navigate(`/add-test-suite/${item.testSuiteName}`)}>DELETE</button> */}
                  
-                    <button className="btn-secondary"  style={{ marginLeft: "1rem" }}onClick={() => navigate(`/edit-manual-test/${item.testSuiteName}`)}>VIEW</button>
+                    {/* <button className="btn-secondary"  style={{ marginLeft: "1rem" }}onClick={() => navigate(`/add-test-suite/${item.testSuiteName}`)}>VIEW</button> */}
                   
-                    <button className="btn-secondary" style={{ marginLeft: "1rem" }} onClick={() => navigate(`/edit-manual-test/${item.testSuiteName}`)}>EXECUTE</button>
+                    <button className="btn-secondary" style={{ marginLeft: "1rem" }} onClick={() => navigate(`/add-test-suite/${item.testSuiteName}`)}>EXECUTE</button>
                   </td>
                 </tr>
               ))}

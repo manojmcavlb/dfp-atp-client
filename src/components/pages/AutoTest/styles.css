@@ -9,7 +9,7 @@
   margin-bottom: 1rem;
 }
 
-.status-item {
+.rescan-icon {
   display: flex;
   align-items: center;
   margin-right: 1rem;
@@ -17,10 +17,6 @@
 
 .status-icon {
   cursor: pointer;
-}
-
-.status-label {
-  font-weight: bold;
 }
 
 .status-actions {

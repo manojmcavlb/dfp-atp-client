@@ -122,7 +122,7 @@ function AutoTest() {
       <main className="page-wrap">
         <h2 className="page-title">Auto Test</h2>
         <div className="status-row">
-          <div className="status-item">
+          <div className="rescan-icon">
             <button className="btn-secondary">
               <FaSyncAlt onClick={handleRefresh}/>
             </button>
