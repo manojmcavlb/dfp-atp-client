@@ -7,11 +7,11 @@ const AddEditCalibration = () => {
   const { id } = useParams();
   const isEditMode = id !== undefined;
 
-  const [deviceName, setDeviceName] = useState('');
-  const [partNumber, setPartNumber] = useState('');
-  const [serialNumber, setSerialNumber] = useState('');
-  const [calibrationDate, setCalibrationDate] = useState('');
-  const [calibrationDueDate, setCalibrationDueDate] = useState('');
+  const [deviceName, setDeviceName] = useState('AC Power Supply');
+  const [partNumber, setPartNumber] = useState('61061');
+  const [serialNumber, setSerialNumber] = useState('CN64277284');
+  const [calibrationDate, setCalibrationDate] = useState('2025-01-01');
+  const [calibrationDueDate, setCalibrationDueDate] = useState('2026-12-01');
 
   const handleSave = () => {
     // Implement save logic here

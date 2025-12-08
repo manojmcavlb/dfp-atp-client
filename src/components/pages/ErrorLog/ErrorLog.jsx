@@ -135,6 +135,14 @@ const ErrorLog = () => {
         </div>
       <div className="filters-panel">
         <div className="filter-group">
+          <label>Module:</label>
+          <select className="select runs-input" value={module} onChange={(e) => setModule(e.target.value)}>
+            <option>All</option>
+            <option>IoT Gateway</option>
+            <option>Remote Head</option>
+          </select>
+        </div>
+        <div className="filter-group">
           <label>Date Range:</label>
           <input
             type="date"
@@ -167,14 +175,6 @@ const ErrorLog = () => {
             <option>Medium</option>
             <option>High</option>
             <option>Critical</option>
-          </select>
-        </div>
-        <div className="filter-group">
-          <label>Module:</label>
-          <select className="select runs-input" value={module} onChange={(e) => setModule(e.target.value)}>
-            <option>All</option>
-            <option>IoT Gateway</option>
-            <option>Remote Head</option>
           </select>
         </div>
         <div className="filter-group">

@@ -44,7 +44,7 @@ const MainMenu = () => {
                             HEALTH STATUS
                         </button>
                         <button className="btn-secondary" onClick={() => handleNavigation('/test-settings')}>
-                            TEST SETTINGS
+                            TEST LIMITS
                         </button>
                     </div>
                     <div className="column">

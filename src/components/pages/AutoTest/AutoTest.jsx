@@ -24,30 +24,13 @@ function AutoTest() {
   const [healthStatus, setHealthStatus] = useState("green");
   const [showTestResult, setShowTestResult] = useState(false);
   const [devices, setDevices] = useState([
-    { name: 'Device Info', selected: true, status: 'pending', items: [] },
-    { name: 'Power', selected: true, status: 'pending', items: [] },
-    { name: 'Mainboard', selected: true, status: 'pending', items: [] },
-    {
-      name: 'Sensors',
-      isHeader: true,
-    },
-    {
-      name: 'AAAAAA',
-      selected: true,
-      status: 'pending',
-      items: [],
-      loading: false,
-    },
-    { name: 'BBBBBB', selected: false, status: 'pending', items: [] },
-    { name: 'CCCCCC', selected: false, status: 'pending', items: [] },
-    {
-      name: 'DDDDDDDDDDDDDD...',
-      selected: false,
-      status: 'pending',
-      items: [],
-    },
-    { name: 'EEEEEE', selected: false, status: 'pending', items: [] },
-    { name: '---', selected: false, status: 'pending', items: [] },
+    { name: '6.2 Input Power Test', selected: true, status: 'pending', items: [] },
+    { name: '6.3 Battery Type Test', selected: true, status: 'pending', items: [] },
+    { name: '6.4 USB-C Port Test', selected: true, status: 'pending', items: [] },
+    { name: '6.5 Software Load Security Test', selected: true, status: 'pending', items: [] },
+    { name: '6.6 Part & Serial Number Storage Test', selected: true, status: 'pending', items: [] },
+    { name: '6.9 Discrete Pass-Through Inputs Test', selected: true, status: 'pending', items: [] },
+    { name: '6.1 Discrete Pass-Through Outputs Test', selected: true, status: 'pending', items: [] },
   ]);
 
   const handleRefresh = () => {
@@ -101,7 +84,7 @@ function AutoTest() {
   };
 
   const handleDeviceChange = (index) => {
-    const newdevices = [...devices];
+    const newDevices = [...devices];
     newDevices[index].selected = !newDevices[index].selected;
     setDevices(newDevices);
   };
@@ -185,7 +168,7 @@ function AutoTest() {
               </div>
               <div className="runs-field">
                 <a href="#" onClick={() => navigate("/health-status")}>
-                  Overall Health Status:
+                  Health Status:
                 </a>
                 <FaCircle color={healthStatus} size={20} />
               </div>
@@ -222,7 +205,7 @@ function AutoTest() {
                     />
                     <span>{device.name}</span>
                   </label>
-                  <div className={`status-indicator ${device.status}`}></div>
+                  {/* <div className={`status-indicator ${device.status}`}></div> */}
                 </div>
               ))}
             </div>

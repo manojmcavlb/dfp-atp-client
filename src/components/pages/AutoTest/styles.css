@@ -2,7 +2,9 @@
   font-size: 16px;
   font-weight: 500;
 }
-
+.card-edit-device {
+  width: 530px;
+}
 .status-row {
   display: flex;
   align-items: center;
@@ -71,7 +73,7 @@
 }
 
 .input.runs-input {
-  width: 60px;
+  width: 100px;
 }
 
 .no-product-message {
@@ -82,4 +84,19 @@
   font-weight: 500;
   color: var(--color-gray-dark);
   border-radius: 5px;
+}
+
+.runs-input::-webkit-outer-spin-button,
+.runs-input::-webkit-inner-spin-button {
+  opacity: 1;
+}
+
+.form-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.form-col {
+  flex: 1;
+  min-width: 250px;
 }

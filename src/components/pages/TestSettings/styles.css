@@ -1,0 +1,9 @@
+.input-disabled {
+  border: 1px solid var(--color-gray-medium);
+  color: var(--color-gray);
+  background-color: var(--color-gray-medium);
+} 
+
+.card-test-limit {
+  width: 530px;
+}

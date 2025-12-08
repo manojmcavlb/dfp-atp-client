@@ -83,6 +83,18 @@ class App extends React.Component {
   render() {
     const { currentUser, isAdmin, sessionExpired } = this.state;
 
+    // const statusBarStyle = {
+    //   backgroundColor: "#11182F",
+    //   color: "#fff",
+    //   borderTop: "1px solid #e7e7e7",
+    //   textAlign: "center",
+    //   padding: "2px",
+    //   position: "fixed",
+    //   left: "0",
+    //   bottom: "0",
+    //   width: "100%",
+    // };
+
     return (
       <Router>
         <div>
@@ -278,6 +290,9 @@ class App extends React.Component {
             {/* <Route path="/add-self-test" element={<PrivateRoute><AddEditTestSuite /></PrivateRoute>} />
             <Route path="/edit-self-test/:id" element={<PrivateRoute><AddEditTestSuite /></PrivateRoute>} /> */}
           </Routes>
+          {/* <div style={statusBarStyle}>
+            DFP @Copyrights
+          </div> */}
         </div>
       </Router>
     );

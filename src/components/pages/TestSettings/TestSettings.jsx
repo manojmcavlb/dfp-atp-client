@@ -28,18 +28,23 @@ const testSettingsData = [
     { step: '5.1', stepName: 'Send & Read Data across PS_RMM Port (P5.7 & P5.8)', comparison: 'IgnoreCase', lowLt: 'NA', highLt: 'NA', unit: 'NA', stringLt: 'ITA3' },
     { step: 'NA', stepName: 'NA', comparison: 'NA', lowLt: 'NA', highLt: 'NA', unit: 'NA', stringLt: 'NA' }
 ];
+// T74-01-S007 (Remote Head)
+// P90-01-5007 (IoT Gateway)
 
 function TestSettings() {
   const navigate = useNavigate();
   return (
     <div className="page-bg">
       <main className="page-wrap">
-        <h1 className="page-title">Test Settings</h1>
+        <h1 className="page-title">Test Limits</h1>
         <div className="action-btns">
-          <select className="select">
-            <option>79281300AA AC-DC Battery Charger</option>
-          </select>
-        </div>
+            <label htmlFor="device" className=" ">
+              Device:
+            <select id="device" className="select">
+              <option>Remote Head</option>
+              <option>IoT Gateway</option>
+            </select></label>
+          </div>
         <div className="table-container">
           <table className="page-table">
             <thead>
@@ -51,9 +56,10 @@ function TestSettings() {
                 <th>High Lt</th>
                 <th>Unit</th>
                 <th>String Lt</th>
-                <th>Actions&nbsp;&nbsp;
+                <th>Actions
+                  {/* &nbsp;&nbsp;
                   <button className="btn-secondary"
-                    onClick={() => navigate("/add-test-settings")}>ADD</button>
+                    onClick={() => navigate("/add-test-settings")}>ADD</button> */}
                 </th>
               </tr>
             </thead>

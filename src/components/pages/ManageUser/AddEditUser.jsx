@@ -7,7 +7,7 @@ const screens = [
   "Auto Test",
   "Self Test",
   "Health Status",
-  "Test Settings",
+  "Test Limits",
   "Calibration Info.",
   "Instrument Settings",
   "Manage User",
@@ -16,8 +16,8 @@ const screens = [
 
 const privilegeConfig = {
     view: { label: "View", enabled: screens },
-    addEdit: { label: "Add/Edit", enabled: ["Self Test", "Test Settings", "Instrument Settings", "Manage User"] },
-    delete: { label: "Delete", enabled: ["Auto Test", "Self Test", "Test Settings", "Manage User"] },
+    addEdit: { label: "Add/Edit", enabled: ["Self Test", "Test Limits", "Instrument Settings", "Manage User"] },
+    delete: { label: "Delete", enabled: ["Test Limits", "Manage User"] },
     execute: { label: "Execute", enabled: ["Auto Test", "Self Test"] }
 };
 
@@ -27,9 +27,9 @@ const privilegeKeys = Object.keys(privilegeConfig);
 const initialPrivilegeValues = [
   // View, Add/Edit, Delete, Execute
   [true, true, false, true],   // Auto Test
-  [false, true, true, true],   // Self Test
+  [false, true, false, true],   // Self Test
   [true, false, false, false], // Health Status
-  [true, true, true, false],  // Test Settings
+  [false, true, true, false],  // Test Limits
   [true, false, false, false], // Calibration Info.
   [true, true, false, false], // Instrument Settings
   [true, true, true, false],  // Manage User

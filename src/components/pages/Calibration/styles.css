@@ -1,0 +1,38 @@
+/* .status-box {
+  padding: 5px 15px;
+  border-radius: 5px;
+  color: white;
+  text-align: center;
+  display: inline-block;
+} */
+
+.health-status-due {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-top: 0.5rem;
+}
+
+.status-red {
+  background-color: red;
+}
+
+.status-yellow {
+  background-color: #f0ad4e;
+}
+
+.status-green {
+  background-color: green;
+}
+
+.status-box {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+td {
+  vertical-align: middle;
+}

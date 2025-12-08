@@ -90,14 +90,15 @@ const AddEditDevice = () => {
   return (
     <div className="page-bg">
       <main className="center-wrap">
-        <div className="card form-card">
+        <div className="card form-card card-edit-device">
           <h2 className="card-title">{isEditMode ? 'Edit Device' : 'Add Device'}</h2>
           
           <form className="form">
-            <div >
+            <div className="form-row">
+              <div className="form-col">
                 <label className="label">
-                  Product:
-                  <input className="input" type="text" value={product} onChange={(e) => setProduct(e.target.value)} />
+                  Hardware Part Number:
+                  <input className="input" type="text" value={hardwarePartNumber} onChange={(e) => setHardwarePartNumber(e.target.value)} />
                 </label>
                 <label className="label">
                   Serial Number:
@@ -111,10 +112,8 @@ const AddEditDevice = () => {
                   Manufacturing Cage Code:
                   <input className="input" type="text" value={manufacturingCageCode} onChange={(e) => setManufacturingCageCode(e.target.value)} />
                 </label>
-                <label className="label">
-                  Hardware Part Number:
-                  <input className="input" type="text" value={hardwarePartNumber} onChange={(e) => setHardwarePartNumber(e.target.value)} />
-                </label>
+              </div>
+              <div className="form-col">
                 <label className="label">
                   Manufacturing Date:
                   <input className="input" type="date" value={manufacturingDate} onChange={(e) => setManufacturingDate(e.target.value)} />
@@ -127,12 +126,10 @@ const AddEditDevice = () => {
                   PMA Number:
                   <input className="input" type="text" value={pmaNumber} onChange={(e) => setPmaNumber(e.target.value)} />
                 </label>
-            </div>
-            <div>
-              <div className='label label-update msg-success'>Software update (1.0.1) is available.</div>
-              <div className='action-btns action-btns-software' style={{ display: 'inline-block', marginLeft: '1rem' }}>
-                <button type='button' className='btn-secondary' onClick={handleCameraClick} disabled={!isCameraDetected}>SCAN PRODUCT</button>
-                <button type='button' className='btn-secondary' style={{ marginLeft: '8px' }} onClick={handleUpdateClick}>FACTORY RESET</button>
+                <div className='action-btns' style={{ marginTop: '1rem' }}>
+                  <button type='button' className='btn-secondary' onClick={handleCameraClick} disabled={!isCameraDetected}>Camera</button>
+                  <button type='button' className='btn-secondary' style={{ marginLeft: '8px' }} onClick={handleUpdateClick}>Factory Reset</button>
+                </div>
               </div>
             </div>
             <div className="action-btns action-btns-save">

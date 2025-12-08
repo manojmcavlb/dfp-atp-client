@@ -80,13 +80,6 @@
     margin-top: 20px;
 }
 
-
-.modal-header-test-step {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 20px;
-}
-
 .image-placeholder {
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -149,4 +142,30 @@
 .no-image-icon {
     font-size: 50px;
     color: #ccc;
+}
+
+.test-step-header {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.select-all-label {
+    /* width: 120px; */
+    /* flex-shrink: 0; */
+}
+
+.test-step-id-header {
+  width: 6rem;
+}
+
+.test-step-name-header {
+  flex-grow: 1;
+}
+
+.test-step-id {
+  width: 5rem;
+  margin-left: 1rem;
 }

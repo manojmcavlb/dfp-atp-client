@@ -10,7 +10,10 @@ const AddEditTestSuite = () => {
     const [name, setName] = useState('Full Kit Test');
     const [objective, setObjective] = useState('To verify all equipment are connected properly.');
     const [testSteps, setTestSteps] = useState([
-        { text: 'Connect all equipment according to the diagram.', selected: true },
+        { id: '1.1', text: 'Measure Resistance across 48V_OUT & 48V_RET (TB3/TB4 & TB6/TB8)', selected: true },
+        { id: '1.2', text: 'Measure Resistance across PS_3 & 48V_RET (TB13 & TB14)', selected: true },
+        { id: '1.3', text: 'Measure Resistance across Battery_Bus & 48V_RET (TB1/TB2 & TB5/TB7)', selected: true },
+        { id: '1.4', text: 'Measure Resistance across PS_1/PS_2 & 48V_RET (TB9/TB11 & TB10/TB12)', selected: true },
     ]);
     const [selectAll, setSelectAll] = useState(true);
     const [currentStep, setCurrentStep] = useState('This is the detailed step of this test. To verify all equipment are connected properly.');
@@ -73,11 +76,10 @@ const AddEditTestSuite = () => {
     };
 
     return (
-        <div className="add-edit-test-suite-page">
-            <div className="add-edit-test-suite">
+    <div className="page-bg">
+      <main className="page-wrap">
                 <form className="form">
-
-                    <div className="modal-header-test-step">Add/Edit Test Step</div>
+                    <h2 className="page-title">Add/Edit Test Suite</h2>
                     <div >
                         <label className="label" htmlFor="name">
                         Name:
@@ -162,22 +164,27 @@ const AddEditTestSuite = () => {
 
                     <div className="form-group">
                         <label className='label'>Test Steps</label>
-                        <label className="checkbox">
-                            <input
-                                type="checkbox"
-                                checked={selectAll}
-                                onChange={handleSelectAll}
-                            />
-                            <span>Select All</span>
-                        </label>
-                        {testSteps.map((step, index) => (
-                            <div key={index} className="test-step">
+                        <div className="test-step-header">
+                            <label className="checkbox select-all-label">
                                 <input
                                     type="checkbox"
-                                    checked={step.selected}
-                                    onChange={() => handleStepChange(index)}
+                                    checked={selectAll}
+                                    onChange={handleSelectAll}
                                 />
-                                <span>{index + 1}</span>
+                            </label>
+                            <span className="test-step-id-header">Step ID</span>
+                            <span className="test-step-name-header">Step Name</span>
+                        </div>
+                        {testSteps.map((step, index) => (
+                            <div key={index} className="test-step">
+                                <div className="select-all-label">
+                                    <input
+                                        type="checkbox"
+                                        checked={step.selected}
+                                        onChange={() => handleStepChange(index)}
+                                    />
+                                </div>
+                                <span className="test-step-id">{step.id}</span>
                                 <div className="test-step-text">{step.text}</div>
                                 <div className="test-step-actions">
                                 </div>
@@ -187,11 +194,11 @@ const AddEditTestSuite = () => {
 
                     <div className="action-btns center">
                         <button onClick={() =>handleCancel()} className="btn-secondary">Cancel</button>
-                        <button onClick={handleSave} className="btn-primary">Create/Execute</button>
+                        <button onClick={handleSave} className="btn-primary">Execute</button>
                     </div>
                 </form>
-            </div>
-            {isCameraOpen && <CameraModal onCancel={handleCameraCancel} onCapture={handleCapture} />}
+                {isCameraOpen && <CameraModal onCancel={handleCameraCancel} onCapture={handleCapture} />}
+            </main>
         </div>
     );
 };
