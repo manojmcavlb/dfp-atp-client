@@ -5,7 +5,7 @@ import "../../../assets/styles/main.css";
 
 const screens = [
   "Auto Test",
-  "Manual Test",
+  "Self Test",
   "Health Status",
   "Test Settings",
   "Calibration Info.",
@@ -16,9 +16,9 @@ const screens = [
 
 const privilegeConfig = {
     view: { label: "View", enabled: screens },
-    addEdit: { label: "Add/Edit", enabled: ["Manual Test", "Test Settings", "Instrument Settings", "Manage User"] },
-    delete: { label: "Delete", enabled: ["Auto Test", "Manual Test", "Test Settings", "Manage User"] },
-    execute: { label: "Execute", enabled: ["Auto Test", "Manual Test"] }
+    addEdit: { label: "Add/Edit", enabled: ["Self Test", "Test Settings", "Instrument Settings", "Manage User"] },
+    delete: { label: "Delete", enabled: ["Auto Test", "Self Test", "Test Settings", "Manage User"] },
+    execute: { label: "Execute", enabled: ["Auto Test", "Self Test"] }
 };
 
 const privilegeKeys = Object.keys(privilegeConfig);
@@ -27,7 +27,7 @@ const privilegeKeys = Object.keys(privilegeConfig);
 const initialPrivilegeValues = [
   // View, Add/Edit, Delete, Execute
   [true, true, false, true],   // Auto Test
-  [false, true, true, true],   // Manual Test
+  [false, true, true, true],   // Self Test
   [true, false, false, false], // Health Status
   [true, true, true, false],  // Test Settings
   [true, false, false, false], // Calibration Info.

@@ -15,7 +15,7 @@ const testSuiteData = [
   },
 ];
 
-function ManualTest() {
+function SelfTest() {
   const navigate = useNavigate();
   const [product, setProduct] = useState('remote-head');
   const handleProductChange = (event) => {
@@ -25,7 +25,7 @@ function ManualTest() {
   return (
     <div className="page-bg">
       <main className="page-wrap">
-        <h2 className="page-title">MANUAL TEST - Test Suites</h2>
+        <h2 className="page-title">SELF TEST - Test Suites</h2>
         <header className="status-item center">
             <DetectedProduct product={product} handleProductChange={handleProductChange} />
         </header>
@@ -63,4 +63,4 @@ function ManualTest() {
   );
 }
 
-export default ManualTest;
+export default SelfTest;

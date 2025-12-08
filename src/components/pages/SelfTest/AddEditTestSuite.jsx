@@ -39,11 +39,11 @@ const AddEditTestSuite = () => {
     };
 
     const handleSave = () => {
-        navigate('/manual-test');
+        navigate('/self-test');
     };
 
     const handleCancel = () => {
-        navigate('/manual-test');
+        navigate('/self-test');
     };
 
     const handleSelectAll = (e) => {

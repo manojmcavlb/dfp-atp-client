@@ -1,11 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import DetectedProduct from '../../ui/DetectedProduct/DetectedProduct';
 import './styles.css';
 
 const MainMenu = () => {
     const navigate = useNavigate();
     const [product, setProduct] = useState('remote-head');
+    const firstButtonRef = useRef(null);
+
+    useEffect(() => {
+        if (firstButtonRef.current) {
+            firstButtonRef.current.focus();
+        }
+    }, []);
 
     const handleNavigation = (path) => {
         navigate(path);
@@ -20,17 +26,19 @@ const MainMenu = () => {
 
     return (
         <div className="main-menu">
-            <div className="center">
-                <DetectedProduct product={product} handleProductChange={handleProductChange} />
-            </div>
             <main className="content">
                 <div className="two-column-layout">
                     <div className="column">
-                        <button className="btn-secondary" onClick={() => handleNavigation2(`/auto-test?product=${product}`)}>
+                        <button
+                            ref={firstButtonRef}
+                            className="btn-secondary"
+                            onClick={() => handleNavigation2(`/auto-test?product=${product}`)}
+                            autoFocus
+                        >
                             AUTO TEST
                         </button>
-                        <button className="btn-secondary" onClick={() => handleNavigation('/manual-test')}>
-                            MANUAL TEST
+                        <button className="btn-secondary" onClick={() => handleNavigation('/self-test')}>
+                            SELF TEST
                         </button>
                         <button className="btn-secondary" onClick={() => handleNavigation2('/health-status')}>
                             HEALTH STATUS

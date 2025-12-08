@@ -18,12 +18,12 @@ import AddEditCalibration from "./components/pages/Calibration/AddEditCalibratio
 import TestSettings from "./components/pages/TestSettings/TestSettings";
 import AddEditTestSettings from "./components/pages/TestSettings/AddEditTestSettings";
 import Instrument from "./components/pages/Instrument";
-import ManualTest from "./components/pages/ManualTest/ManualTest";
+import SelfTest from "./components/pages/SelfTest/SelfTest";
 import AtpHealthStatus from "./components/pages/AtpHealthStatus/AtpHealthStatus";
 import ErrorLog from "./components/pages/ErrorLog/ErrorLog";
 import SessionExpiredAlert from "./components/ui/SessionExpiredAlert/SessionExpiredAlert";
 import { COOKIE_CHECK_INTERVAL } from "./utils/constants";
-import AddEditTestSuite from "./components/pages/ManualTest/AddEditTestSuite";
+import AddEditTestSuite from "./components/pages/SelfTest/AddEditTestSuite";
 
 // Helper function to get a cookie by name
 function getCookie(name) {
@@ -270,13 +270,13 @@ class App extends React.Component {
             <Route path="/edit-test-settings/:id" element={<PrivateRoute><AddEditTestSettings /></PrivateRoute>} />
             <Route path="/add-calibration" element={<PrivateRoute><AddEditCalibration /></PrivateRoute>} />
             <Route path="/edit-calibration/:id" element={<PrivateRoute><AddEditCalibration /></PrivateRoute>} />
-            <Route path="/manual-test" element={<PrivateRoute><ManualTest /></PrivateRoute>} />
+            <Route path="/self-test" element={<PrivateRoute><SelfTest /></PrivateRoute>} />
             <Route path="/add-test-suite" element={<PrivateRoute><AddEditTestSuite /></PrivateRoute>} />
             <Route path="/edit-test-suite/:id" element={<PrivateRoute><AddEditTestSuite /></PrivateRoute>} />
             <Route path="/health-status" element={<PrivateRoute><AtpHealthStatus /></PrivateRoute>} />
             <Route path="/error-log" element={<PrivateRoute><ErrorLog /></PrivateRoute>} />
-            {/* <Route path="/add-manual-test" element={<PrivateRoute><AddEditTestSuite /></PrivateRoute>} />
-            <Route path="/edit-manual-test/:id" element={<PrivateRoute><AddEditTestSuite /></PrivateRoute>} /> */}
+            {/* <Route path="/add-self-test" element={<PrivateRoute><AddEditTestSuite /></PrivateRoute>} />
+            <Route path="/edit-self-test/:id" element={<PrivateRoute><AddEditTestSuite /></PrivateRoute>} /> */}
           </Routes>
         </div>
       </Router>
