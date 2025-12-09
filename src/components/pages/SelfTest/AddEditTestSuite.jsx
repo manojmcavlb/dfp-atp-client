@@ -10,10 +10,10 @@ const AddEditTestSuite = () => {
     const [name, setName] = useState('Full Kit Test');
     const [objective, setObjective] = useState('To verify all equipment are connected properly.');
     const [testSteps, setTestSteps] = useState([
-        { id: '1.1', text: 'Measure Resistance across 48V_OUT & 48V_RET (TB3/TB4 & TB6/TB8)', selected: true },
-        { id: '1.2', text: 'Measure Resistance across PS_3 & 48V_RET (TB13 & TB14)', selected: true },
-        { id: '1.3', text: 'Measure Resistance across Battery_Bus & 48V_RET (TB1/TB2 & TB5/TB7)', selected: true },
-        { id: '1.4', text: 'Measure Resistance across PS_1/PS_2 & 48V_RET (TB9/TB11 & TB10/TB12)', selected: true },
+        { id: '1.1', text: 'Measure Resistance across 48V_OUT & 48V_RET (TB3/TB4 & TB6/TB8)', selected: true, image: null },
+        { id: '1.2', text: 'Measure Resistance across PS_3 & 48V_RET (TB13 & TB14)', selected: true, image: null },
+        { id: '1.3', text: 'Measure Resistance across Battery_Bus & 48V_RET (TB1/TB2 & TB5/TB7)', selected: true, image: null },
+        { id: '1.4', text: 'Measure Resistance across PS_1/PS_2 & 48V_RET (TB9/TB11 & TB10/TB12)', selected: true, image: null },
     ]);
     const [selectAll, setSelectAll] = useState(true);
     const [currentStep, setCurrentStep] = useState('This is the detailed step of this test. To verify all equipment are connected properly.');
@@ -187,9 +187,28 @@ const AddEditTestSuite = () => {
                                 <span className="test-step-id">{step.id}</span>
                                 <div className="test-step-text">{step.text}</div>
                                 <div className="test-step-actions">
+                                    <input
+                                        type="file"
+                                        id={`imageUpload-${index}`}
+                                        style={{ display: 'none' }}
+                                        accept="image/*"
+                                        onChange={(e) => handleImageUpload(e, index)}
+                                    />
+                                    <button
+                                        type="button"
+                                        className="btn-secondary"
+                                        onClick={() => document.getElementById(`imageUpload-${index}`).click()}
+                                    >
+                                        <FaUpload />
+                                    </button>
+                                    {step.image && (
+                                        <div className="image-preview-container">
+                                            <img src={step.image} alt="Preview" className="image-preview" />
+                                        </div>
+                                    )}
                                 </div>
                             </div>
-                        ))}
+                        ))};
                     </div>
 
                     <div className="action-btns center">
