@@ -127,7 +127,9 @@ const AddEditDevice = () => {
                   <input className="input" type="text" value={pmaNumber} onChange={(e) => setPmaNumber(e.target.value)} />
                 </label>
                 <div className='action-btns' style={{ marginTop: '1rem' }}>
-                  <button type='button' className='btn-secondary' onClick={handleCameraClick} disabled={!isCameraDetected}>Camera</button>
+                  <button type='button' className='btn-secondary' onClick={handleCameraClick} 
+                  // disabled={!isCameraDetected}
+                  >Scan</button>
                   <button type='button' className='btn-secondary' style={{ marginLeft: '8px' }} onClick={handleUpdateClick}>Factory Reset</button>
                 </div>
               </div>

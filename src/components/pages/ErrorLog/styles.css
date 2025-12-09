@@ -73,7 +73,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 15px;
+  /* margin-bottom: 15px; */
 }
 
 .details-popup-body {
@@ -83,11 +83,28 @@
 }
 
 .additional-details {
-    margin-top: 15px;
-    padding-top: 15px;
+    /* margin-top: 15px;
+    padding-top: 15px; */
     border-top: 1px solid #eee;
 }
 
 .input-search {
     min-width: 175px;
+}
+
+
+.btn-close {
+  min-width: 30px;
+  background: var(--color-primary);
+  border: 1px solid var(--color-secondary);
+  color: var(--color-secondary);
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  font-size: 14px;
+  font-weight: 500;
+  align-items: center;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: transform 80ms ease, box-shadow 120ms ease, background 120ms ease;
 }

@@ -28,9 +28,15 @@ html,
   color: var(--color-body);
 }
 
+.footer {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-gray-dark);
+}
+
 /* ===== Base Page (shared) ===== */
 .page-bg {
-  min-height: 100vh;
+  /* min-height: 100vh; */
 }
 
 .title {

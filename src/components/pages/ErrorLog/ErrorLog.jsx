@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../../../assets/styles/main.css';
 import './styles.css';
+import ErrorLogDetails from './ErrorLogDetails';
 
 const ErrorLog = () => {
   const [logs, setLogs] = useState([
@@ -221,31 +222,7 @@ const ErrorLog = () => {
       </div>
 
       {showDetails && (
-        <div className="details-popup">
-          <div className="details-popup-content">
-            <div className="details-popup-header">
-              <h3>Details</h3>
-              <button onClick={handleCloseDetails} className="btn-close">&times;</button>
-            </div>
-            <div className="details-popup-body">
-              <p><strong>Timestamp:</strong> {showDetails.timestamp}</p>
-              <p><strong>Log Type:</strong> {showDetails.type}</p>
-              <p><strong>Error/Event Code:</strong> {showDetails.code}</p>
-              <p><strong>Severity:</strong> {showDetails.severity}</p>
-              <p><strong>Source/Module:</strong> {showDetails.source}</p>
-              <p><strong>Error Code:</strong> {showDetails.code}</p>
-              <p><strong>Message:</strong> {showDetails.message}</p>
-              {Object.keys(showDetails.details).length > 0 && (
-                <div className="additional-details">
-                  <h4>Additional Details:</h4>
-                  {Object.entries(showDetails.details).map(([key, value]) => (
-                    <p key={key}><strong>{key}:</strong> {value}</p>
-                  ))}
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
+        <ErrorLogDetails log={showDetails} onClose={handleCloseDetails} />
       )}
       </main>
     </div>

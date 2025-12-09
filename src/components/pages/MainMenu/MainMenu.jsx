@@ -27,6 +27,7 @@ const MainMenu = () => {
     return (
         <div className="main-menu">
             <main className="content">
+                <h2 className="card-title">Main Menu</h2>
                 <div className="two-column-layout">
                     <div className="column">
                         <button

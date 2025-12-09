@@ -12,6 +12,7 @@ import {
 import "../../../assets/styles/main.css";
 import "./styles.css";
 import Serial from "../Drivers/Serial";
+import HealthStatus from '../../ui/HealthStatus';
 
 function AutoTest() {
   const navigate = useNavigate();
@@ -166,12 +167,7 @@ function AutoTest() {
                   onChange={(e) => setRuns(Number(e.target.value))}
                 />
               </div>
-              <div className="runs-field">
-                <a href="#" onClick={() => navigate("/health-status")}>
-                  Health Status:
-                </a>
-                <FaCircle color={healthStatus} size={20} />
-              </div>
+              <HealthStatus healthStatus={healthStatus} />
 
               <div className="mode-switch">
                 <button

@@ -17,7 +17,7 @@ function AtpHealthStatus() {
     <div className="page-bg">
       <main className="center-wrap">
         <div className="card form-card">
-          <h2 className="card-title">ATS Health Status</h2>
+          <h2 className="card-title">ATP Health Status</h2>
           <div className="health-status-grid">
             {healthStatusData.map((item, index) => (
               <div key={index} className="health-status-item">

@@ -24,6 +24,8 @@ import ErrorLog from "./components/pages/ErrorLog/ErrorLog";
 import SessionExpiredAlert from "./components/ui/SessionExpiredAlert/SessionExpiredAlert";
 import { COOKIE_CHECK_INTERVAL } from "./utils/constants";
 import AddEditTestSuite from "./components/pages/SelfTest/AddEditTestSuite";
+import HealthStatus from "./components/ui/HealthStatus";
+import CalibHealthStatus from "./components/ui/CalibHealthStatus";
 
 // Helper function to get a cookie by name
 function getCookie(name) {
@@ -39,6 +41,8 @@ class App extends React.Component {
       currentUser: null,
       isAdmin: false,
       sessionExpired: false,
+      healthStatusTest: "green",
+      healthStatusCalib: "red",
     };
   }
 
@@ -81,19 +85,28 @@ class App extends React.Component {
   };
 
   render() {
-    const { currentUser, isAdmin, sessionExpired } = this.state;
+    const { currentUser, isAdmin, sessionExpired, healthStatusTest, healthStatusCalib } = this.state;
 
-    // const statusBarStyle = {
-    //   backgroundColor: "#11182F",
-    //   color: "#fff",
-    //   borderTop: "1px solid #e7e7e7",
-    //   textAlign: "center",
-    //   padding: "2px",
-    //   position: "fixed",
-    //   left: "0",
-    //   bottom: "0",
-    //   width: "100%",
-    // };
+    const statusBarStyle = {
+      backgroundColor: "#11182F",
+      color: "#fff",
+      borderTop: "1px solid #e7e7e7",
+      textAlign: "center",
+      padding: "5px",
+      position: "fixed",
+      left: "0",
+      bottom: "0",
+      width: "100%",
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      padding: "5px 20px",
+      boxSizing: "border-box",
+    };
+
+    const statusBarSection = {
+      flex: 1,
+    };
 
     return (
       <Router>
@@ -290,9 +303,21 @@ class App extends React.Component {
             {/* <Route path="/add-self-test" element={<PrivateRoute><AddEditTestSuite /></PrivateRoute>} />
             <Route path="/edit-self-test/:id" element={<PrivateRoute><AddEditTestSuite /></PrivateRoute>} /> */}
           </Routes>
-          {/* <div style={statusBarStyle}>
-            DFP @Copyrights
-          </div> */}
+          <div style={statusBarStyle}>
+            <div className="action-btns" 
+              style={{
+                ...statusBarSection,
+                display: "flex",
+                justifyContent: "flex-start",
+              }}>
+              <HealthStatus healthStatus={healthStatusTest} />
+              <CalibHealthStatus healthStatus={healthStatusCalib} />
+            </div>
+            <div style={statusBarSection}></div>
+            <div style={{ ...statusBarSection, textAlign: "right" }}>
+              <span>DFP @Copyrights 2026</span>
+            </div>
+          </div>
         </div>
       </Router>
     );

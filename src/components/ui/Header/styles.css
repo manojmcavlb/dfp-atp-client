@@ -6,7 +6,7 @@
     align-items: center;
     padding: 10px 10px;
     position: relative;
-    width: 100%;
+    /* width: 100%; */
 }
 
 .header-logo {
