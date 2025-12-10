@@ -130,9 +130,9 @@ const ErrorLog = () => {
       <main className="page-wrap">
         <h2 className="page-title">Error / Event Log</h2>
         <div className="action-btns error-log-header">
-          <button className="btn-secondary">REFRESH</button>
-          <button className="btn-secondary">CLEAR LOG</button>
-          <button className="btn-secondary">EXPORT</button>
+          <button className="btn-primary">REFRESH</button>
+          <button className="btn-primary">CLEAR LOG</button>
+          <button className="btn-primary">EXPORT</button>
         </div>
       <div className="filters-panel">
         <div className="filter-group">
@@ -184,7 +184,7 @@ const ErrorLog = () => {
         </div>
         <div className="action-btns">
           <button className="btn-primary">APPLY</button>
-          <button className="btn-secondary">RESET</button>
+          <button className="btn-primary">RESET</button>
         </div>
       </div>
 
@@ -211,7 +211,7 @@ const ErrorLog = () => {
                 <td>{log.severity}</td>
                 <td>{log.message}</td>
                 <td>
-                  <button className="btn-secondary" onClick={() => handleViewDetails(log)}>
+                  <button className="btn-primary" onClick={() => handleViewDetails(log)}>
                     VIEW DETAILS
                   </button>
                 </td>

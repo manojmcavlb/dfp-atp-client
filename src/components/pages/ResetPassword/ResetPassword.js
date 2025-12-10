@@ -94,7 +94,7 @@ function ResetPassword() {
             <div style={{ fontSize: '48px', color: '#222', marginBottom: '1rem', fontWeight: '200' }}>✓</div>
             <h2 className="card-title" style={{ marginBottom: '1rem' }}>Password Changed!</h2>
             <p style={{ marginBottom: '2rem', color: '#555' }}>Your password has been changed successfully.</p>
-            <button className="btn-secondary" style={{padding: '0.5rem 2rem'}} onClick={() => navigate("/login")}>
+            <button className="btn-primary" style={{padding: '0.5rem 2rem'}} onClick={() => navigate("/login")}>
               Login
             </button>
           </div>
@@ -163,7 +163,7 @@ function ResetPassword() {
               <div className="action-btns">
                 <button
                   type="button"
-                  className="btn-secondary"
+                  className="btn-primary"
                   onClick={() => navigate("/login")}
                 >
                   CANCEL

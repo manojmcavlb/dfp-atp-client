@@ -137,7 +137,7 @@ function Login() {
               <a className="link" href="/reset-password">Forget Password?</a>
             </div>
             <div className="center">
-              <button className="btn-primary" type="submit">LOGIN</button>
+              <button className="btn-primary" type="submit">Login</button>
             </div>
           </form>
         </div>

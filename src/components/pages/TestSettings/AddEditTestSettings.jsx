@@ -68,7 +68,7 @@ const AddEditTestSettings = () => {
             <div className="action-btns center">
               <button
                 type="button"
-                className="btn-secondary"
+                className="btn-primary"
                 onClick={handleCancel}
               >
                 CANCEL

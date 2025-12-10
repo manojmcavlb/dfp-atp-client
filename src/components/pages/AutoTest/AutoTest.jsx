@@ -12,14 +12,13 @@ import {
 import "../../../assets/styles/main.css";
 import "./styles.css";
 import Serial from "../Drivers/Serial";
-import HealthStatus from '../../ui/HealthStatus';
 
 function AutoTest() {
   const navigate = useNavigate();
 
   const [detectedProduct, setDetectedProduct] = useState("None");
   const [runs, setRuns] = useState(1);
-  const [activeMode, setActiveMode] = useState("full");
+  const [activeMode, setActiveMode] = useState("production");
   const [selectAll, setSelectAll] = useState(true);
   const [isRunning, setIsRunning] = useState(false);
   const [healthStatus, setHealthStatus] = useState("green");
@@ -92,7 +91,7 @@ function AutoTest() {
 
   const handleModeChange = (mode) => {
     setActiveMode(mode);
-    if (mode === "full") {
+    if (mode === "production") {
       setSelectAll(true);
       setDevices(devices.map((g) => ({ ...g, selected: true })));
     }
@@ -107,7 +106,7 @@ function AutoTest() {
         <h2 className="page-title">Auto Test</h2>
         <div className="status-row">
           <div className="rescan-icon">
-            <button className="btn-secondary">
+            <button className="btn-primary">
               <FaSyncAlt onClick={handleRefresh}/>
             </button>
           </div>
@@ -125,8 +124,8 @@ function AutoTest() {
           </select>
 
           <div className="status-actions">
-            <button className="btn-secondary" disabled={noProductDetected} onClick={() => navigate('/edit-device/1')}>EDIT</button>
-            <button className="btn-secondary" disabled={isRunning}>VIEW REPORTS</button>
+            <button className="btn-primary" disabled={noProductDetected} onClick={() => navigate('/edit-device/1')}>EDIT</button>
+            <button className="btn-primary" disabled={isRunning}>VIEW REPORTS</button>
           </div>
         </div>
 
@@ -143,7 +142,7 @@ function AutoTest() {
                   type="checkbox"
                   checked={selectAll}
                   onChange={handleSelectAll}
-                  disabled={activeMode === "full"}
+                  disabled={activeMode === "production"}
                 />
                 <span>Select All</span>
               </label>
@@ -167,20 +166,18 @@ function AutoTest() {
                   onChange={(e) => setRuns(Number(e.target.value))}
                 />
               </div>
-              <HealthStatus healthStatus={healthStatus} />
-
               <div className="mode-switch">
                 <button
                   className={`mode-btn ${
-                    activeMode === "full" ? "btn-primary" : "btn-secondary"
+                    activeMode === "production" ? "btn-primary" : "btn-primary"
                   }`}
-                  onClick={() => handleModeChange("full")}
+                  onClick={() => handleModeChange("production")}
                 >
-                  FULL
+                  PRODUCTION
                 </button>
                 <button
                   className={`mode-btn ${
-                    activeMode === "customized" ? "btn-primary" : "btn-secondary"
+                    activeMode === "customized" ? "btn-primary" : "btn-primary"
                   }`}
                   onClick={() => handleModeChange("customized")}
                 >
@@ -197,7 +194,7 @@ function AutoTest() {
                       type="checkbox"
                       checked={device.selected}
                       onChange={() => handleDeviceChange(index)}
-                      disabled={activeMode === "full"}
+                      disabled={activeMode === "production"}
                     />
                     <span>{device.name}</span>
                   </label>

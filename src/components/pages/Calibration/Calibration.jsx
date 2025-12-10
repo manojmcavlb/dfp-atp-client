@@ -162,7 +162,7 @@ function Calibration() {
                 <th>Status</th>
                 <th>Actions
                   {/* &nbsp;&nbsp;
-                  <button className="btn-secondary" onClick={() => navigate("/add-calibration")}>ADD</button> */}
+                  <button className="btn-primary" onClick={() => navigate("/add-calibration")}>ADD</button> */}
                 </th>
               </tr>
             </thead>
@@ -180,7 +180,7 @@ function Calibration() {
                       <span className={`health-status-due ${item.status}`}></span>
                     </td>
                     <td className="">
-                      <button className="btn-secondary" onClick={() => navigate(`/edit-calibration/${item.serialNumber}`)}>EDIT</button>
+                      <button className="btn-primary" onClick={() => navigate(`/edit-calibration/${item.serialNumber}`)}>EDIT</button>
                     </td>
                   </tr>
                 );

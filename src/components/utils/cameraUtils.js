@@ -49,7 +49,7 @@ export const CameraModal = ({ onCancel, onCapture }) => {
                     <video ref={videoRef} autoPlay style={{ width: '100%', height: '100%' }} />
                 </div>
                 <div className="action-btns center">
-                    <button className="btn-secondary" onClick={onCancel}>Cancel</button>
+                    <button className="btn-primary" onClick={onCancel}>Cancel</button>
                     <button className="btn-primary" onClick={handleCapture}>Capture</button>
                 </div>
             </div>

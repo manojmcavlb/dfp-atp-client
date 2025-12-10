@@ -196,7 +196,7 @@ const AddEditTestSuite = () => {
                                     />
                                     <button
                                         type="button"
-                                        className="btn-secondary"
+                                        className="btn-primary"
                                         onClick={() => document.getElementById(`imageUpload-${index}`).click()}
                                     >
                                         <FaUpload />
@@ -212,7 +212,7 @@ const AddEditTestSuite = () => {
                     </div>
 
                     <div className="action-btns center">
-                        <button onClick={() =>handleCancel()} className="btn-secondary">Cancel</button>
+                        <button onClick={() =>handleCancel()} className="btn-primary">Cancel</button>
                         <button onClick={handleSave} className="btn-primary">Execute</button>
                     </div>
                 </form>

@@ -32,34 +32,34 @@ const MainMenu = () => {
                     <div className="column">
                         <button
                             ref={firstButtonRef}
-                            className="btn-secondary"
+                            className="btn-primary"
                             onClick={() => handleNavigation2(`/auto-test?product=${product}`)}
                             autoFocus
                         >
                             AUTO TEST
                         </button>
-                        <button className="btn-secondary" onClick={() => handleNavigation('/self-test')}>
-                            SELF TEST
+                        <button className="btn-primary" onClick={() => handleNavigation('/error-log')}>
+                            ERROR/EVENT LOG
                         </button>
-                        <button className="btn-secondary" onClick={() => handleNavigation2('/health-status')}>
+                        <button className="btn-primary" onClick={() => handleNavigation2('/health-status')}>
                             HEALTH STATUS
                         </button>
-                        <button className="btn-secondary" onClick={() => handleNavigation('/test-settings')}>
+                        <button className="btn-primary" onClick={() => handleNavigation('/test-settings')}>
                             TEST LIMITS
                         </button>
                     </div>
                     <div className="column">
-                        <button className="btn-secondary" onClick={() => handleNavigation('/manage-user')}>
+                        <button className="btn-primary" onClick={() => handleNavigation('/manage-user')}>
                             MANAGE USER
                         </button>
-                        <button className="btn-secondary" onClick={() => handleNavigation('/calibration')}>
+                        <button className="btn-primary" onClick={() => handleNavigation('/calibration')}>
                             CALIBRATION INFO.
                         </button>
-                        <button className="btn-secondary" onClick={() => handleNavigation('/instrument')}>
+                        <button className="btn-primary" onClick={() => handleNavigation('/instrument')}>
                             INSTRUMENT SETTINGS
                         </button>
-                        <button className="btn-secondary" onClick={() => handleNavigation('/error-log')}>
-                            ERROR/EVENT LOG
+                        <button className="btn-primary" onClick={() => handleNavigation('/settings')}>
+                            GENERAL SETTINGS
                         </button>
                     </div>
                 </div>

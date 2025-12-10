@@ -26,6 +26,7 @@ import { COOKIE_CHECK_INTERVAL } from "./utils/constants";
 import AddEditTestSuite from "./components/pages/SelfTest/AddEditTestSuite";
 import HealthStatus from "./components/ui/HealthStatus";
 import CalibHealthStatus from "./components/ui/CalibHealthStatus";
+import Settings from "./components/pages/Settings/Settings";
 
 // Helper function to get a cookie by name
 function getCookie(name) {
@@ -259,22 +260,6 @@ class App extends React.Component {
               }
             />
             <Route
-              path="/auto-test?product=remote-head"
-              element={
-                <PrivateRoute>
-                  <AutoTest product="remote-head" />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/auto-test?product=iot-gateway"
-              element={
-                <PrivateRoute>
-                  <AutoTest product="iot-gateway" />
-                </PrivateRoute>
-              }
-            />
-            <Route
               path="/calibration"
               element={
                 <PrivateRoute>
@@ -296,6 +281,7 @@ class App extends React.Component {
             <Route path="/add-calibration" element={<PrivateRoute><AddEditCalibration /></PrivateRoute>} />
             <Route path="/edit-calibration/:id" element={<PrivateRoute><AddEditCalibration /></PrivateRoute>} />
             <Route path="/self-test" element={<PrivateRoute><SelfTest /></PrivateRoute>} />
+            <Route path="/settings" element={<Settings />} />
             <Route path="/add-test-suite" element={<PrivateRoute><AddEditTestSuite /></PrivateRoute>} />
             <Route path="/edit-test-suite/:id" element={<PrivateRoute><AddEditTestSuite /></PrivateRoute>} />
             <Route path="/health-status" element={<PrivateRoute><AtpHealthStatus /></PrivateRoute>} />

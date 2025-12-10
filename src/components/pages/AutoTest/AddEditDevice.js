@@ -127,15 +127,15 @@ const AddEditDevice = () => {
                   <input className="input" type="text" value={pmaNumber} onChange={(e) => setPmaNumber(e.target.value)} />
                 </label>
                 <div className='action-btns' style={{ marginTop: '1rem' }}>
-                  <button type='button' className='btn-secondary' onClick={handleCameraClick} 
+                  <button type='button' className='btn-primary' onClick={handleCameraClick} 
                   // disabled={!isCameraDetected}
                   >Scan</button>
-                  <button type='button' className='btn-secondary' style={{ marginLeft: '8px' }} onClick={handleUpdateClick}>Factory Reset</button>
+                  <button type='button' className='btn-primary' style={{ marginLeft: '8px' }} onClick={handleUpdateClick}>Factory Reset</button>
                 </div>
               </div>
             </div>
             <div className="action-btns action-btns-save">
-              <button type="button" className="btn-secondary" onClick={handleCancel}>CANCEL</button>
+              <button type="button" className="btn-primary" onClick={handleCancel}>CANCEL</button>
               <button type="button" className="btn-primary" onClick={handleSave}>SAVE</button>
             </div>
           </form>
@@ -157,7 +157,7 @@ const AddEditDevice = () => {
             </p>
             <p>Do you want to install the factory software (1.0.1)?</p>
             <div className="action-btns center">
-              <button className="btn-secondary" onClick={handleNoSoftwareModalCancel}>No</button>
+              <button className="btn-primary" onClick={handleNoSoftwareModalCancel}>No</button>
               <button className="btn-primary" onClick={handleNoSoftwareModalConfirm}>Yes</button>
             </div>
           </div>

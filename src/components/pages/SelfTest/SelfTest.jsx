@@ -34,7 +34,7 @@ function SelfTest() {
         <h2 className="page-title">SELF TEST - Test Suites</h2>
         <div className="status-row">
           <div className="rescan-icon">
-            <button className="btn-secondary" onClick={handleRefresh}>
+            <button className="btn-primary" onClick={handleRefresh}>
               <FaSyncAlt />
             </button>
           </div>
@@ -50,7 +50,7 @@ function SelfTest() {
                 <th>Test Suite Name</th>
                 <th>Actions
                   {/* &nbsp;&nbsp;
-                  <button className="btn-secondary" onClick={() => navigate("/add-test-suite")}>ADD</button> */}
+                  <button className="btn-primary" onClick={() => navigate("/add-test-suite")}>ADD</button> */}
                 </th>
               </tr>
             </thead>
@@ -60,13 +60,13 @@ function SelfTest() {
                   <td>{item.id}</td>
                   <td>{item.testSuiteName}</td>
                   <td>
-                    <button className="btn-secondary" onClick={() => navigate(`/edit-test-suite/${item.testSuiteName}`)}>EDIT</button>
+                    <button className="btn-primary" onClick={() => navigate(`/edit-test-suite/${item.testSuiteName}`)}>EDIT</button>
                  
-                    {/* <button className="btn-secondary" style={{ marginLeft: "1rem" }} onClick={() => navigate(`/add-test-suite/${item.testSuiteName}`)}>DELETE</button> */}
+                    {/* <button className="btn-primary" style={{ marginLeft: "1rem" }} onClick={() => navigate(`/add-test-suite/${item.testSuiteName}`)}>DELETE</button> */}
                  
-                    {/* <button className="btn-secondary"  style={{ marginLeft: "1rem" }}onClick={() => navigate(`/add-test-suite/${item.testSuiteName}`)}>VIEW</button> */}
+                    {/* <button className="btn-primary"  style={{ marginLeft: "1rem" }}onClick={() => navigate(`/add-test-suite/${item.testSuiteName}`)}>VIEW</button> */}
                   
-                    <button className="btn-secondary" style={{ marginLeft: "1rem" }} onClick={() => navigate(`/add-test-suite/${item.testSuiteName}`)}>EXECUTE</button>
+                    <button className="btn-primary" style={{ marginLeft: "1rem" }} onClick={() => navigate(`/add-test-suite/${item.testSuiteName}`)}>EXECUTE</button>
                   </td>
                 </tr>
               ))}
