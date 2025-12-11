@@ -49,7 +49,7 @@ const AddEditCalibration = () => {
               Due Date:
               <input className="input" type="date" value={calibrationDueDate} onChange={(e) => setCalibrationDueDate(e.target.value)} />
             </label>
-            <div className="action-btns">
+            <div className="action-btns center">
               <button type="button" className="btn-primary" onClick={handleCancel}>Cancel</button>
               <button type="button" className="btn-primary" onClick={handleSave}>Save</button>
             </div>

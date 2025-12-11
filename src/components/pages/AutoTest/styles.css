@@ -11,12 +11,6 @@
   margin-bottom: 1rem;
 }
 
-.rescan-icon {
-  display: flex;
-  align-items: center;
-  margin-right: 1rem;
-}
-
 .status-icon {
   cursor: pointer;
 }
@@ -72,8 +66,14 @@
   border-bottom: none;
 }
 
-.input.runs-input {
-  width: 100px;
+.input-no-of-runs {
+  width: 50px;
+}
+
+.input-no-of-runs::-webkit-outer-spin-button,
+.input-no-of-runs::-webkit-inner-spin-button {
+  -webkit-appearance: inner-spin-button;
+  opacity: 1;
 }
 
 .no-product-message {
@@ -86,14 +86,9 @@
   border-radius: 5px;
 }
 
-.runs-input::-webkit-outer-spin-button,
-.runs-input::-webkit-inner-spin-button {
-  opacity: 1;
-}
-
 .form-row {
   display: flex;
-  gap: 1rem;
+  gap: 2rem;
 }
 
 .form-col {

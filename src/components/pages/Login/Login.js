@@ -120,13 +120,13 @@ function Login() {
                 />
                 <button
                   type="button"
-                  className="eye-btn"
+                  className="pwd-eye"
                   onClick={() => setShowPwd(!showPwd)}
                 >
                   {showPwd ? (
-                    <FaEye className="eye-svg" />
+                    <FaEye />
                   ) : (
-                    <FaEyeSlash className="eye-svg" />
+                    <FaEyeSlash />
                   )}
                 </button>
               </div>

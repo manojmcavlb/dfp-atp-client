@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import usersData from "../../../utils/users.json";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
@@ -26,6 +26,22 @@ function ResetPassword() {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [localUsers, setLocalUsers] = useState(usersData.users);
   const navigate = useNavigate();
+
+  const getValidationState = (p) => ({
+    minLength: p.length >= 12,
+    maxLength: p.length <= 64,
+    uppercase: /[A-Z]/.test(p),
+    lowercase: /[a-z]/.test(p),
+    digit: /[0-9]/.test(p),
+    special: /[!@#$%^&*.()_+\-=[\]{};':"\\|,.<>/?`~]/.test(p),
+    sequential: !hasSequentialString(p, 4),
+  });
+
+  const [validationState, setValidationState] = useState(getValidationState(pwd));
+
+  useEffect(() => {
+    setValidationState(getValidationState(pwd));
+  }, [pwd]);
 
   function validatePassword(p) {
     const errors = [];
@@ -77,13 +93,13 @@ function ResetPassword() {
   }
 
   const rules = [
-    "Minimum length of 12 characters.",
-    "Maximum length of 64 characters.",
-    "At least 1 uppercase letter.",
-    "At least 1 lowercase letter.",
-    "At least 1 digit.",
-    "At least 1 special character.",
-    "Exclude sequential characters."
+    { id: "minLength", text: "Minimum length of 12 characters." },
+    { id: "maxLength", text: "Maximum length of 64 characters." },
+    { id: "uppercase", text: "At least 1 uppercase letter." },
+    { id: "lowercase", text: "At least 1 lowercase letter." },
+    { id: "digit", text: "At least 1 digit." },
+    { id: "special", text: "At least 1 special character." },
+    { id: "sequential", text: "Exclude sequential characters." },
   ];
 
   return (
@@ -125,15 +141,15 @@ function ResetPassword() {
                   />
                   <button
                     type="button"
-                    className="eye-btn"
+                    className="pwd-eye"
                     aria-label={showPwd ? "Hide password" : "Show password"}
                     title={showPwd ? "Hide password" : "Show password"}
                     onClick={() => setShowPwd(s => !s)}
                   >
                     {showPwd ? (
-                      <FaEye className="eye-svg" />
+                      <FaEye />
                     ) : (
-                      <FaEyeSlash className="eye-svg" />
+                      <FaEyeSlash />
                     )}
                   </button>
                 </div>
@@ -144,31 +160,31 @@ function ResetPassword() {
                 <div className="pwd-row">
                   <input
                     className="input has-icon"
-                    type={showPwd ? "text" : "password"}
+                    type={showConfirmPwd ? "text" : "password"}
                     value={confirm}
                     onChange={e => setConfirm(e.target.value)}
                   />
                   <button
                     type="button"
-                    className="eye-btn"
-                    aria-label={showPwd ? "Hide password" : "Show password"}
-                    title={showPwd ? "Hide password" : "Show password"}
-                    onClick={() => setShowPwd(s => !s)}
+                    className="pwd-eye"
+                    aria-label={showConfirmPwd ? "Hide password" : "Show password"}
+                    title={showConfirmPwd ? "Hide password" : "Show password"}
+                    onClick={() => setShowConfirmPwd(s => !s)}
                   >
-                    {showPwd ? <FaEye /> : <FaEyeSlash />}
+                    {showConfirmPwd ? <FaEye /> : <FaEyeSlash />}
                   </button>
                 </div>
               </label>
 
-              <div className="action-btns">
+              <div className="action-btns center">
                 <button
                   type="button"
                   className="btn-primary"
                   onClick={() => navigate("/login")}
                 >
-                  CANCEL
+                  Cancel
                 </button>
-                <button type="submit" className="btn-primary">RESET</button>
+                <button type="submit" className="btn-primary">Reset</button>
               </div>
 
               {message && <div className="msg msg-error">{message}</div>}
@@ -179,12 +195,19 @@ function ResetPassword() {
           <aside className="card card-rules-overlay">
             <div className="rule-title">Password must:</div>
             <ul className="rule-list">
-              {rules.map((r, i) => (
-                <li key={i}>
-                  <span className="rule-check" aria-hidden="true">✓</span>
-                  <span>{r}</span>
-                </li>
-              ))}
+              {rules.map((rule) => {
+                const isMet = validationState[rule.id];
+                const statusClass = pwd.length === 0 ? "" : isMet ? "met" : "unmet";
+                const tickSymbol = pwd.length > 0 && !isMet ? "✗" : "✓";
+                return (
+                  <li key={rule.id}>
+                    <span className={`rule-check ${statusClass}`} aria-hidden="true">
+                      {tickSymbol}
+                    </span>
+                    <span>{rule.text}</span>
+                  </li>
+                );
+              })}
             </ul>
           </aside>
         </div>

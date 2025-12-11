@@ -22,10 +22,14 @@ const AddEditDevice = () => {
   const [modalStep, setModalStep] = useState(null);
   const [isCameraOpen, setIsCameraOpen] = useState(false);
   const [isCameraDetected, setIsCameraDetected] = useState(false);
-  const [noSoftwareDetected, setNoSoftwareDetected] = useState(true);
 
   useEffect(() => {
     detectCamera(setIsCameraDetected);
+    // Simulate no software detected for demonstration
+    const noSoftware = true;
+    if (noSoftware) {
+      setModalStep('noSoftware');
+    }
   }, []);
 
   const handleSave = () => {
@@ -67,15 +71,6 @@ const AddEditDevice = () => {
 
   const handleModalComplete = () => {
     setModalStep(null);
-  };
-
-  const handleNoSoftwareModalConfirm = () => {
-    setNoSoftwareDetected(false);
-    handleModalConfirm();
-  };
-
-  const handleNoSoftwareModalCancel = () => {
-    setNoSoftwareDetected(false);
   };
 
   const handleCameraClick = () => {
@@ -129,47 +124,24 @@ const AddEditDevice = () => {
                 <div className='action-btns' style={{ marginTop: '1rem' }}>
                   <button type='button' className='btn-primary' onClick={handleCameraClick} 
                   // disabled={!isCameraDetected}
-                  >Scan</button>
+                  >Camera</button>
                   <button type='button' className='btn-primary' style={{ marginLeft: '8px' }} onClick={handleUpdateClick}>Factory Reset</button>
                 </div>
               </div>
             </div>
-            <div className="action-btns action-btns-save">
-              <button type="button" className="btn-primary" onClick={handleCancel}>CANCEL</button>
-              <button type="button" className="btn-primary" onClick={handleSave}>SAVE</button>
+            <div className="action-btns action-btns-save center">
+              <button type="button" className="btn-primary" onClick={handleCancel}>Cancel</button>
+              <button type="button" className="btn-primary" onClick={handleSave}>Save</button>
             </div>
           </form>
         </div>
       </main>
-      {noSoftwareDetected ? (
-        <div className="modal-overlay">
-          <div className="modal-content">
-            <h2 className="modal-title">No Software Detected</h2>
-            <p className="software-version">
-              Current Device Software:<span> None Installed</span>
-            </p>
-            <p className="software-version">
-              Latest Factory Software: <span>1.0.1</span>
-            </p>
-            <p className="msg-warn">
-              <div>No software was detected on this device.</div>
-              <div>The Factory Software is required to run the tests.</div>
-            </p>
-            <p>Do you want to install the factory software (1.0.1)?</p>
-            <div className="action-btns center">
-              <button className="btn-primary" onClick={handleNoSoftwareModalCancel}>No</button>
-              <button className="btn-primary" onClick={handleNoSoftwareModalConfirm}>Yes</button>
-            </div>
-          </div>
-        </div>
-      ) : (
-        <SoftwareUpdateModal
-          step={modalStep}
-          onConfirm={handleModalConfirm}
-          onCancel={handleModalCancel}
-          onComplete={handleModalComplete}
-        />
-      )}
+      <SoftwareUpdateModal
+        step={modalStep}
+        onConfirm={handleModalConfirm}
+        onCancel={handleModalCancel}
+        onComplete={handleModalComplete}
+      />
       {isCameraOpen && <CameraModal onCancel={handleCameraCancel} />}
     </div>
   );

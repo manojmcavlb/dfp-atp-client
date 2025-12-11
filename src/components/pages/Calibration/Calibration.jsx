@@ -180,7 +180,7 @@ function Calibration() {
                       <span className={`health-status-due ${item.status}`}></span>
                     </td>
                     <td className="">
-                      <button className="btn-primary" onClick={() => navigate(`/edit-calibration/${item.serialNumber}`)}>EDIT</button>
+                      <button className="btn-primary" onClick={() => navigate(`/edit-calibration/${item.serialNumber}`)}>Edit</button>
                     </td>
                   </tr>
                 );

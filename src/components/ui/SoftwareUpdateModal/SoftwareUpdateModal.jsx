@@ -26,6 +26,27 @@ const SoftwareUpdateModal = ({ step, onConfirm, onCancel, onComplete }) => {
             </div>
           </>
         );
+      case 'noSoftware':
+        return (
+          <>
+            <h2 className="modal-title">No Software Detected</h2>
+            <p className="software-version">
+              Current Device Software:<span> None Installed</span>
+            </p>
+            <p className="software-version">
+              Latest Factory Software: <span>1.0.1</span>
+            </p>
+            <p className="msg-warn">
+              <div>No software was detected on this device.</div>
+              <div>The Factory Software is required to run the tests.</div>
+            </p>
+            <p>Do you want to install the factory software (1.0.1)?</p>
+            <div className="action-btns center">
+              <button className="btn-primary" onClick={onCancel}>No</button>
+              <button className="btn-primary" onClick={onConfirm}>Yes</button>
+            </div>
+          </>
+        );
       case 'installing':
         return (
           <>
@@ -66,7 +87,7 @@ const SoftwareUpdateModal = ({ step, onConfirm, onCancel, onComplete }) => {
 
   return (
     <div className="modal-overlay">
-      <div className="modal-content">
+      <div className="modal-content modal-content-software-update">
         {renderStepContent()}
       </div>
     </div>

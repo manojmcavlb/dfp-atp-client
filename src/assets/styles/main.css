@@ -35,10 +35,12 @@
 --color-body: #003366;
 --color-background: var(--color-white);
 
---color-primary: #D9D9D9;
---color-primaryh: #C02233;
+--color-primary: var(--color-black);
+--color-primary-bg:#D9D9D9;
+--color-primary-bgh:#C02233;
 --color-secondary: var(--color-black);
---color-secondaryh: var(--color-black);
+--color-secondary-bg: var(--color-white);
+--color-secondary-bgh:#C02233;
 }
 
 body,
@@ -91,7 +93,7 @@ html,
 }
 
 .card {
-  background: var(--color-secondary);
+  background: var(--color-white);
   border-radius: 8px;
   border: 1px solid var(--color-gray-medium);
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
@@ -129,8 +131,8 @@ html,
 /* Labels & Inputs */
 .label {
   display: block;
-  color: var(--color-gray-dark);
-  font-size: 22px;
+  color: var(--color-black);
+  font-size: 16px;
   font-weight: 500;
   margin-bottom: 6px;
 }
@@ -138,7 +140,7 @@ html,
 .input {
   width: 100%;
   color: var(--color-body);
-  border: 1px solid var(--color-body);
+  border: 1px solid var(--color-gray-medium);
   font-size: 16px;
   font-weight: 400;
   /* padding: 8px 10px; */
@@ -176,9 +178,10 @@ html,
   min-width: 75px;
   height: 30px;
   border-radius: 8px;
-  border: 1px solid transparent;
+  border: 1px solid var(--color-gray-medium);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 500;
   align-items: center;
   white-space: nowrap;
   cursor: pointer;
@@ -186,28 +189,23 @@ html,
 }
 
 .btn-primary {
-  background: var(--color-primary);
-  border: 1px solid var(--color-gray-medium);
-  color: var(--color-secondary);
-  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
-}
-
-.btn-secondary {
-  background: var(--color-secondary);
-  border: 1px solid var(--color-primary);
+  background: var(--color-primary-bg);
   color: var(--color-primary);
 }
 
 .btn-primary:hover {
-  background: var(--color-primaryh);
-  border: 1px solid var(--color-primary);
-  color: var(--color-primary);
+  background: var(--color-primary-bgh);
+  color: var(--color-white);
+}
+
+.btn-secondary {
+  background: var(--color-secondary-bg);
+  color: var(--color-secondary);
 }
 
 .btn-secondary:hover {
-  background: var(--color-secondaryh);
-  border: 1px solid var(--color-secondary);
-  color: var(--color-secondary);
+  background: var(--color-secondary-bgh);
+  color: var(--color-white);
 }
 
 .btn-primary:focus,
@@ -215,11 +213,28 @@ html,
   box-shadow: 0 0 0 3px rgba(122, 168, 255, 0.25);
 }
 
+.btn-primary:disabled,
 .btn-secondary:disabled {
   background-color: var(--color-gray-medium);
   color: var(--color-gray-dark);
   border-color: var(--color-gray-medium);
   cursor: not-allowed;
+}
+
+.btn-icon {
+  min-width: 30px;
+  max-width: 30px;
+  margin-right: 1rem;
+}
+
+.btn-icon-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-icon-text>svg {
+  margin-right: 5px;
 }
 
 .action-btns {
@@ -235,40 +250,18 @@ html,
   align-items: center;
 }
 
-.eye-btn {
+.pwd-eye {
   position: absolute;
-  right: 8px;
+  right: 12px;
   top: 50%;
   transform: translateY(-50%);
-  height: 22px;
-  width: 22px;
-  border: 1px solid var(--color-body);
-  border-radius: 50%;
-  background: var(--color-white);
+  background: transparent;
+  border: none;
   color: var(--color-body);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
   cursor: pointer;
-  transition: background 120ms ease, color 120ms ease, border-color 120ms ease,
-    box-shadow 120ms ease;
+  font-size: 14px;
 }
 
-.eye-btn:hover {
-  background: var(--color-white);
-  color: var(--color-primary);
-  border-color: var(--color-primary);
-}
-
-.eye-btn:focus {
-  outline: none;
-  border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(122, 168, 255, 0.25);
-}
-
-.eye-svg {
-  display: block;
-}
 /* Password eye icon */
 
 /* link */
@@ -297,9 +290,9 @@ html,
 
 /* dropdown */
 .select {
-  background-color: var(--color-secondary);
+  background-color: var(--color-white);
   color: var(--color-body);
-  border: 1px solid var(--color-body);
+  border: 1px solid var(--color-gray-medium);
   border-radius: 4px;
   font-size: 14px;
   font-weight: 500;
@@ -460,3 +453,13 @@ html,
   /* min-width: 75px; */
 } 
 /* Misc */
+
+header, .status-bar {
+  flex-shrink: 0;
+}
+
+.row-space {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}

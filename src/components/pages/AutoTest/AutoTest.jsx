@@ -1,13 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import {
   FaPlay,
-  FaRunning,
-  FaStop,
-  FaSyncAlt,
-  FaArrowsAltV,
-  FaCircle,
   FaSpinner,
+  FaRedo,
 } from "react-icons/fa";
 import "../../../assets/styles/main.css";
 import "./styles.css";
@@ -15,6 +11,7 @@ import Serial from "../Drivers/Serial";
 
 function AutoTest() {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [detectedProduct, setDetectedProduct] = useState("None");
   const [runs, setRuns] = useState(1);
@@ -32,6 +29,13 @@ function AutoTest() {
     { name: '6.9 Discrete Pass-Through Inputs Test', selected: true, status: 'pending', items: [] },
     { name: '6.1 Discrete Pass-Through Outputs Test', selected: true, status: 'pending', items: [] },
   ]);
+  const [extractedData, setExtractedData] = useState(null);
+
+  useEffect(() => {
+    if (location.state && location.state.extractedData) {
+      setExtractedData(location.state.extractedData);
+    }
+  }, [location.state]);
 
   const handleRefresh = () => {
     setIsRunning(false);
@@ -105,11 +109,9 @@ function AutoTest() {
       <main className="page-wrap">
         <h2 className="page-title">Auto Test</h2>
         <div className="status-row">
-          <div className="rescan-icon">
-            <button className="btn-primary">
-              <FaSyncAlt onClick={handleRefresh}/>
-            </button>
-          </div>
+          <button className="btn-secondary btn-icon">
+            <FaRedo onClick={handleRefresh} />
+          </button>
           <span className="status-label">Detected Product:&nbsp;</span>
           <select
             className="select"
@@ -124,8 +126,20 @@ function AutoTest() {
           </select>
 
           <div className="status-actions">
-            <button className="btn-primary" disabled={noProductDetected} onClick={() => navigate('/edit-device/1')}>EDIT</button>
-            <button className="btn-primary" disabled={isRunning}>VIEW REPORTS</button>
+            {!noProductDetected && (
+              <>
+                <button
+                  className="btn-secondary"
+                  onClick={() => navigate("/edit-device/1")}
+                >
+                  Edit Device
+                </button>
+                <button className="btn-primary">Tests</button>
+              </>
+            )}
+            <button className="btn-secondary" disabled={isRunning}>
+              View Reports
+            </button>
           </div>
         </div>
 
@@ -136,6 +150,21 @@ function AutoTest() {
           </div>
         ) : (
           <>
+            {extractedData && (
+              <div className="test-result-logs">
+                <h2>Extracted Information</h2>
+                <div className="device-info-box">
+                  <div className="info-grid">
+                    <span>Model:</span>
+                    <span>{extractedData.model}</span>
+                    <span>Head:</span>
+                    <span>{extractedData.head}</span>
+                    <span>Body:</span>
+                    <span>{extractedData.body}</span>
+                  </div>
+                </div>
+              </div>
+            )}
             <div className="controls-row">
               <label className="checkbox">
                 <input
@@ -147,9 +176,13 @@ function AutoTest() {
                 <span>Select All</span>
               </label>
 
-              <button className="btn-primary" onClick={handleRunTest} disabled={isRunning}>
-                {isRunning ? <FaSpinner className="spinner" /> : <FaPlay />}
-                &nbsp;RUN TEST
+              <button
+                className="btn-secondary btn-icon-text"
+                onClick={handleRunTest}
+                disabled={isRunning}
+              >
+                {isRunning ? <FaSpinner /> : <FaPlay />}
+                {isRunning ? "Stop Test" : "Run Test"}
               </button>
 
               <div className="runs-field">
@@ -158,7 +191,7 @@ function AutoTest() {
                 </label>
                 <input
                   id="runs"
-                  className="input runs-input"
+                  className="input input-no-of-runs"
                   type="number"
                   min={1}
                   max={99}
@@ -169,19 +202,23 @@ function AutoTest() {
               <div className="mode-switch">
                 <button
                   className={`mode-btn ${
-                    activeMode === "production" ? "btn-primary" : "btn-primary"
+                    activeMode === "production"
+                      ? "btn-primary"
+                      : "btn-secondary"
                   }`}
                   onClick={() => handleModeChange("production")}
                 >
-                  PRODUCTION
+                  Production
                 </button>
                 <button
                   className={`mode-btn ${
-                    activeMode === "customized" ? "btn-primary" : "btn-primary"
+                    activeMode === "customized"
+                      ? "btn-primary"
+                      : "btn-secondary"
                   }`}
                   onClick={() => handleModeChange("customized")}
                 >
-                  CUSTOMIZED
+                  Customized
                 </button>
               </div>
             </div>
@@ -206,22 +243,30 @@ function AutoTest() {
 
             {/* useContext/Redux Approach -> get back the test results of Serial Page & Display Pass/Fail*/}
 
-
             {showTestResult && (
               <div className="test-result-logs">
                 <h2>Test Result Logs</h2>
                 <div className="device-info-box">
                   <h3>Device Info</h3>
                   <div className="info-grid">
-                    <span>Product:</span><span>Remote Head</span>
-                    <span>Hardware Part Number:</span><span>DFP-XX-YYY</span>
-                    <span>Serial Number:</span><span>aaa-bbb-ccc-ddd</span>
-                    <span>Manufacturing Date:</span><span>10/09/2025</span>
-                    <span>Manufacturer's Name:</span><span>ABC</span>
-                    <span>Mod Dot:</span><span>-</span>
-                    <span>Manufacturing Cage Code:</span><span>000</span>
-                    <span>PMA Number:</span><span>123456</span>
-                    <span>Execute Date/Time:</span><span>10 October 2025 11:00:00</span>
+                    <span>Product:</span>
+                    <span>Remote Head</span>
+                    <span>Hardware Part Number:</span>
+                    <span>DFP-XX-YYY</span>
+                    <span>Serial Number:</span>
+                    <span>aaa-bbb-ccc-ddd</span>
+                    <span>Manufacturing Date:</span>
+                    <span>10/09/2025</span>
+                    <span>Manufacturer's Name:</span>
+                    <span>ABC</span>
+                    <span>Mod Dot:</span>
+                    <span>-</span>
+                    <span>Manufacturing Cage Code:</span>
+                    <span>000</span>
+                    <span>PMA Number:</span>
+                    <span>123456</span>
+                    <span>Execute Date/Time:</span>
+                    <span>10 October 2025 11:00:00</span>
                   </div>
                 </div>
 
@@ -242,12 +287,12 @@ function AutoTest() {
                         <td>yyyyy</td>
                         <td>FAIL</td>
                       </tr>
-                       <tr>
+                      <tr>
                         <td>xxxxx</td>
                         <td>yyyyy</td>
                         <td>FAIL</td>
                       </tr>
-                       <tr>
+                      <tr>
                         <td>xxxxx</td>
                         <td>yyyyy</td>
                         <td>FAIL</td>

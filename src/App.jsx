@@ -133,7 +133,7 @@ class App extends React.Component {
                 )}
                 {isAdmin && (
                   <Link to="/manageUser" className="nav-item nav-link">
-                    Manage User
+                    Manage Account
                   </Link>
                 )}
                 {isAdmin && (
@@ -290,14 +290,20 @@ class App extends React.Component {
             <Route path="/edit-self-test/:id" element={<PrivateRoute><AddEditTestSuite /></PrivateRoute>} /> */}
           </Routes>
           <div style={statusBarStyle}>
-            <div className="action-btns" 
+            <div
+              className="action-btns"
               style={{
                 ...statusBarSection,
                 display: "flex",
                 justifyContent: "flex-start",
-              }}>
-              <HealthStatus healthStatus={healthStatusTest} />
-              <CalibHealthStatus healthStatus={healthStatusCalib} />
+              }}
+            >
+              {currentUser && (
+                <>
+                  <HealthStatus healthStatus={healthStatusTest} />
+                  <CalibHealthStatus healthStatus={healthStatusCalib} />
+                </>
+              )}
             </div>
             <div style={statusBarSection}></div>
             <div style={{ ...statusBarSection, textAlign: "right" }}>

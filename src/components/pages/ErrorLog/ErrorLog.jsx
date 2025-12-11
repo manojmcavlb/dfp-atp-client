@@ -128,12 +128,7 @@ const ErrorLog = () => {
   return (
     <div className="page-bg">
       <main className="page-wrap">
-        <h2 className="page-title">Error / Event Log</h2>
-        <div className="action-btns error-log-header">
-          <button className="btn-primary">REFRESH</button>
-          <button className="btn-primary">CLEAR LOG</button>
-          <button className="btn-primary">EXPORT</button>
-        </div>
+      <h2 className="page-title">Error / Event Log</h2>
       <div className="filters-panel">
         <div className="filter-group">
           <label>Module:</label>
@@ -183,8 +178,10 @@ const ErrorLog = () => {
           <input type="text" placeholder="Search..." className="input input-search runs-input" />
         </div>
         <div className="action-btns">
-          <button className="btn-primary">APPLY</button>
-          <button className="btn-primary">RESET</button>
+          <button className="btn-primary">Apply</button>
+          <button className="btn-primary">Reset</button>
+          <button className="btn-primary">Clear Log</button>
+          <button className="btn-primary">Export</button>
         </div>
       </div>
 
@@ -212,7 +209,7 @@ const ErrorLog = () => {
                 <td>{log.message}</td>
                 <td>
                   <button className="btn-primary" onClick={() => handleViewDetails(log)}>
-                    VIEW DETAILS
+                    View Details
                   </button>
                 </td>
               </tr>

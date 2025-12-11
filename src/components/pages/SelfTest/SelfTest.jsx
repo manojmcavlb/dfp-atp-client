@@ -60,9 +60,9 @@ function SelfTest() {
                   <td>{item.id}</td>
                   <td>{item.testSuiteName}</td>
                   <td>
-                    <button className="btn-primary" onClick={() => navigate(`/edit-test-suite/${item.testSuiteName}`)}>EDIT</button>
+                    <button className="btn-primary" onClick={() => navigate(`/edit-test-suite/${item.testSuiteName}`)}>Edit</button>
                  
-                    {/* <button className="btn-primary" style={{ marginLeft: "1rem" }} onClick={() => navigate(`/add-test-suite/${item.testSuiteName}`)}>DELETE</button> */}
+                    {/* <button className="btn-primary" style={{ marginLeft: "1rem" }} onClick={() => navigate(`/add-test-suite/${item.testSuiteName}`)}>Delete</button> */}
                  
                     {/* <button className="btn-primary"  style={{ marginLeft: "1rem" }}onClick={() => navigate(`/add-test-suite/${item.testSuiteName}`)}>VIEW</button> */}
                   

@@ -59,11 +59,11 @@ class ManageUserNew extends React.Component {
             <button className="manage-user-sidebar-button">Settings</button>
             <button className="manage-user-sidebar-button">Calib Info</button>
             <button className="manage-user-sidebar-button active">
-              Manage User
+              Manage Accounts
             </button>
           </aside>
           <main className="manage-user-content">
-            <h2>Manage User</h2>
+            <h2>Manage Accounts</h2>
             <div className="manage-user-table-container">
               <table className="manage-user-table">
                 <thead>
@@ -83,7 +83,7 @@ class ManageUserNew extends React.Component {
                         <td>{user.role}</td>
                         <td>
                           View Reports,Auto Test,Manual Test,Self Test,Settings,Calib
-                          Info,Manage User
+                          Info,Manage Accounts
                         </td>
                       </tr>
                     ))}

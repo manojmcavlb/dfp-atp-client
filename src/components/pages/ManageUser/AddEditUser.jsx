@@ -9,15 +9,15 @@ const screens = [
   "Health Status",
   "Test Limits",
   "Calibration Info.",
-  "Instrument Settings",
-  "Manage User",
+  "Hardware Configuration",
+  "Manage Accounts",
   "Error/Event Log",
 ];
 
 const privilegeConfig = {
     view: { label: "View", enabled: screens },
-    addEdit: { label: "Add/Edit", enabled: ["Self Test", "Test Limits", "Instrument Settings", "Manage User"] },
-    delete: { label: "Delete", enabled: ["Test Limits", "Manage User"] },
+    addEdit: { label: "Add/Edit", enabled: ["Self Test", "Test Limits", "Hardware Configuration", "Manage Accounts"] },
+    delete: { label: "Delete", enabled: ["Test Limits", "Manage Accounts"] },
     execute: { label: "Execute", enabled: ["Auto Test", "Self Test"] }
 };
 
@@ -31,8 +31,8 @@ const initialPrivilegeValues = [
   [true, false, false, false], // Health Status
   [false, true, true, false],  // Test Limits
   [true, false, false, false], // Calibration Info.
-  [true, true, false, false], // Instrument Settings
-  [true, true, true, false],  // Manage User
+  [true, true, false, false], // Hardware Configuration
+  [true, true, true, false],  // Manage Accounts
   [true, false, false, false], // Error/Event Log
 ];
 
@@ -87,7 +87,7 @@ function AddEditUser() {
   return (
     <div className="page-bg">
       <main className="page-wrap">
-        <h2 className="page-title">{isEditMode ? "Edit User" : "Add User"}</h2>
+        <h2 className="page-title">{isEditMode ? "Edit Account" : "Add Account"}</h2>
         <div className="two-column-layout">
           <div className="card card-user">
             <form className="form">
@@ -131,7 +131,7 @@ function AddEditUser() {
                   />
                   <button
                     type="button"
-                    className="eye-btn"
+                    className="pwd-eye"
                     onClick={() => setShowPassword(!showPassword)}
                   >
                     {showPassword ? <FaEye /> : <FaEyeSlash />}
@@ -149,7 +149,7 @@ function AddEditUser() {
                   />
                   <button
                     type="button"
-                    className="eye-btn"
+                    className="pwd-eye"
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                   >
                     {showConfirmPassword ? <FaEye /> : <FaEyeSlash />}
@@ -197,14 +197,14 @@ function AddEditUser() {
             className="btn-primary"
             onClick={handleCancel}
           >
-            CANCEL
+            Cancel
           </button>
           <button
             type="button"
             className="btn-primary"
             onClick={handleSave}
           >
-            SAVE
+            Save
           </button>
         </div>
       </main>

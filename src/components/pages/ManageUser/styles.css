@@ -56,12 +56,18 @@
  .search-icon {
      position: absolute;
      left: 10px;
-     color: #aaa;
+     color: var(--color-gray-dark);
  }
+
+.btn-add-user {
+    margin-left: 10px;
+}
 
  .search-input {
      padding-left: 30px;
      border-radius: 5px;
      border: 1px solid #ccc;
      height: 30px;
+     font-size: 14px;
+     font-weight: 500;
  }

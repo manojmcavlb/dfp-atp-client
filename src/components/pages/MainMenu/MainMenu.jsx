@@ -39,7 +39,7 @@ const MainMenu = () => {
                             Auto Test
                         </button>
                         <button className="btn-primary" onClick={() => handleNavigation('/error-log')}>
-                            Error/Event Log
+                            Error / Event Log
                         </button>
                         <button className="btn-primary" onClick={() => handleNavigation2('/health-status')}>
                             Health Status
@@ -50,13 +50,13 @@ const MainMenu = () => {
                     </div>
                     <div className="column">
                         <button className="btn-primary" onClick={() => handleNavigation('/manage-user')}>
-                            Manage User
+                            Manage Accounts
                         </button>
                         <button className="btn-primary" onClick={() => handleNavigation('/calibration')}>
                             Calibration Info.
                         </button>
                         <button className="btn-primary" onClick={() => handleNavigation('/instrument')}>
-                            Instrument Settings
+                            Hardware Configuration
                         </button>
                         <button className="btn-primary" onClick={() => handleNavigation('/settings')}>
                             General Settings

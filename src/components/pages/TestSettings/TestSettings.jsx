@@ -4,7 +4,6 @@ import "../../../assets/styles/main.css";
 import "./styles.css";
 
 const testSettingsData = [
-    { step: '1.1', stepName: 'ss', comparison: '(>= <=)', lowLt: '50', highLt: '100', unit: 'ohm', stringLt: 'NA' },
     { step: '1.2', stepName: 'Measure Resistance across PS_3 & 48V_RET (TB13 & TB14)', comparison: '(>= <=)', lowLt: '50', highLt: '100', unit: 'ohm', stringLt: 'NA' },
     { step: '1.3', stepName: 'Measure Resistance across Battery_Bus & 48V_RET (TB1/TB2 & TB5/TB7)', comparison: '(>= <=)', lowLt: '50', highLt: '100', unit: 'ohm', stringLt: 'NA' },
     { step: '1.4', stepName: 'Measure Resistance across PS_1/PS_2 & 48V_RET (TB9/TB11 & TB10/TB12)', comparison: '(>= <=)', lowLt: '50', highLt: '30000', unit: 'ohm', stringLt: 'NA' },
@@ -37,7 +36,7 @@ function TestSettings() {
     <div className="page-bg">
       <main className="page-wrap">
         <h1 className="page-title">Test Limits</h1>
-        <div className="action-btns">
+        <div className="row-space action-btns">
             <label htmlFor="device" className=" ">
               Device:
             <select id="device" className="select">
@@ -80,7 +79,7 @@ function TestSettings() {
                         navigate(`/edit-test-settings/${item.step}`)
                       }
                     >
-                      EDIT
+                      Edit
                     </button>
                   </td>
                 </tr>

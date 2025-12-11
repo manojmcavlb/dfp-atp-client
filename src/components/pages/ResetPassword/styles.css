@@ -58,9 +58,17 @@
 }
 
 .rule-check {
-  color: #26a35b; /* green check */
+  color: #9ca3af; /* gray check (default) */
   font-weight: 700;
   line-height: 18px;
+}
+
+.rule-check.met {
+  color: #26a35b; /* green check */
+}
+
+.rule-check.unmet {
+  color: #ef4444; /* red check */
 }
 
 /* ===== Responsive ===== */

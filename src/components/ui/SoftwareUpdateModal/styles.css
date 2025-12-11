@@ -11,8 +11,9 @@
   z-index: 1000;
 }
 
-.modal-content {
+.modal-content-software-update {
   background: white;
+  color: var(--color-black);
   padding: 2rem;
   border-radius: 8px;
   width: 400px;

@@ -10,21 +10,21 @@ const initialUserData = [
     username: "Super Admin",
     password: "****",
     role: "Super Administrator",
-    privileges: "Auto Test, Self Test, View Reports, Calib Info., Test Limits, Health Status, Manage User, Error Log",
+    privileges: "Auto Test, Self Test, View Reports, Calib Info., Test Limits, Health Status, Manage Accounts, Error Log",
   },
   {
     id: 2,
     username: "Admin",
     password: "****",
     role: "Administrator",
-    privileges: "Auto Test, Self Test, View Reports, Calib Info., Test Limits, Health Status, Manage User, Error Log",
+    privileges: "Auto Test, Self Test, View Reports, Calib Info., Test Limits, Health Status, Manage Accounts, Error Log",
   },
   {
     id: 3,
     username: "Ajay",
     password: "****",
     role: "Administrator",
-    privileges: "Auto Test, Self Test, View Reports, Calib Info., Test Limits, Health Status, Manage User, Error Log",
+    privileges: "Auto Test, Self Test, View Reports, Calib Info., Test Limits, Health Status, Manage Accounts, Error Log",
   },
   {
     id: 4,
@@ -88,12 +88,12 @@ function ManageUser() {
   return (
     <div className="page-bg">
       <main className="page-wrap">
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <h2 className="page-title">Manage Accounts</h2>
-          <button className="btn-primary" onClick={handleDone}>Done</button>
+        <div>
+          <h2 className="page-title center">Manage Accounts</h2>
         </div>
         <div className="table-container">
-          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1rem' }}>
+          <div >
+            <div className="row-space">
             <button className="btn-primary" onClick={handleAddUser}>Add New User</button>
             <div className="search-container">
               <FaSearch className="search-icon" />
@@ -104,6 +104,7 @@ function ManageUser() {
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="search-input"
               />
+            </div>
             </div>
           </div>
           <table className="page-table">
@@ -141,7 +142,7 @@ function ManageUser() {
           <div className="modal-content">
             <h2>Delete Account</h2>
             <p>
-              Are you sure you want to DELETE the user account{" "}
+              Are you sure you want to Delete the user account{" "}
               <strong>{userToDelete.username}</strong>?
             </p>
             <p>

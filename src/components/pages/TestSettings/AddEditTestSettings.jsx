@@ -71,14 +71,14 @@ const AddEditTestSettings = () => {
                 className="btn-primary"
                 onClick={handleCancel}
               >
-                CANCEL
+                Cancel
               </button>
               <button
                 type="button"
                 className="btn-primary"
                 onClick={handleSave}
               >
-                SAVE
+                Save
               </button>
             </div>
           </form>

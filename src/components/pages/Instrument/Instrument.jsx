@@ -39,7 +39,7 @@ function Instrument() {
   return (
     <div className="page-bg">
       <main className="page-wrap">
-        <h2 className="page-title">Instrument Settings</h2>
+        <h2 className="page-title">Hardware Configuration</h2>
         <div className="table-container">
           <table className="page-table">
             <thead>

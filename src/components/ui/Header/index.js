@@ -20,10 +20,10 @@ function Header() {
                     <div style={{ marginLeft: "auto", display: "flex", gap: 8 }}>
                         {location.pathname !== "/main-menu" && (
                             <button className="btn-primary" onClick={() => navigate("/main-menu")}>
-                                MAIN MENU
+                                Main Menu
                             </button>
                         )}
-                        <button className="btn-primary" onClick={logout}>LOG OUT</button>
+                        <button className="btn-primary" onClick={logout}>Log Out</button>
                     </div>
                 </div>
             )}

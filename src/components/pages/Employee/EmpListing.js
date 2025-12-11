@@ -14,7 +14,7 @@
 //     const Removefunction = (id) => {
 //         if (window.confirm('Do you want to remove?')) {
 //             fetch("http://localhost:3000/employee/" + id, {
-//                 method: "DELETE"
+//                 method: "Delete"
 //             }).then((res) => {
 //                 alert('Removed successfully.')
 //                 window.location.reload();
