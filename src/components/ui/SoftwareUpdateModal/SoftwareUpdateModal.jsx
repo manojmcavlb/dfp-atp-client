@@ -11,7 +11,7 @@ const SoftwareUpdateModal = ({ step, onConfirm, onCancel, onComplete }) => {
       case 'confirm':
         return (
           <>
-            <h2 className="modal-title">Software Update</h2>
+            <h2 className="popup-title">Software Update</h2>
             <p className="software-version">
               Current Device Software:<span> 1.0.0</span>
             </p>
@@ -29,7 +29,7 @@ const SoftwareUpdateModal = ({ step, onConfirm, onCancel, onComplete }) => {
       case 'noSoftware':
         return (
           <>
-            <h2 className="modal-title">No Software Detected</h2>
+            <h2 className="popup-title">No Software Detected</h2>
             <p className="software-version">
               Current Device Software:<span> None Installed</span>
             </p>
@@ -50,7 +50,7 @@ const SoftwareUpdateModal = ({ step, onConfirm, onCancel, onComplete }) => {
       case 'installing':
         return (
           <>
-            <h2 className="modal-title">Software Update</h2>
+            <h2 className="popup-title">Software Update</h2>
             <p>Installing... 90%</p>
             <div className="progress-bar-container">
               <div className="progress-bar" style={{ width: '90%' }}></div>
@@ -60,7 +60,7 @@ const SoftwareUpdateModal = ({ step, onConfirm, onCancel, onComplete }) => {
       case 'completed':
         return (
           <>
-            <h2 className="modal-title">Software Update</h2>
+            <h2 className="popup-title">Software Update</h2>
             <p>Software update completed.</p>
             <p>Please power cycle the device.</p>
             <div className="action-btns center">
@@ -71,7 +71,7 @@ const SoftwareUpdateModal = ({ step, onConfirm, onCancel, onComplete }) => {
       case 'failed':
         return (
           <>
-            <h2 className="modal-title">Software Update</h2>
+            <h2 className="popup-title">Software Update</h2>
             <p className="msg-error">Software update failed.</p>
             <p>Do you want to try the software update again?</p>
             <div className="action-btns center">
@@ -86,8 +86,8 @@ const SoftwareUpdateModal = ({ step, onConfirm, onCancel, onComplete }) => {
   };
 
   return (
-    <div className="modal-overlay">
-      <div className="modal-content modal-content-software-update">
+    <div className="popup-overlay">
+      <div className="popup-content-software-update">
         {renderStepContent()}
       </div>
     </div>

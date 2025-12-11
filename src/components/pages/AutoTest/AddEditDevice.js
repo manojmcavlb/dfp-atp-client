@@ -25,11 +25,6 @@ const AddEditDevice = () => {
 
   useEffect(() => {
     detectCamera(setIsCameraDetected);
-    // Simulate no software detected for demonstration
-    const noSoftware = true;
-    if (noSoftware) {
-      setModalStep('noSoftware');
-    }
   }, []);
 
   const handleSave = () => {
@@ -53,7 +48,7 @@ const AddEditDevice = () => {
   };
 
   const handleUpdateClick = () => {
-    setModalStep('confirm');
+    setModalStep('noSoftware');
   };
 
   const handleModalConfirm = () => {
@@ -89,8 +84,8 @@ const AddEditDevice = () => {
           <h2 className="card-title">{isEditMode ? 'Edit Device' : 'Add Device'}</h2>
           
           <form className="form">
-            <div className="form-row">
-              <div className="form-col">
+            <div className="row">
+              <div className="col-md-6">
                 <label className="label">
                   Hardware Part Number:
                   <input className="input" type="text" value={hardwarePartNumber} onChange={(e) => setHardwarePartNumber(e.target.value)} />
@@ -108,7 +103,7 @@ const AddEditDevice = () => {
                   <input className="input" type="text" value={manufacturingCageCode} onChange={(e) => setManufacturingCageCode(e.target.value)} />
                 </label>
               </div>
-              <div className="form-col">
+              <div className="col-md-6">
                 <label className="label">
                   Manufacturing Date:
                   <input className="input" type="date" value={manufacturingDate} onChange={(e) => setManufacturingDate(e.target.value)} />

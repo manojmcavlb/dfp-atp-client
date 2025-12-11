@@ -48,14 +48,20 @@ function AddEditUser() {
   const [username, setUsername] = useState("testuser");
   const [email, setEmail] = useState("test@example.com");
   const [role, setRole] = useState("Admin");
-  const [password, setPassword] = useState("password123");
-  const [confirmPassword, setConfirmPassword] = useState("password123");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [privileges, setPrivileges] = useState(initialPrivileges);
   const navigate = useNavigate();
   const { id } = useParams();
   const isEditMode = id !== undefined;
+  const [tempPassword, setTempPassword] = useState("");
+
+  const generateTempPassword = () => {
+    const randomPassword = Math.random().toString(36).slice(-8);
+    return randomPassword;
+  };
 
   const handlePrivilegeChange = (screen, privilege) => {
     setPrivileges((prev) => ({
@@ -68,13 +74,33 @@ function AddEditUser() {
   };
 
   const handleSave = () => {
-    // Implement save logic here
+    let finalPassword = password;
+    if (!isEditMode) {
+      const newTempPassword = generateTempPassword();
+      setTempPassword(newTempPassword);
+      setPassword(newTempPassword);
+      setConfirmPassword(newTempPassword);
+      finalPassword = newTempPassword;
+
+      // Mock sending email
+      console.log(`Sending email to ${email} with temporary password: ${newTempPassword}`);
+      // In a real application, you would make an API call here:
+      /*
+      fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password: newTempPassword }),
+      });
+      */
+    }
+
     console.log("Save user:", {
       username,
       email,
       role,
-      password,
-      confirmPassword,
+      password: finalPassword,
       privileges,
     });
     navigate("/manage-user");
@@ -128,6 +154,7 @@ function AddEditUser() {
                     type={showPassword ? "text" : "password"}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    readOnly
                   />
                   <button
                     type="button"
@@ -146,6 +173,7 @@ function AddEditUser() {
                     type={showConfirmPassword ? "text" : "password"}
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
+                    readOnly
                   />
                   <button
                     type="button"
@@ -156,6 +184,12 @@ function AddEditUser() {
                   </button>
                 </div>
               </label>
+              {/* tempPassword && */}
+              { (
+                <div className="label">
+                  <strong>Temporary Password:</strong> {tempPassword}
+                </div>
+              )}
             </form>
           </div>
           <div className="card card-privilege">
