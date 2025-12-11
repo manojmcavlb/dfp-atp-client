@@ -36,30 +36,30 @@ const MainMenu = () => {
                             onClick={() => handleNavigation2(`/auto-test?product=${product}`)}
                             autoFocus
                         >
-                            AUTO TEST
+                            Auto Test
                         </button>
                         <button className="btn-primary" onClick={() => handleNavigation('/error-log')}>
-                            ERROR/EVENT LOG
+                            Error/Event Log
                         </button>
                         <button className="btn-primary" onClick={() => handleNavigation2('/health-status')}>
-                            HEALTH STATUS
+                            Health Status
                         </button>
                         <button className="btn-primary" onClick={() => handleNavigation('/test-settings')}>
-                            TEST LIMITS
+                            Test Limits
                         </button>
                     </div>
                     <div className="column">
                         <button className="btn-primary" onClick={() => handleNavigation('/manage-user')}>
-                            MANAGE USER
+                            Manage User
                         </button>
                         <button className="btn-primary" onClick={() => handleNavigation('/calibration')}>
-                            CALIBRATION INFO.
+                            Calibration Info.
                         </button>
                         <button className="btn-primary" onClick={() => handleNavigation('/instrument')}>
-                            INSTRUMENT SETTINGS
+                            Instrument Settings
                         </button>
                         <button className="btn-primary" onClick={() => handleNavigation('/settings')}>
-                            GENERAL SETTINGS
+                            General Settings
                         </button>
                     </div>
                 </div>
