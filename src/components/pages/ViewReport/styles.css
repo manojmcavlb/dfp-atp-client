@@ -1,0 +1,95 @@
+.popup-view-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+}
+
+.popup-view-content {
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  /* width: 90%; */
+  max-width: 900px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.popup-view-header {
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+
+.report-title {
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+.product-name {
+  color: #3498db;
+  font-weight: 700;
+}
+
+.serial-info {
+  color: #3498db;
+  margin-bottom: 1.5rem;
+}
+
+.action-btns-report {
+  justify-content: flex-end;
+}
+
+.btn-report:hover {
+    color: #212529;
+    background-color: #e2e6ea;
+    border-color: #dae0e5;
+}
+
+
+.section-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+}
+
+.label-value {
+  font-weight: 500;
+  padding-left: 10px;
+}
+
+/* .device-info {
+} */
+
+.btn-pass {
+  background-color: #28a745;
+  border: 1px solid #28a745;
+}
+
+
+.results-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.results-table th,
+.results-table td {
+    text-align: left;
+    padding: 0.75rem;
+}
+
+.results-table th {
+    border-bottom: 2px solid #dee2e6;
+    font-weight: 600;
+}

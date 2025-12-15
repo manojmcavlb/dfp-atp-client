@@ -9,6 +9,7 @@ import {
 import "../../../assets/styles/main.css";
 import "./styles.css";
 import Serial from "../Drivers/Serial";
+import ReportHistory from "../ReportHistory/ReportHistory";
 
 function AutoTest() {
   const navigate = useNavigate();
@@ -23,6 +24,7 @@ function AutoTest() {
   const [showTestResult, setShowTestResult] = useState(false);
   const [showStopModal, setShowStopModal] = useState(false);
   const [showCompletionModal, setShowCompletionModal] = useState(false);
+  const [activeView, setActiveView] = useState("tests");
   const [devices, setDevices] = useState([
     { name: '6.2 Input Power Test', selected: true, status: 'pending', items: [] },
     { name: '6.3 Battery Type Test', selected: true, status: 'pending', items: [] },
@@ -171,10 +173,19 @@ function AutoTest() {
                 >
                   Edit Device
                 </button>
-                <button className="btn-primary">Tests</button>
+                <button
+                  className={activeView === "tests" ? "btn-primary" : "btn-secondary"}
+                  onClick={() => setActiveView("tests")}
+                >
+                  Tests
+                </button>
               </>
             )}
-            <button className="btn-secondary" disabled={isRunning}>
+            <button
+              className={activeView === "reports" ? "btn-primary" : "btn-secondary"}
+              onClick={() => setActiveView("reports")}
+              disabled={isRunning}
+            >
               View Reports
             </button>
           </div>
@@ -187,193 +198,198 @@ function AutoTest() {
           </div>
         ) : (
           <>
-            {showStopModal && (
-              <div className="popup-overlay">
-                <div className="popup-content">
-                  <h2>Testing in Progress.</h2>
-                  <p>Are you sure you want to stop the test?</p>
-                  <div className="popup-actions">
-                    <button className="btn-secondary" onClick={() => handleStopTest(false)}>No</button>
-                    <button className="btn-primary" onClick={() => handleStopTest(true)}>Yes</button>
-                  </div>
-                </div>
-              </div>
-            )}
-            {showCompletionModal && (
-              <div className="popup-overlay">
-                <div className="popup-content">
-                  <h2>The test run has completed.</h2>
-                  <div className="popup-actions">
-                    <button className="btn-primary" onClick={() => setShowCompletionModal(false)}>OK</button>
-                  </div>
-                </div>
-              </div>
-            )}
-            {extractedData && (
-              <div className="test-result-logs">
-                <h2>Extracted Information</h2>
-                <div className="device-info-box">
-                  <div className="info-grid">
-                    <span>Model:</span>
-                    <span>{extractedData.model}</span>
-                    <span>Head:</span>
-                    <span>{extractedData.head}</span>
-                    <span>Body:</span>
-                    <span>{extractedData.body}</span>
-                  </div>
-                </div>
-              </div>
-            )}
-            <div className="controls-row">
-              <label className="checkbox">
-                <input
-                  type="checkbox"
-                  checked={selectAll}
-                  onChange={handleSelectAll}
-                  disabled={activeMode === "production" || isRunning}
-                />
-                <span>Select All</span>
-              </label>
-
-              <button
-                className="btn-secondary btn-icon-text"
-                onClick={handleRunTest}
-              >
-                {isRunning ? <FaStop /> : <FaPlay />}
-                {isRunning ? "Stop Test" : "Run Test"}
-              </button>
-
-              <div className="runs-field">
-                <label htmlFor="runs" className="runs-label">
-                  # of Runs
-                </label>
-                <input
-                  id="runs"
-                  className="input input-no-of-runs"
-                  type="number"
-                  min={1}
-                  max={99}
-                  value={runs}
-                  onChange={(e) => setRuns(Number(e.target.value))}
-                />
-              </div>
-              <div className="mode-switch">
-                <button
-                  className={
-                    activeMode === "production"
-                      ? "btn-primary"
-                      : "btn-secondary"
-                  }
-                  onClick={() => handleModeChange("production")}
-                >
-                  Production
-                </button>
-                <button
-                  className={
-                    activeMode === "customized"
-                      ? "btn-primary"
-                      : "btn-secondary"
-                  }
-                  onClick={() => handleModeChange("customized")}
-                >
-                  Customized
-                </button>
-              </div>
-            </div>
-
-            <div className="row">
-              <div className="col-md-4 layout-test-case">
-                <table className="table-devices">
-                  <tbody>
-                    {devices.map((device, index) => (
-                      <tr key={index} className="device-item">
-                        <td>
-                          <label className="checkbox">
-                            <input
-                              type="checkbox"
-                              checked={device.selected}
-                              onChange={() => handleDeviceChange(index)}
-                              disabled={activeMode === "production" || isRunning}
-                            />
-                            <span>{device.name}</span>
-                          </label>
-                        </td>
-                        <td>
-                          {device.status === 'running' ? (
-                            <FaSpinner className="spinner" />
-                          ) : (
-                            <div
-                              className={`status-test ${device.status}`}
-                            ></div>
-                          )}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-              <div className="col-md-8 layout-test-result">
-                {showTestResult && (
-                  <div className="test-result-logs">
-                    <h2>Test Result Logs</h2>
-                    <div className="device-info-box">
-                      <h3>Device Info</h3>
-                      <div className="info-grid">
-                        <span>Product:</span>
-                        <span>Remote Head</span>
-                        <span>Hardware Part Number:</span>
-                        <span>DFP-XX-YYY</span>
-                        <span>Serial Number:</span>
-                        <span>aaa-bbb-ccc-ddd</span>
-                        <span>Manufacturing Date:</span>
-                        <span>10/09/2025</span>
-                        <span>Manufacturer's Name:</span>
-                        <span>ABC</span>
-                        <span>Mod Dot:</span>
-                        <span>-</span>
-                        <span>Manufacturing Cage Code:</span>
-                        <span>000</span>
-                        <span>PMA Number:</span>
-                        <span>123456</span>
-                        <span>Execute Date/Time:</span>
-                        <span>10 October 2025 11:00:00</span>
+            {activeView === "tests" && (
+              <>
+                {showStopModal && (
+                  <div className="popup-overlay">
+                    <div className="popup-content">
+                      <h2>Testing in Progress.</h2>
+                      <p>Are you sure you want to stop the test?</p>
+                      <div className="popup-actions">
+                        <button className="btn-secondary" onClick={() => handleStopTest(false)}>No</button>
+                        <button className="btn-primary" onClick={() => handleStopTest(true)}>Yes</button>
                       </div>
-                    </div>
-
-                    <div className="test-steps-box">
-                      <h3>Mainboard:</h3>
-                      <div className="fail-chip">FAIL</div>
-                      <table>
-                        <thead>
-                          <tr>
-                            <th>Item</th>
-                            <th>Expected</th>
-                            <th>Result</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>xxxxx</td>
-                            <td>yyyyy</td>
-                            <td>FAIL</td>
-                          </tr>
-                          <tr>
-                            <td>xxxxx</td>
-                            <td>yyyyy</td>
-                            <td>FAIL</td>
-                          </tr>
-                          <tr>
-                            <td>xxxxx</td>
-                            <td>yyyyy</td>
-                            <td>FAIL</td>
-                          </tr>
-                        </tbody>
-                      </table>
                     </div>
                   </div>
                 )}
-              </div>
-            </div>
+                {showCompletionModal && (
+                  <div className="popup-overlay">
+                    <div className="popup-content">
+                      <h2>The test run has completed.</h2>
+                      <div className="popup-actions">
+                        <button className="btn-primary" onClick={() => setShowCompletionModal(false)}>OK</button>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                {extractedData && (
+                  <div className="test-result-logs">
+                    <h2>Extracted Information</h2>
+                    <div className="device-info-box">
+                      <div className="info-grid">
+                        <span>Model:</span>
+                        <span>{extractedData.model}</span>
+                        <span>Head:</span>
+                        <span>{extractedData.head}</span>
+                        <span>Body:</span>
+                        <span>{extractedData.body}</span>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                <div className="controls-row">
+                  <label className="checkbox">
+                    <input
+                      type="checkbox"
+                      checked={selectAll}
+                      onChange={handleSelectAll}
+                      disabled={activeMode === "production" || isRunning}
+                    />
+                    <span>Select All</span>
+                  </label>
+
+                  <button
+                    className="btn-secondary btn-icon-text"
+                    onClick={handleRunTest}
+                  >
+                    {isRunning ? <FaStop /> : <FaPlay />}
+                    {isRunning ? "Stop Test" : "Run Test"}
+                  </button>
+
+                  <div className="runs-field">
+                    <label htmlFor="runs" className="runs-label">
+                      # of Runs
+                    </label>
+                    <input
+                      id="runs"
+                      className="input input-no-of-runs"
+                      type="number"
+                      min={1}
+                      max={99}
+                      value={runs}
+                      onChange={(e) => setRuns(Number(e.target.value))}
+                    />
+                  </div>
+                  <div className="mode-switch">
+                    <button
+                      className={
+                        activeMode === "production"
+                          ? "btn-primary"
+                          : "btn-secondary"
+                      }
+                      onClick={() => handleModeChange("production")}
+                    >
+                      Production
+                    </button>
+                    <button
+                      className={
+                        activeMode === "customized"
+                          ? "btn-primary"
+                          : "btn-secondary"
+                      }
+                      onClick={() => handleModeChange("customized")}
+                    >
+                      Customized
+                    </button>
+                  </div>
+                </div>
+
+                <div className="row">
+                  <div className="col-md-4 layout-test-case">
+                    <table className="table-devices">
+                      <tbody>
+                        {devices.map((device, index) => (
+                          <tr key={index} className="device-item">
+                            <td>
+                              <label className="checkbox">
+                                <input
+                                  type="checkbox"
+                                  checked={device.selected}
+                                  onChange={() => handleDeviceChange(index)}
+                                  disabled={activeMode === "production" || isRunning}
+                                />
+                                <span>{device.name}</span>
+                              </label>
+                            </td>
+                            <td>
+                              {device.status === 'running' ? (
+                                <FaSpinner className="spinner" />
+                              ) : (
+                                <div
+                                  className={`status-test ${device.status}`}
+                                ></div>
+                              )}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                  <div className="col-md-8 layout-test-result">
+                    {showTestResult && (
+                      <div className="test-result-logs">
+                        <h2>Test Result Logs</h2>
+                        <div className="device-info-box">
+                          <h3>Device Info</h3>
+                          <div className="info-grid">
+                            <span>Product:</span>
+                            <span>Remote Head</span>
+                            <span>Hardware Part Number:</span>
+                            <span>DFP-XX-YYY</span>
+                            <span>Serial Number:</span>
+                            <span>aaa-bbb-ccc-ddd</span>
+                            <span>Manufacturing Date:</span>
+                            <span>10/09/2025</span>
+                            <span>Manufacturer's Name:</span>
+                            <span>ABC</span>
+                            <span>Mod Dot:</span>
+                            <span>-</span>
+                            <span>Manufacturing Cage Code:</span>
+                            <span>000</span>
+                            <span>PMA Number:</span>
+                            <span>123456</span>
+                            <span>Execute Date/Time:</span>
+                            <span>10 October 2025 11:00:00</span>
+                          </div>
+                        </div>
+
+                        <div className="test-steps-box">
+                          <h3>Mainboard:</h3>
+                          <div className="fail-chip">FAIL</div>
+                          <table>
+                            <thead>
+                              <tr>
+                                <th>Item</th>
+                                <th>Expected</th>
+                                <th>Result</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>xxxxx</td>
+                                <td>yyyyy</td>
+                                <td>FAIL</td>
+                              </tr>
+                              <tr>
+                                <td>xxxxx</td>
+                                <td>yyyyy</td>
+                                <td>FAIL</td>
+                              </tr>
+                              <tr>
+                                <td>xxxxx</td>
+                                <td>yyyyy</td>
+                                <td>FAIL</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </>
+            )}
+            {activeView === "reports" && <ReportHistory />}
             {/* <Serial isTestRun={isRunning} /> */}
 
             {/* useContext/Redux Approach -> get back the test results of Serial Page & Display Pass/Fail */}
@@ -384,4 +400,4 @@ function AutoTest() {
   );
 }
 
-export { AutoTest };
+export default AutoTest;

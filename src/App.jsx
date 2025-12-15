@@ -11,7 +11,7 @@ import AddEditUser from "./components/pages/ManageUser/AddEditUser";
 import { Login } from "./components/pages/Login";
 import Drivers from "./components/pages/Drivers/index";
 import MainMenu from "./components/pages/MainMenu/MainMenu";
-import { AutoTest } from "./components/pages/AutoTest";
+import AutoTest from "./components/pages/AutoTest/AutoTest";
 import AddEditDevice from "./components/pages/AutoTest/AddEditDevice";
 import Calibration from "./components/pages/Calibration";
 import AddEditCalibration from "./components/pages/Calibration/AddEditCalibration";

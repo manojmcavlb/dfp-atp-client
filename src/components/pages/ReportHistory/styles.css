@@ -1,0 +1,40 @@
+.report-history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.report-history-title {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.report-history-container {
+  display: grid;
+  place-items: center;
+}
+
+.table-reports {
+  border-collapse: collapse;
+}
+
+.table-reports th,
+.table-reports td {
+  border: 1px solid #ccc;
+  padding: 0.5rem;
+  text-align: left;
+}
+
+.table-reports th {
+  background-color: #f2f2f2;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.table-reports th svg {
+  font-size: 12px;
+  margin-left: 4px;
+  vertical-align: middle;
+  opacity: 0.7;
+}
