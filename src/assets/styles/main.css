@@ -61,6 +61,7 @@ html,
 
 /* ===== Base Page (shared) ===== */
 .page-bg {
+  padding: 10px;
   /* min-height: 100vh; */
 }
 
@@ -265,6 +266,15 @@ html,
 
 /* Password eye icon */
 
+/* checkbox */
+.checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+/* checkbox */
+
+
 /* link */
 .link {
   font-size: 14px;
@@ -361,9 +371,9 @@ html,
 }
 
 /* Page */
-.page-wrap {
-  /* padding: 16px 24px; */
-}
+/* .page-wrap {
+  padding: 16px 24px;
+} */
 
 .page-table {
   width: 100%;
@@ -423,6 +433,14 @@ html,
   margin-top: 0.5rem;
 }
 
+.status-test {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-gray-medium);
+}
+
 .fail {
   background-color: var(--color-error);
 }
@@ -431,12 +449,6 @@ html,
   background-color: var(--color-success);
 }
 
-.status-indicator {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background-color: var(--color-gray-dark);
-}
 /* Grid */
 
 /* Misc */
@@ -450,9 +462,9 @@ html,
   gap: 8px;
 }
 
-.runs-input {
-  /* min-width: 75px; */
-} 
+/* .runs-input {
+  min-width: 75px;
+}  */
 /* Misc */
 
 header, .status-bar {
