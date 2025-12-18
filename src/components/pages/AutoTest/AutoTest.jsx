@@ -10,6 +10,7 @@ import "../../../assets/styles/main.css";
 import "./styles.css";
 import Serial from "../Drivers/Serial";
 import ReportHistory from "../ReportHistory/ReportHistory";
+import { mockTestSuites } from "../../../utils/mock";
 
 function AutoTest() {
   const navigate = useNavigate();
@@ -353,36 +354,39 @@ function AutoTest() {
                           </div>
                         </div>
 
-                        <div className="test-steps-box">
-                          <h3>Mainboard:</h3>
-                          <div className="fail-chip">FAIL</div>
-                          <table>
-                            <thead>
-                              <tr>
-                                <th>Item</th>
-                                <th>Expected</th>
-                                <th>Result</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td>xxxxx</td>
-                                <td>yyyyy</td>
-                                <td>FAIL</td>
-                              </tr>
-                              <tr>
-                                <td>xxxxx</td>
-                                <td>yyyyy</td>
-                                <td>FAIL</td>
-                              </tr>
-                              <tr>
-                                <td>xxxxx</td>
-                                <td>yyyyy</td>
-                                <td>FAIL</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
+                        {mockTestSuites.map((suite, index) => (
+                          <React.Fragment key={index}>
+                            <div className="row">
+                              <div className="col-md-6">
+                                <h4 className="section-title">{suite.title}</h4>
+                              </div>
+                              <div className="col-md-6 btn-right">
+                                <button className={`btn-primary btn-${suite.status.toLowerCase()}`}>{suite.status}</button>
+                              </div>
+                            </div>
+                            <table className="results-table">
+                              <thead>
+                                <tr>
+                                  <th>Test ID</th>
+                                  <th>Test Name</th>
+                                  <th>Measured Value</th>
+                                  <th>Result</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {suite.results.map((test) => (
+                                  <tr key={test.id}>
+                                    <td>{test.id}</td>
+                                    <td>{test.name}</td>
+                                    <td>{test.value}</td>
+                                    <td>{test.result}</td>
+                                  </tr>
+                                ))}
+                              </tbody>
+                            </table>
+                            {index < mockTestSuites.length - 1 && <br />}
+                          </React.Fragment>
+                        ))}
                       </div>
                     )}
                   </div>

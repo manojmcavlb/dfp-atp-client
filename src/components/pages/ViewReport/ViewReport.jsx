@@ -1,5 +1,6 @@
 import React from 'react';
 import './styles.css';
+import { mockTestSuites } from '../../../utils/mock';
 
 const ViewReport = ({ report, onClose }) => {
   if (!report) {
@@ -48,115 +49,71 @@ const ViewReport = ({ report, onClose }) => {
                 </label>
                 <label className="label lbl-text">
                   Serial Number:{" "}
-                  <label className="lbl-value">aaa-bbb-ccc-ddd</label>
+                  <label className="lbl-value">DEF-456-GHI-789</label>
                 </label>
                 <label className="label lbl-text">
                   Manufacturer's Name:{" "}
-                  <label className="lbl-value">ABC</label>
+                  <label className="lbl-value">Mock Manufacturer</label>
                 </label>
                 <label className="label lbl-text">
                   Manufacturing Cage Code:{" "}
-                  <label className="lbl-value">{report.productType}</label>
+                  <label className="lbl-value">CAGE123</label>
                 </label>
                 <label className="label lbl-text">
-                  Execute Date/Time: <label className="lbl-value">000</label>
+                  Execute Date/Time: <label className="lbl-value">2024-01-01 12:00:00</label>
                 </label>
               </div>
               <div className="col-md-6">
                 <label className="label lbl-text">
                   Hardware Part Number:{" "}
-                  <label className="lbl-value">DFP-XX-YYY</label>
+                  <label className="lbl-value">HW-MOCK-1</label>
                 </label>
                 <label className="label lbl-text">
                   Manufacturing Date:{" "}
-                  <label className="lbl-value">10/09/2025</label>
+                  <label className="lbl-value">2024-01-01</label>
                 </label>
                 <label className="label lbl-text">
-                  Mod Dot: <label className="lbl-value">-</label>
+                  Mod Dot: <label className="lbl-value">MOD-MOCK-1</label>
                 </label>
                 <label className="label lbl-text">
-                  PMA Number: <label className="lbl-value">123456</label>
+                  PMA Number: <label className="lbl-value">PMA-MOCK-1</label>
                 </label>
               </div>
             </div>
           </div>
-          <div className="row">
-            <div className="col-md-6">
-              <h4 className="section-title">1. Input Power Test:</h4>
-            </div>
-            <div className="col-md-6 btn-right">
-              <button className="btn-primary btn-pass">PASS</button>
-            </div>
-          </div>
-          <table className="results-table">
-            <thead>
-              <tr>
-                <th>Test ID</th>
-                <th>Test Name</th>
-                <th>Measured Value</th>
-                <th>Result</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1.1</td>
-                <td>Apply nominal input voltage (28VDC)</td>
-                <td>2.9 V</td>
-                <td>PASS</td>
-              </tr>
-              <tr>
-                <td>1.2</td>
-                <td>Measure current draw during boot-up</td>
-                <td>1.2 A</td>
-                <td>PASS</td>
-              </tr>
-              <tr>
-                <td>1.3</td>
-                <td>Verify total power consumption (≤ 42W expected)</td>
-                <td>33 W</td>
-                <td>PASS</td>
-              </tr>
-            </tbody>
-          </table>
-          <br/>
-          <div className="row">
-            <div className="col-md-6">
-              <h4 className="section-title">2. 0 to –10 VDC Output Test:</h4>
-            </div>
-            <div className="col-md-6 btn-right">
-              <button className="btn-primary btn-pass">PASS</button>
-            </div>
-          </div>
-          <table className="results-table">
-            <thead>
-              <tr>
-                <th>Test ID</th>
-                <th>Test Name</th>
-                <th>Measured Value</th>
-                <th>Result</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>2.1</td>
-                <td>Apply input reference signal</td>
-                <td>-2.8 V</td>
-                <td>PASS</td>
-              </tr>
-              <tr>
-                <td>2.2</td>
-                <td>Sweep input across range</td>
-                <td>-7.5 V</td>
-                <td>PASS</td>
-              </tr>
-              <tr>
-                <td>2.3</td>
-                <td>Verify stability and accuracy</td>
-                <td>-9.6 V</td>
-                <td>PASS</td>
-              </tr>
-            </tbody>
-          </table>
+          {mockTestSuites.map((suite, index) => (
+            <React.Fragment key={index}>
+              <div className="row">
+                <div className="col-md-6">
+                  <h4 className="section-title">{suite.title}</h4>
+                </div>
+                <div className="col-md-6 btn-right">
+                  <button className={`btn-primary btn-${suite.status.toLowerCase()}`}>{suite.status}</button>
+                </div>
+              </div>
+              <table className="results-table">
+                <thead>
+                  <tr>
+                    <th>Test ID</th>
+                    <th>Test Name</th>
+                    <th>Measured Value</th>
+                    <th>Result</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {suite.results.map((test) => (
+                    <tr key={test.id}>
+                      <td>{test.id}</td>
+                      <td>{test.name}</td>
+                      <td>{test.value}</td>
+                      <td>{test.result}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              {index < mockTestSuites.length - 1 && <br />}
+            </React.Fragment>
+          ))}
         </div>
       </div>
     </div>
