@@ -33,7 +33,7 @@ export function configureFakeBackend() {
 
     // make opts safe so opts.headers won't throw when undefined
     opts = opts || {};
-    const { method, headers } = opts;
+    const { headers } = opts;
     // use optional chaining when reading header values
     const authHeader = headers?.Authorization || headers?.authorization;
     const isLoggedIn =

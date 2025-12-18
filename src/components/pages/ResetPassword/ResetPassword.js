@@ -52,7 +52,7 @@ function ResetPassword() {
     if (!/[A-Z]/.test(p)) errors.push('At least 1 uppercase letter.');
     if (!/[a-z]/.test(p)) errors.push('At least 1 lowercase letter.');
     if (!/[0-9]/.test(p)) errors.push('At least 1 digit.');
-    if (!/[!@#$%/\\&*()_+\-=\[\]{};:'\"|,.<>/?`~]/.test(p))
+    if (!/[!@#$%/\\&*()_+\-=\\[\]{};:'\\"|,.<>/?`~]/.test(p))
       errors.push('At least 1 special character.');
     if (hasSequentialString(p, 4))
       errors.push('Avoid simple sequential strings.');

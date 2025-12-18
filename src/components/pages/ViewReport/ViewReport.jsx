@@ -1,9 +1,21 @@
 import React from 'react';
 import './styles.css';
-import { mockTestSuites } from '../../../utils/mock';
+import { mockTestSuites as mockIotTestSuites } from '../../../utils/mock';
+import { mockTestSuites as mockRemoteHeadTestSuites } from '../../../utils/mockRemoteHead';
 
 const ViewReport = ({ report, onClose }) => {
   if (!report) {
+    return null;
+  }
+
+  const productTestSuites =
+    report.productType === 'IoT Gateway'
+      ? mockIotTestSuites
+      : mockRemoteHeadTestSuites;
+
+  const suite = productTestSuites[0];
+
+  if (!suite || !suite.testCases) {
     return null;
   }
 
@@ -15,7 +27,7 @@ const ViewReport = ({ report, onClose }) => {
           <div className="row">
             <div className="col-md-6">
               <h3 className="report-title">
-                Test Results:{" "}
+                Test Results:{' '}
                 <span className="product-name">{report.productType}</span>
               </h3>
             </div>
@@ -30,7 +42,7 @@ const ViewReport = ({ report, onClose }) => {
             </div>
             <div className="col-md-12">
               <label className="label serial-info">
-                Serial:{" "}
+                Serial:{' '}
                 <label className="lbl-value">
                   aaa-bbb-ccc-ddd, {report.date}
                 </label>
@@ -44,32 +56,33 @@ const ViewReport = ({ report, onClose }) => {
             <div className="row">
               <div className="col-md-6">
                 <label className="label lbl-text">
-                  Product:{" "}
+                  Product:{' '}
                   <label className="lbl-value">{report.productType}</label>
                 </label>
                 <label className="label lbl-text">
-                  Serial Number:{" "}
+                  Serial Number:{' '}
                   <label className="lbl-value">DEF-456-GHI-789</label>
                 </label>
                 <label className="label lbl-text">
-                  Manufacturer's Name:{" "}
+                  Manufacturer's Name:{' '}
                   <label className="lbl-value">Mock Manufacturer</label>
                 </label>
                 <label className="label lbl-text">
-                  Manufacturing Cage Code:{" "}
+                  Manufacturing Cage Code:{' '}
                   <label className="lbl-value">CAGE123</label>
                 </label>
                 <label className="label lbl-text">
-                  Execute Date/Time: <label className="lbl-value">2024-01-01 12:00:00</label>
+                  Execute Date/Time:
+                  <label className="lbl-value">2024-01-01 12:00:00</label>
                 </label>
               </div>
               <div className="col-md-6">
                 <label className="label lbl-text">
-                  Hardware Part Number:{" "}
+                  Hardware Part Number:{' '}
                   <label className="lbl-value">HW-MOCK-1</label>
                 </label>
                 <label className="label lbl-text">
-                  Manufacturing Date:{" "}
+                  Manufacturing Date:{' '}
                   <label className="lbl-value">2024-01-01</label>
                 </label>
                 <label className="label lbl-text">
@@ -81,39 +94,53 @@ const ViewReport = ({ report, onClose }) => {
               </div>
             </div>
           </div>
-          {mockTestSuites.map((suite, index) => (
-            <React.Fragment key={index}>
-              <div className="row">
-                <div className="col-md-6">
-                  <h4 className="section-title">{suite.title}</h4>
-                </div>
-                <div className="col-md-6 btn-right">
-                  <button className={`btn-primary btn-${suite.status.toLowerCase()}`}>{suite.status}</button>
-                </div>
-              </div>
-              <table className="results-table">
-                <thead>
-                  <tr>
-                    <th>Test ID</th>
-                    <th>Test Name</th>
-                    <th>Measured Value</th>
-                    <th>Result</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {suite.results.map((test) => (
-                    <tr key={test.id}>
-                      <td>{test.id}</td>
-                      <td>{test.name}</td>
-                      <td>{test.value}</td>
-                      <td>{test.result}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-              {index < mockTestSuites.length - 1 && <br />}
-            </React.Fragment>
-          ))}
+          <div className="scrollable-content">
+            {suite.testCases.map((testCase, index) => {
+              const overallStatus = testCase.steps.every(
+                (step) => step.result === 'PASS'
+              )
+                ? 'PASS'
+                : 'FAIL';
+
+              return (
+                <React.Fragment key={index}>
+                  <div className="row">
+                    <div className="col-md-6">
+                      <h4 className="section-title">{testCase.title}</h4>
+                    </div>
+                    <div className="col-md-6 btn-right">
+                      <button
+                        className={`btn-primary btn-${overallStatus.toLowerCase()}`}
+                      >
+                        {overallStatus}
+                      </button>
+                    </div>
+                  </div>
+                  <table className="results-table">
+                    <thead>
+                      <tr>
+                        <th>Test ID</th>
+                        <th>Test Name</th>
+                        <th>Measured Value</th>
+                        <th>Result</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {testCase.steps.map((step) => (
+                        <tr key={step.stepId}>
+                          <td>{step.stepId}</td>
+                          <td>{step.action}</td>
+                          <td>{step.value || 'N/A'}</td>
+                          <td>{step.result}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                  {index < suite.testCases.length - 1 && <br />}
+                </React.Fragment>
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>

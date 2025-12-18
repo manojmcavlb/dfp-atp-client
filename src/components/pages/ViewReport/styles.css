@@ -95,3 +95,8 @@
 .btn-right {
   text-align: right;
 }
+
+.scrollable-content {
+  max-height: 400px;
+  overflow-y: auto;
+}

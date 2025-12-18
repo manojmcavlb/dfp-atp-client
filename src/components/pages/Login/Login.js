@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+// eslint-disable-next-line no-unused-vars
 import { useLocation, useNavigate } from 'react-router-dom';
 import { authenticationService } from '../../../services';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
@@ -26,7 +27,6 @@ function Login() {
   const [usernameError, setUsernameError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const navigate = useNavigate();
-  const location = useLocation();
 
   useEffect(() => {
     const sessionCookie = getCookie('session');

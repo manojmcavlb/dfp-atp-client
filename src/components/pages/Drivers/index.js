@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import Ethernet from './Ethernet';
 import Serial from './Serial';
 

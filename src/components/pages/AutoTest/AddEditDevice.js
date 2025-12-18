@@ -10,10 +10,12 @@ const AddEditDevice = () => {
   const { id } = useParams();
   const isEditMode = id !== undefined;
 
+  // eslint-disable-next-line no-unused-vars
   const [product, setProduct] = useState('Remote Head');
   const [serialNumber, setSerialNumber] = useState('12345');
   const [manufacturerName, setManufacturerName] = useState('Acme Corp');
   const [manufacturingCageCode, setManufacturingCageCode] = useState('CAGE123');
+  // eslint-disable-next-line no-unused-vars
   const [executeDateTime, setExecuteDateTime] = useState(
     new Date().toISOString().slice(0, 16)
   );
@@ -23,6 +25,7 @@ const AddEditDevice = () => {
   const [pmaNumber, setPmaNumber] = useState('PMA-11223');
   const [modalStep, setModalStep] = useState(null);
   const [isCameraOpen, setIsCameraOpen] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const [isCameraDetected, setIsCameraDetected] = useState(false);
 
   useEffect(() => {
@@ -160,7 +163,6 @@ const AddEditDevice = () => {
                     type="button"
                     className="btn-primary"
                     onClick={handleCameraClick}
-                    // disabled={!isCameraDetected}
                   >
                     Camera
                   </button>

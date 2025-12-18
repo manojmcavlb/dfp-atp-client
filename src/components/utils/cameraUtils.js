@@ -1,8 +1,8 @@
 import React, { useRef, useEffect } from 'react';
-import { FaCamera, FaTimes } from 'react-icons/fa';
 import Tesseract from 'tesseract.js';
 
-export const CameraModal = ({ onCancel, onCapture = () => {} }) => {
+// eslint-disable-next-line prettier/prettier
+export const CameraModal = ({ onCancel, onCapture = () => { } }) => {
   const videoRef = useRef(null);
   const streamRef = useRef(null);
 

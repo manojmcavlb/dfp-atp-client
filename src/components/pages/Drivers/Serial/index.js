@@ -14,6 +14,7 @@ export default function Serial() {
       setPorts(p);
       if (p[0]?.path) setSelected(p[0].path);
     })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); //listPorts
 
   return (
