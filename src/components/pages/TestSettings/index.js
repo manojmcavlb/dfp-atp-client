@@ -1,1 +1,1 @@
-export { default } from "./TestSettings";
+export { default } from './TestSettings';

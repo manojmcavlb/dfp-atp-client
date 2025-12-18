@@ -35,7 +35,9 @@ export function useEthernet() {
     };
 
     socket.on('connect', () => push('socket.io connected'));
-    socket.on('disconnect', (reason) => push(`socket.io disconnected (${reason})`));
+    socket.on('disconnect', (reason) =>
+      push(`socket.io disconnected (${reason})`)
+    );
     socket.on('tcp_open', (info) => push(`TCP OPEN ${info.host}:${info.port}`));
     socket.on('tcp_rx', (data) => push(`TCP RX: ${data}`));
     socket.on('tcp_tx', (data) => push(`TCP TX: ${data}`));
@@ -46,7 +48,9 @@ export function useEthernet() {
     socket.on('tcp_speed', (r) => {
       // try to print sensible fields
       if (r && r.megabytes !== undefined && r.seconds !== undefined) {
-        push(`TCP SPEED EVENT: ${r.megabytes} MB in ${r.seconds}s = ${(r.mb_per_s ?? r.mbps ?? 0).toFixed ? (r.mb_per_s ?? r.mbps).toFixed(3) : (r.mb_per_s ?? r.mbps)} MB/s`);
+        push(
+          `TCP SPEED EVENT: ${r.megabytes} MB in ${r.seconds}s = ${(r.mb_per_s ?? r.mbps ?? 0).toFixed ? (r.mb_per_s ?? r.mbps).toFixed(3) : (r.mb_per_s ?? r.mbps)} MB/s`
+        );
       } else {
         push(`TCP SPEED EVENT: ${JSON.stringify(r)}`);
       }
@@ -95,7 +99,7 @@ export function useEthernet() {
     const r = await callApi('/tcp/connect', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ host, port })
+      body: JSON.stringify({ host, port }),
     });
     if (r.ok) pushLog(`Connect OK: ${JSON.stringify(r.body)}`);
     return r;
@@ -106,20 +110,31 @@ export function useEthernet() {
    */
   const tcpSend = async (data, appendNewline = true, opts = {}) => {
     try {
-      const body = { data, appendNewline, expectResponse: opts.expectResponse ?? true };
+      const body = {
+        data,
+        appendNewline,
+        expectResponse: opts.expectResponse ?? true,
+      };
       if (opts.perCmdTimeoutMs) body.perCmdTimeoutMs = opts.perCmdTimeoutMs;
 
       pushLog(`SEND -> ${data} (expectResponse=${body.expectResponse})`);
       const r = await callApi('/tcp/send', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body)
+        body: JSON.stringify(body),
       });
       if (r.ok) {
         // backend returns reply if expectResponse true
-        if (r.body && (r.body.reply !== undefined || r.body.timeout !== undefined)) {
-          if (r.body.timeout) pushLog(`SEND reply TIMEOUT (no instrument reply)`);
-          else pushLog(`SEND reply: ${r.body.reply}  (rtt=${r.body.rtt_ms ?? 'n/a'} ms)`);
+        if (
+          r.body &&
+          (r.body.reply !== undefined || r.body.timeout !== undefined)
+        ) {
+          if (r.body.timeout)
+            pushLog(`SEND reply TIMEOUT (no instrument reply)`);
+          else
+            pushLog(
+              `SEND reply: ${r.body.reply}  (rtt=${r.body.rtt_ms ?? 'n/a'} ms)`
+            );
         } else {
           pushLog(`SEND ok (no reply expected).`);
         }
@@ -167,7 +182,7 @@ export function useEthernet() {
     const r = await callApi('/tcp/speedtest', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(params)
+      body: JSON.stringify(params),
     });
 
     if (!r.ok) return r;
@@ -175,10 +190,19 @@ export function useEthernet() {
     const b = r.body;
     // rtt mode returns results array and stats; throughput returns summary
     if (b.mode === 'rtt' && Array.isArray(b.results)) {
-      pushLog(`Speed RTT done: avg_ms=${b.stats?.avg_ms} min=${b.stats?.min_ms} max=${b.stats?.max_ms} ops/s=${b.stats?.ops_per_sec}`);
-      pushLog(`Results samples: ${b.results.slice(0, 5).map(x => `#${x.i}:${x.raw}/${x.rtt_ms}ms`).join(' | ')}`);
+      pushLog(
+        `Speed RTT done: avg_ms=${b.stats?.avg_ms} min=${b.stats?.min_ms} max=${b.stats?.max_ms} ops/s=${b.stats?.ops_per_sec}`
+      );
+      pushLog(
+        `Results samples: ${b.results
+          .slice(0, 5)
+          .map((x) => `#${x.i}:${x.raw}/${x.rtt_ms}ms`)
+          .join(' | ')}`
+      );
     } else if (b.mode === 'throughput') {
-      pushLog(`Throughput done: ${Number(b.megabytes).toFixed(6)} MB in ${Number(b.durationMeasuredSec).toFixed(3)}s => ${Number(b.mb_per_s).toFixed(6)} MB/s, ops/s=${Number(b.ops_per_sec).toFixed(2)}`);
+      pushLog(
+        `Throughput done: ${Number(b.megabytes).toFixed(6)} MB in ${Number(b.durationMeasuredSec).toFixed(3)}s => ${Number(b.mb_per_s).toFixed(6)} MB/s, ops/s=${Number(b.ops_per_sec).toFixed(2)}`
+      );
     } else {
       pushLog(`Speed test result: ${JSON.stringify(b)}`);
     }
@@ -193,6 +217,6 @@ export function useEthernet() {
     tcpClose,
     measureVolt,
     measureCurr,
-    tcpSpeedTest
+    tcpSpeedTest,
   };
 }

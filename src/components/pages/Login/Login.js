@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import { authenticationService } from "../../../services";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
-import "../../../assets/styles/main.css";
-import "./styles.css";
-import { COOKIE_EXPIRY_TIME } from "../../../utils/constants";
+import React, { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { authenticationService } from '../../../services';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import '../../../assets/styles/main.css';
+import './styles.css';
+import { COOKIE_EXPIRY_TIME } from '../../../utils/constants';
 
 // Helper function to get a cookie by name
 function getCookie(name) {
@@ -15,51 +15,51 @@ function getCookie(name) {
 
 // Helper function to remove a cookie
 function removeCookie(name) {
-    document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+  document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
 }
 
 function Login() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const [showPwd, setShowPwd] = useState(false);
-  const [error, setError] = useState("");
-  const [usernameError, setUsernameError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
+  const [error, setError] = useState('');
+  const [usernameError, setUsernameError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
   const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
-    const sessionCookie = getCookie("session");
+    const sessionCookie = getCookie('session');
     if (sessionCookie) {
       try {
         // Decode and parse the cookie value
         const { expiry } = JSON.parse(decodeURIComponent(sessionCookie));
         if (new Date().getTime() < expiry) {
-          navigate("/main-menu");
+          navigate('/main-menu');
         } else {
           // Remove expired cookie
-          removeCookie("session");
+          removeCookie('session');
         }
       } catch (e) {
         // Remove malformed cookie
-        removeCookie("session");
+        removeCookie('session');
       }
     }
   }, [navigate]);
 
   function handleSubmit(e) {
     e.preventDefault();
-    setUsernameError("");
-    setPasswordError("");
-    setError("");
+    setUsernameError('');
+    setPasswordError('');
+    setError('');
 
     let hasError = false;
     if (!username) {
-      setUsernameError("Please enter username");
+      setUsernameError('Please enter username');
       hasError = true;
     }
     if (!password) {
-      setPasswordError("Please enter password");
+      setPasswordError('Please enter password');
       hasError = true;
     }
 
@@ -68,17 +68,19 @@ function Login() {
     }
     authenticationService.login(username, password).then(
       (user) => {
-        setError("");
+        setError('');
         const expiryTime = new Date().getTime() + COOKIE_EXPIRY_TIME; // Set expiry time 30 mins
         const expiryDate = new Date(expiryTime);
-        
+
         // Manually stringify and encode the cookie value
-        const cookieValue = encodeURIComponent(JSON.stringify({ user, expiry: expiryTime }));
-        
+        const cookieValue = encodeURIComponent(
+          JSON.stringify({ user, expiry: expiryTime })
+        );
+
         // Manually construct the cookie string
         document.cookie = `session=${cookieValue}; expires=${expiryDate.toUTCString()}; path=/`;
-        
-        navigate("/main-menu");
+
+        navigate('/main-menu');
       },
       (error) => {
         setError(error);
@@ -92,7 +94,11 @@ function Login() {
         <div className="card login-card">
           <h2 className="card-title">Login</h2>
 
-          {error && <div className="msg msg-error center" role="alert">{error}</div>}
+          {error && (
+            <div className="msg msg-error center" role="alert">
+              {error}
+            </div>
+          )}
 
           <form onSubmit={handleSubmit} className="form">
             <label className="label">
@@ -100,11 +106,13 @@ function Login() {
               <input
                 className="input"
                 value={username}
-                onChange={e => setUsername(e.target.value)}
+                onChange={(e) => setUsername(e.target.value)}
                 placeholder=""
                 autoComplete="username"
               />
-              {usernameError && <div className="input-error">{usernameError}</div>}
+              {usernameError && (
+                <div className="input-error">{usernameError}</div>
+              )}
             </label>
 
             <label className="label">
@@ -112,9 +120,9 @@ function Login() {
               <div className="pwd-row">
                 <input
                   className="input has-icon"
-                  type={showPwd ? "text" : "password"}
+                  type={showPwd ? 'text' : 'password'}
                   value={password}
-                  onChange={e => setPassword(e.target.value)}
+                  onChange={(e) => setPassword(e.target.value)}
                   placeholder=""
                   autoComplete="current-password"
                 />
@@ -123,21 +131,23 @@ function Login() {
                   className="pwd-eye"
                   onClick={() => setShowPwd(!showPwd)}
                 >
-                  {showPwd ? (
-                    <FaEye />
-                  ) : (
-                    <FaEyeSlash />
-                  )}
+                  {showPwd ? <FaEye /> : <FaEyeSlash />}
                 </button>
               </div>
-              {passwordError && <div className="input-error">{passwordError}</div>}
+              {passwordError && (
+                <div className="input-error">{passwordError}</div>
+              )}
             </label>
 
             <div className="action-btns">
-              <a className="link" href="/reset-password">Forget Password?</a>
+              <a className="link" href="/reset-password">
+                Forget Password?
+              </a>
             </div>
             <div className="center">
-              <button className="btn-primary" type="submit">Login</button>
+              <button className="btn-primary" type="submit">
+                Login
+              </button>
             </div>
           </form>
         </div>

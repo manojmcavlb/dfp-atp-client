@@ -1,7 +1,6 @@
 // import { useEffect, useState } from "react";
 // import { Link, useParams } from "react-router-dom";
 
-
 // const EmpDetail = () => {
 //     const { empid } = useParams();
 
@@ -22,7 +21,7 @@
 //                 <div className="offset-lg-3 col-lg-6"> */}
 
 //                <div className="container">
-                
+
 //             <div className="card row" style={{ "textAlign": "left" }}>
 //                 <div className="card-title">
 //                     <h2>Employee Create</h2>

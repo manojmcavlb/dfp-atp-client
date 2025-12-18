@@ -24,9 +24,6 @@
 //         }
 //     }
 
-
-
-
 //     useEffect(() => {
 //         fetch("http://localhost:3000/employee").then((res) => {
 //             return res.json();

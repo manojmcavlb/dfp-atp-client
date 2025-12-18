@@ -14,7 +14,9 @@ const AddEditDevice = () => {
   const [serialNumber, setSerialNumber] = useState('12345');
   const [manufacturerName, setManufacturerName] = useState('Acme Corp');
   const [manufacturingCageCode, setManufacturingCageCode] = useState('CAGE123');
-  const [executeDateTime, setExecuteDateTime] = useState(new Date().toISOString().slice(0, 16));
+  const [executeDateTime, setExecuteDateTime] = useState(
+    new Date().toISOString().slice(0, 16)
+  );
   const [hardwarePartNumber, setHardwarePartNumber] = useState('HW-54321');
   const [manufacturingDate, setManufacturingDate] = useState('2023-01-01');
   const [modDot, setModDot] = useState('MD-67890');
@@ -29,16 +31,16 @@ const AddEditDevice = () => {
 
   const handleSave = () => {
     // Implement save logic here
-    console.log('Save device:', { 
-        product, 
-        serialNumber, 
-        manufacturerName, 
-        manufacturingCageCode, 
-        executeDateTime, 
-        hardwarePartNumber,
-        manufacturingDate,
-        modDot,
-        pmaNumber
+    console.log('Save device:', {
+      product,
+      serialNumber,
+      manufacturerName,
+      manufacturingCageCode,
+      executeDateTime,
+      hardwarePartNumber,
+      manufacturingDate,
+      modDot,
+      pmaNumber,
     });
     navigate('/auto-test');
   };
@@ -69,7 +71,7 @@ const AddEditDevice = () => {
   };
 
   const handleCameraClick = () => {
-    console.log("camera:", isCameraOpen)
+    console.log('camera:', isCameraOpen);
     setIsCameraOpen(true);
   };
 
@@ -81,52 +83,113 @@ const AddEditDevice = () => {
     <div className="page-bg">
       <main className="center-wrap">
         <div className="card form-card card-edit-device">
-          <h2 className="card-title">{isEditMode ? 'Edit Device' : 'Add Device'}</h2>
-          
+          <h2 className="card-title">
+            {isEditMode ? 'Edit Device' : 'Add Device'}
+          </h2>
+
           <form className="form">
             <div className="row">
               <div className="col-md-6">
                 <label className="label">
                   Hardware Part Number:
-                  <input className="input" type="text" value={hardwarePartNumber} onChange={(e) => setHardwarePartNumber(e.target.value)} />
+                  <input
+                    className="input"
+                    type="text"
+                    value={hardwarePartNumber}
+                    onChange={(e) => setHardwarePartNumber(e.target.value)}
+                  />
                 </label>
                 <label className="label">
                   Serial Number:
-                  <input className="input" type="text" value={serialNumber} onChange={(e) => setSerialNumber(e.target.value)} />
+                  <input
+                    className="input"
+                    type="text"
+                    value={serialNumber}
+                    onChange={(e) => setSerialNumber(e.target.value)}
+                  />
                 </label>
                 <label className="label">
                   Manufacturer's Name:
-                  <input className="input" type="text" value={manufacturerName} onChange={(e) => setManufacturerName(e.target.value)} />
+                  <input
+                    className="input"
+                    type="text"
+                    value={manufacturerName}
+                    onChange={(e) => setManufacturerName(e.target.value)}
+                  />
                 </label>
                 <label className="label">
                   Manufacturing Cage Code:
-                  <input className="input" type="text" value={manufacturingCageCode} onChange={(e) => setManufacturingCageCode(e.target.value)} />
+                  <input
+                    className="input"
+                    type="text"
+                    value={manufacturingCageCode}
+                    onChange={(e) => setManufacturingCageCode(e.target.value)}
+                  />
                 </label>
               </div>
               <div className="col-md-6">
                 <label className="label">
                   Manufacturing Date:
-                  <input className="input" type="date" value={manufacturingDate} onChange={(e) => setManufacturingDate(e.target.value)} />
+                  <input
+                    className="input"
+                    type="date"
+                    value={manufacturingDate}
+                    onChange={(e) => setManufacturingDate(e.target.value)}
+                  />
                 </label>
                 <label className="label">
                   Mod Dot:
-                  <input className="input" type="text" value={modDot} onChange={(e) => setModDot(e.target.value)} />
+                  <input
+                    className="input"
+                    type="text"
+                    value={modDot}
+                    onChange={(e) => setModDot(e.target.value)}
+                  />
                 </label>
                 <label className="label">
                   PMA Number:
-                  <input className="input" type="text" value={pmaNumber} onChange={(e) => setPmaNumber(e.target.value)} />
+                  <input
+                    className="input"
+                    type="text"
+                    value={pmaNumber}
+                    onChange={(e) => setPmaNumber(e.target.value)}
+                  />
                 </label>
-                <div className='action-btns' style={{ marginTop: '1rem' }}>
-                  <button type='button' className='btn-primary' onClick={handleCameraClick} 
-                  // disabled={!isCameraDetected}
-                  >Camera</button>
-                  <button type='button' className='btn-primary' style={{ marginLeft: '8px' }} onClick={handleUpdateClick}>Factory Reset</button>
+                <div className="action-btns" style={{ marginTop: '1rem' }}>
+                  <button
+                    type="button"
+                    className="btn-primary"
+                    onClick={handleCameraClick}
+                    // disabled={!isCameraDetected}
+                  >
+                    Camera
+                  </button>
+                  <button
+                    type="button"
+                    className="btn-primary"
+                    style={{ marginLeft: '8px' }}
+                    onClick={handleUpdateClick}
+                  >
+                    Factory Reset
+                  </button>
                 </div>
               </div>
             </div>
             <div className="action-btns action-btns-save center">
-              <button type="button" className="btn-primary" onClick={handleCancel}>Cancel</button>
-              <button type="button" className="btn-primary" onClick={handleSave}>Save</button>
+              <button
+                type="button"
+                className="btn-primary"
+                onClick={handleCancel}
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                className="btn-primary"
+                onClick={handleSave}
+              >
+                Save
+              </button>
             </div>
           </form>
         </div>

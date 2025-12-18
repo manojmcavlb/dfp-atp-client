@@ -2,7 +2,7 @@ import { createStore, combineReducers } from 'redux';
 import healthStatusReducer from './reducers';
 
 const rootReducer = combineReducers({
-    healthStatus: healthStatusReducer,
+  healthStatus: healthStatusReducer,
 });
 
 const store = createStore(rootReducer);

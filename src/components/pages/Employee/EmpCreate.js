@@ -10,13 +10,11 @@
 //     const[active,activechange]=useState(true);
 //     const[validation,valchange]=useState(false);
 
-
 //     const navigate=useNavigate();
 
 //     const handlesubmit=(e)=>{
 //       e.preventDefault();
 //       const empdata={name,email,phone,active};
-      
 
 //       fetch("http://localhost:3000/employee",{
 //         method:"POST",
@@ -79,7 +77,7 @@
 //                                         <div className="form-check">
 //                                         <input checked={active} onChange={e=>activechange(e.target.checked)} type="checkbox" className="form-check-input"></input>
 //                                             <label  className="form-check-label">Is Active</label>
-                                            
+
 //                                         </div>
 //                                     </div>
 //                                     <div className="col-lg-12">

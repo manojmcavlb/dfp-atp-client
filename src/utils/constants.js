@@ -1,4 +1,4 @@
-export const API_BASE_URL = "http://localhost:3001";
+export const API_BASE_URL = 'http://localhost:3001';
 
 export const COOKIE_EXPIRY_TIME = 1800000; //cookie expiry time in 30 mins = 30 * 60000ms = 1800000 ms
 
