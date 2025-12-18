@@ -30,7 +30,7 @@ const ViewReport = ({ report, onClose }) => {
             <div className="col-md-12">
               <label className="label serial-info">
                 Serial:{" "}
-                <label className="label-value">
+                <label className="lbl-value">
                   aaa-bbb-ccc-ddd, {report.date}
                 </label>
               </label>
@@ -42,103 +42,117 @@ const ViewReport = ({ report, onClose }) => {
           <div className="device-info">
             <div className="row">
               <div className="col-md-6">
-                <label className="label">
+                <label className="label lbl-text">
                   Product:{" "}
-                  <label className="label-value">{report.productType}</label>
+                  <label className="lbl-value">{report.productType}</label>
                 </label>
-                <label className="label">
+                <label className="label lbl-text">
                   Serial Number:{" "}
-                  <label className="label-value">aaa-bbb-ccc-ddd</label>
+                  <label className="lbl-value">aaa-bbb-ccc-ddd</label>
                 </label>
-                <label className="label">
+                <label className="label lbl-text">
                   Manufacturer's Name:{" "}
-                  <label className="label-value">ABC</label>
+                  <label className="lbl-value">ABC</label>
                 </label>
-                <label className="label">
+                <label className="label lbl-text">
                   Manufacturing Cage Code:{" "}
-                  <label className="label-value">{report.productType}</label>
+                  <label className="lbl-value">{report.productType}</label>
                 </label>
-                <label className="label">
-                  Execute Date/Time: <label className="label-value">000</label>
+                <label className="label lbl-text">
+                  Execute Date/Time: <label className="lbl-value">000</label>
                 </label>
               </div>
               <div className="col-md-6">
-                <label className="label">
+                <label className="label lbl-text">
                   Hardware Part Number:{" "}
-                  <label className="label-value">DFP-XX-YYY</label>
+                  <label className="lbl-value">DFP-XX-YYY</label>
                 </label>
-                <label className="label">
+                <label className="label lbl-text">
                   Manufacturing Date:{" "}
-                  <label className="label-value">10/09/2025</label>
+                  <label className="lbl-value">10/09/2025</label>
                 </label>
-                <label className="label">
-                  Mod Dot: <label className="label-value">-</label>
+                <label className="label lbl-text">
+                  Mod Dot: <label className="lbl-value">-</label>
                 </label>
-                <label className="label">
-                  PMA Number: <label className="label-value">123456</label>
+                <label className="label lbl-text">
+                  PMA Number: <label className="lbl-value">123456</label>
                 </label>
               </div>
             </div>
           </div>
           <div className="row">
             <div className="col-md-6">
-              <h4 className="section-title">Mainboard:</h4>
+              <h4 className="section-title">1. Input Power Test:</h4>
             </div>
-            <div className="col-md-6">
+            <div className="col-md-6 btn-right">
               <button className="btn-primary btn-pass">PASS</button>
             </div>
           </div>
           <table className="results-table">
             <thead>
               <tr>
-                <th>Item</th>
-                <th>Expected</th>
+                <th>Test ID</th>
+                <th>Test Name</th>
+                <th>Measured Value</th>
                 <th>Result</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>xxxxx</td>
-                <td>yyyyy</td>
-                <td>MATCH</td>
-              </tr>
-              <tr>
-                <td>xxxxx</td>
-                <td>yyyyy</td>
-                <td>MATCH</td>
-              </tr>
-              <tr>
-                <td>xxxxx</td>
-                <td>yyyyy</td>
-                <td>MATCH</td>
-              </tr>
-            </tbody>
-          </table>
-          <div className="row">
-            <div className="col-md-6">
-              <h4 className="section-title">Sensors:</h4>
-            </div>
-            <div className="col-md-6">
-              <button className="btn-primary btn-pass">PASS</button>
-            </div>
-          </div>
-          <table className="results-table">
-            <thead>
-              <tr>
-                <th>Item</th>
-                <th>Expected</th>
-                <th>Result</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>xxxxx</td>
-                <td>yyyyy</td>
+                <td>1.1</td>
+                <td>Apply nominal input voltage (28VDC)</td>
+                <td>2.9 V</td>
                 <td>PASS</td>
               </tr>
               <tr>
-                <td>xxxxx</td>
-                <td>yyyyy</td>
+                <td>1.2</td>
+                <td>Measure current draw during boot-up</td>
+                <td>1.2 A</td>
+                <td>PASS</td>
+              </tr>
+              <tr>
+                <td>1.3</td>
+                <td>Verify total power consumption (≤ 42W expected)</td>
+                <td>33 W</td>
+                <td>PASS</td>
+              </tr>
+            </tbody>
+          </table>
+          <br/>
+          <div className="row">
+            <div className="col-md-6">
+              <h4 className="section-title">2. 0 to –10 VDC Output Test:</h4>
+            </div>
+            <div className="col-md-6 btn-right">
+              <button className="btn-primary btn-pass">PASS</button>
+            </div>
+          </div>
+          <table className="results-table">
+            <thead>
+              <tr>
+                <th>Test ID</th>
+                <th>Test Name</th>
+                <th>Measured Value</th>
+                <th>Result</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>2.1</td>
+                <td>Apply input reference signal</td>
+                <td>-2.8 V</td>
+                <td>PASS</td>
+              </tr>
+              <tr>
+                <td>2.2</td>
+                <td>Sweep input across range</td>
+                <td>-7.5 V</td>
+                <td>PASS</td>
+              </tr>
+              <tr>
+                <td>2.3</td>
+                <td>Verify stability and accuracy</td>
+                <td>-9.6 V</td>
                 <td>PASS</td>
               </tr>
             </tbody>

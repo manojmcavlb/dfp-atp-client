@@ -20,7 +20,7 @@
     width: 420px;
  }
 
- .modal-overlay {
+ .popup-overlay {
      position: fixed;
      top: 0;
      left: 0;
@@ -32,18 +32,18 @@
      justify-content: center;
  }
 
- .modal-content {
+ .popup-content {
      background-color: white;
      padding: 20px;
      border-radius: 5px;
      text-align: center;
  }
 
- .modal-actions {
+ .popup-actions {
      margin-top: 20px;
  }
 
- .modal-actions button:first-child {
+ .popup-actions button:first-child {
      margin-right: 10px;
  }
 

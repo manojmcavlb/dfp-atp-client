@@ -138,8 +138,8 @@ function ManageUser() {
       </main>
 
       {showDeleteModal && (
-        <div className="modal-overlay">
-          <div className="modal-content">
+        <div className="popup-overlay">
+          <div className="popup-content">
             <h2>Delete Account</h2>
             <p>
               Are you sure you want to Delete the user account{" "}
@@ -148,7 +148,7 @@ function ManageUser() {
             <p>
               <strong>This action cannot be undone.</strong>
             </p>
-            <div className="modal-actions">
+            <div className="popup-actions">
               <button className="btn-primary" onClick={handleCancelDelete}>
                 No
               </button>

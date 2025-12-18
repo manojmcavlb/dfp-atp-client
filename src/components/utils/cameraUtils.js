@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import { FaCamera, FaTimes } from 'react-icons/fa';
 import Tesseract from 'tesseract.js';
 
-export const CameraModal = ({ onCancel, onCapture = () => {} }) => {
+export const CameraModal = ({ onCancel, onCapture = () => { } }) => {
     const videoRef = useRef(null);
     const streamRef = useRef(null);
 
@@ -67,9 +67,9 @@ export const CameraModal = ({ onCancel, onCapture = () => {} }) => {
     };
 
     return (
-        <div className="modal-overlay">
-            <div className="modal-content">
-                <h2 className="modal-title">Camera</h2>
+        <div className="popup-overlay">
+            <div className="popup-content">
+                <h2 className="popup-title">Camera</h2>
                 <p>Position the camera toward the device information area.</p>
                 <div className="camera-view" style={{
                     border: '1px solid #ccc',
@@ -89,12 +89,12 @@ export const CameraModal = ({ onCancel, onCapture = () => {} }) => {
 };
 
 export const detectCamera = async (callback) => {
-  try {
-    const devices = await navigator.mediaDevices.enumerateDevices();
-    const hasCamera = devices.some(device => device.kind === 'videoinput');
-    callback(hasCamera);
-  } catch (error) {
-    console.error('Error detecting camera:', error);
-    callback(false);
-  }
+    try {
+        const devices = await navigator.mediaDevices.enumerateDevices();
+        const hasCamera = devices.some(device => device.kind === 'videoinput');
+        callback(hasCamera);
+    } catch (error) {
+        console.error('Error detecting camera:', error);
+        callback(false);
+    }
 };

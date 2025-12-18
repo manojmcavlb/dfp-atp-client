@@ -4,34 +4,31 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 10px;
+    padding: 10px;
     position: relative;
-    /* width: 100%; */
+    max-height: 60px;
 }
 
 .header-logo {
     height: 30px;
+    min-width: 150px;
 }
 
 .header-title {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    flex: 1;
+    text-align: center;
     font-size: 1.5rem;
     font-weight: 500;
+    min-width: 300px;
 }
 
 .user-info {
-    position: absolute;
-    right: 30px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 0.9rem;
     display: flex;
     align-items: center;
+    gap: 10px;
 }
 
 .user-role {
-    margin-right: 10px;
     font-weight: 500;
+    white-space: nowrap;
 }

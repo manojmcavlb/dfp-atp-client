@@ -1,10 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { Role } from "./utils";
 import { authenticationService } from "./services";
-import { PrivateRoute } from "./routes"; // Assuming PrivateRoute is updated for v6
+import { PrivateRoute } from "./routes";
 import { ResetPassword } from "./components/pages/ResetPassword/ResetPassword";
-// import { HomePage } from "./components/pages/HomePage/HomePage";
 import { Header } from "./components/ui/Header";
 import { ManageUser } from "./components/pages/ManageUser";
 import AddEditUser from "./components/pages/ManageUser/AddEditUser";
@@ -27,254 +26,94 @@ import AddEditTestSuite from "./components/pages/SelfTest/AddEditTestSuite";
 import HealthStatus from "./components/ui/HealthStatus";
 import CalibHealthStatus from "./components/ui/CalibHealthStatus";
 import Settings from "./components/pages/Settings/Settings";
+import { HealthStatusContext } from "./contexts/HealthStatusContext";
+import ErrorLogDetails from "./components/pages/ErrorLog/ErrorLogDetails";
+import ReportHistory from "./components/pages/ReportHistory/ReportHistory";
+import ViewReport from "./components/pages/ViewReport/ViewReport";
 
-// Helper function to get a cookie by name
 function getCookie(name) {
   const value = `; ${document.cookie}`;
   const parts = value.split(`; ${name}=`);
   if (parts.length === 2) return parts.pop().split(';').shift();
 }
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      currentUser: null,
-      isAdmin: false,
-      sessionExpired: false,
-      healthStatusTest: "green",
-      healthStatusCalib: "red",
-    };
-  }
+function App() {
+  const [currentUser, setCurrentUser] = useState(null);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [sessionExpired, setSessionExpired] = useState(false);
+  const [healthStatusColorAtp, setHealthStatusColorAtp] = useState("red");
+  const [healthStatusColorCalib, setHealthStatusColorCalib] = useState("red");
 
-  componentDidMount() {
-    this.subscription = authenticationService.currentUser.subscribe((x) =>
-      this.setState({
-        currentUser: x,
-        isAdmin: x && x.role === Role.Admin,
-      })
-    );
-    this.sessionInterval = setInterval(this.checkSession, COOKIE_CHECK_INTERVAL); // Check session every 1 min
-  }
+  useEffect(() => {
+    const subscription = authenticationService.currentUser.subscribe((x) => {
+      setCurrentUser(x);
+      setIsAdmin(x && x.role === Role.Admin);
+    });
 
-  componentWillUnmount() {
-    this.subscription.unsubscribe();
-    clearInterval(this.sessionInterval);
-  }
-
-  checkSession = () => {
-    if (this.state.currentUser && !this.state.sessionExpired) {
-      const sessionCookie = getCookie("session");
-      if (sessionCookie) {
-        try {
-          const { expiry } = JSON.parse(decodeURIComponent(sessionCookie));
-          if (new Date().getTime() > expiry) {
-            this.setState({ sessionExpired: true });
+    const checkSession = () => {
+      if (currentUser && !sessionExpired) {
+        const sessionCookie = getCookie("session");
+        if (sessionCookie) {
+          try {
+            const { expiry } = JSON.parse(decodeURIComponent(sessionCookie));
+            if (new Date().getTime() > expiry) {
+              setSessionExpired(true);
+            }
+          } catch (e) {
+            setSessionExpired(true);
           }
-        } catch (e) {
-          this.setState({ sessionExpired: true });
+        } else {
+          setSessionExpired(true);
         }
-      } else {
-        this.setState({ sessionExpired: true });
       }
-    }
-  };
+    };
 
-  handleLoginRedirect = () => {
+    const sessionInterval = setInterval(checkSession, COOKIE_CHECK_INTERVAL);
+
+    const colorInterval = setInterval(() => {
+      const colors = ['green', 'red'];
+      setHealthStatusColorAtp(colors[Math.floor(Math.random() * colors.length)]);
+      setHealthStatusColorCalib(colors[Math.floor(Math.random() * colors.length)]);
+    }, 5000);
+
+    return () => {
+      subscription.unsubscribe();
+      clearInterval(sessionInterval);
+      clearInterval(colorInterval);
+    };
+  }, [currentUser, sessionExpired]);
+
+  const handleLoginRedirect = () => {
     authenticationService.logout();
-    this.setState({ sessionExpired: false });
+    setSessionExpired(false);
   };
 
-  render() {
-    const { currentUser, isAdmin, sessionExpired, healthStatusTest, healthStatusCalib } = this.state;
+  const healthStatusValue = useMemo(() => ({
+    healthStatusColorAtp,
+    setHealthStatusColorAtp,
+    healthStatusColorCalib,
+    setHealthStatusColorCalib,
+  }), [healthStatusColorAtp, healthStatusColorCalib]);
 
-    const statusBarStyle = {
-      backgroundColor: "#11182F",
-      color: "#fff",
-      borderTop: "1px solid #e7e7e7",
-      textAlign: "center",
-      padding: "5px",
-      position: "fixed",
-      left: "0",
-      bottom: "0",
-      width: "100%",
-      display: "flex",
-      justifyContent: "space-between",
-      alignItems: "center",
-      padding: "5px 20px",
-      boxSizing: "border-box",
-    };
-
-    const statusBarSection = {
-      flex: 1,
-    };
-
-    return (
+  return (
+    <HealthStatusContext.Provider value={healthStatusValue}>
       <Router>
         <div>
-          {sessionExpired && <SessionExpiredAlert onLoginRedirect={this.handleLoginRedirect} />}
+          {sessionExpired && <SessionExpiredAlert onLoginRedirect={handleLoginRedirect} />}
           <Header />
-          {/* {currentUser && (
-            <nav
-              className="navbar navbar-expand navbar-dark"
-              style={{ backgroundColor: "#11182F" }}
-            >
-              <div className="navbar-nav">
-                <Link to="/" className="navbar-brand bg-light">
-                  <img src={require("./assets/logo.svg").default} alt="" />
-                </Link>
-                <Link to="/" className="nav-item nav-link">
-                  Home
-                </Link>
-                {isAdmin && (
-                  <Link to="/drivers" className="nav-item nav-link">
-                    Drivers
-                  </Link>
-                )}
-                {isAdmin && (
-                  <Link to="/manageUser" className="nav-item nav-link">
-                    Manage Account
-                  </Link>
-                )}
-                {isAdmin && (
-                  <Link
-                    to="/controlIndicationPanel"
-                    className="nav-item nav-link"
-                  >
-                    Control & Indication Panel
-                  </Link>
-                )}
-                {isAdmin && (
-                  <Link to="/calibration" className="nav-item nav-link">
-                    Calibration Screen
-                  </Link>
-                )}
-                {isAdmin && (
-                  <Link to="/productionTesting" className="nav-item nav-link">
-                    Production Testing
-                  </Link>
-                )}
-                {isAdmin && (
-                  <Link to="/singleTest" className="nav-item nav-link">
-                    Single Test Screen
-                  </Link>
-                )}
-                {isAdmin && (
-                  <Link to="/dataVisualization" className="nav-item nav-link">
-                    Data Visualization
-                  </Link>
-                )}
-                {isAdmin && (
-                  <Link to="/errorHandling" className="nav-item nav-link">
-                    Error Handling & Reporting
-                  </Link>
-                )}
-                <a
-                  onClick={this.logout}
-                  className="nav-item nav-link"
-                  style={{ cursor: "pointer" }}
-                >
-                  Logout
-                </a>
-              </div>
-            </nav>
-          )} */}
           <Routes>
-            {/* <Route
-              path="/"
-              element={
-                <PrivateRoute>
-                  <HomePage />
-                </PrivateRoute>
-              }
-            /> */}
             <Route path="/login" element={<Login />} />
-            <Route
-              path="/reset-password"
-              element={
-                <ResetPassword />
-              }
-            />
-            <Route
-              path="/main-menu"
-              element={
-                <PrivateRoute>
-                  <MainMenu />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/drivers"
-              element={
-                <PrivateRoute roles={[Role.Admin]}>
-                  <Drivers />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/manage-user"
-              element={
-                <PrivateRoute roles={[Role.Admin]}>
-                  <ManageUser />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/add-user"
-              element={
-                <PrivateRoute roles={[Role.Admin]}>
-                  <AddEditUser />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/edit-user/:id"
-              element={
-                <PrivateRoute roles={[Role.Admin]}>
-                  <AddEditUser />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/add-device"
-              element={
-                <PrivateRoute>
-                  <AddEditDevice />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/edit-device/:id"
-              element={
-                <PrivateRoute>
-                  <AddEditDevice />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/auto-test"
-              element={
-                <PrivateRoute>
-                  <AutoTest />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/calibration"
-              element={
-                <PrivateRoute>
-                  <Calibration />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/instrument"
-              element={
-                <PrivateRoute>
-                  <Instrument />
-                </PrivateRoute>
-              }
-            />
+            <Route path="/reset-password" element={<ResetPassword />} />
+            <Route path="/main-menu" element={<PrivateRoute><MainMenu /></PrivateRoute>} />
+            <Route path="/drivers" element={<PrivateRoute roles={[Role.Admin]}><Drivers /></PrivateRoute>} />
+            <Route path="/manage-user" element={<PrivateRoute roles={[Role.Admin]}><ManageUser /></PrivateRoute>} />
+            <Route path="/add-user" element={<PrivateRoute roles={[Role.Admin]}><AddEditUser /></PrivateRoute>} />
+            <Route path="/edit-user/:id" element={<PrivateRoute roles={[Role.Admin]}><AddEditUser /></PrivateRoute>} />
+            <Route path="/add-device" element={<PrivateRoute><AddEditDevice /></PrivateRoute>} />
+            <Route path="/edit-device/:id" element={<PrivateRoute><AddEditDevice /></PrivateRoute>} />
+            <Route path="/auto-test" element={<PrivateRoute><AutoTest /></PrivateRoute>} />
+            <Route path="/calibration" element={<PrivateRoute><Calibration /></PrivateRoute>} />
+            <Route path="/instrument" element={<PrivateRoute><Instrument /></PrivateRoute>} />
             <Route path="/test-settings" element={<PrivateRoute><TestSettings /></PrivateRoute>} />
             <Route path="/add-test-settings" element={<PrivateRoute><AddEditTestSettings /></PrivateRoute>} />
             <Route path="/edit-test-settings/:id" element={<PrivateRoute><AddEditTestSettings /></PrivateRoute>} />
@@ -286,34 +125,27 @@ class App extends React.Component {
             <Route path="/edit-test-suite/:id" element={<PrivateRoute><AddEditTestSuite /></PrivateRoute>} />
             <Route path="/health-status" element={<PrivateRoute><AtpHealthStatus /></PrivateRoute>} />
             <Route path="/error-log" element={<PrivateRoute><ErrorLog /></PrivateRoute>} />
-            {/* <Route path="/add-self-test" element={<PrivateRoute><AddEditTestSuite /></PrivateRoute>} />
-            <Route path="/edit-self-test/:id" element={<PrivateRoute><AddEditTestSuite /></PrivateRoute>} /> */}
+            <Route path="/error-log/details/:id" element={<PrivateRoute><ErrorLogDetails /></PrivateRoute>} />
+            <Route path="/report-history" element={<PrivateRoute><ReportHistory /></PrivateRoute>} />
+            <Route path="/view-report" element={<PrivateRoute><ViewReport /></PrivateRoute>} />
           </Routes>
-          <div style={statusBarStyle}>
-            <div
-              className="action-btns"
-              style={{
-                ...statusBarSection,
-                display: "flex",
-                justifyContent: "flex-start",
-              }}
-            >
+          <div className="footer">
+            <div className="status-bar action-btns">
               {currentUser && (
                 <>
-                  <HealthStatus healthStatus={healthStatusTest} />
-                  <CalibHealthStatus healthStatus={healthStatusCalib} />
+                  <HealthStatus />
+                  <CalibHealthStatus />
                 </>
               )}
             </div>
-            <div style={statusBarSection}></div>
-            <div style={{ ...statusBarSection, textAlign: "right" }}>
+            <div className="footer-copyright">
               <span>DFP @Copyrights 2026</span>
             </div>
           </div>
         </div>
       </Router>
-    );
-  }
+    </HealthStatusContext.Provider>
+  );
 }
 
 export { App };

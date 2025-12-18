@@ -77,7 +77,7 @@ function ResetPassword() {
       updated = [...localUsers, { username, password: pwd }];
       setLocalUsers(updated);
     }
-    
+
     setMessage("");
     setShowSuccessModal(true);
 
@@ -110,107 +110,107 @@ function ResetPassword() {
             <div style={{ fontSize: '48px', color: '#222', marginBottom: '1rem', fontWeight: '200' }}>✓</div>
             <h2 className="card-title" style={{ marginBottom: '1rem' }}>Password Changed!</h2>
             <p style={{ marginBottom: '2rem', color: '#555' }}>Your password has been changed successfully.</p>
-            <button className="btn-primary" style={{padding: '0.5rem 2rem'}} onClick={() => navigate("/login")}>
+            <button className="btn-primary" style={{ padding: '0.5rem 2rem' }} onClick={() => navigate("/login")}>
               Login
             </button>
           </div>
         ) : (
-        <div className="split-wrap">
-          {/* LEFT: Reset Password card */}
-          <div className="card form-card">
-            <h2 className="card-title">Reset Password</h2>
+          <div className="split-wrap">
+            {/* LEFT: Reset Password card */}
+            <div className="card form-card">
+              <h2 className="card-title">Reset Password</h2>
 
-            <form onSubmit={handleReset} className="form">
-              <label className="label">
-                Username:
-                <input
-                  className="input"
-                  value={username}
-                  onChange={e => setUsername(e.target.value)}
-                />
-              </label>
-
-              <label className="label">
-                Password:
-                <div className="pwd-row">
+              <form onSubmit={handleReset} className="form">
+                <label className="label">
+                  Username:
                   <input
-                    className="input has-icon"
-                    type={showPwd ? "text" : "password"}
-                    value={pwd}
-                    onChange={e => setPwd(e.target.value)}
+                    className="input"
+                    value={username}
+                    onChange={e => setUsername(e.target.value)}
                   />
+                </label>
+
+                <label className="label">
+                  Password:
+                  <div className="pwd-row">
+                    <input
+                      className="input has-icon"
+                      type={showPwd ? "text" : "password"}
+                      value={pwd}
+                      onChange={e => setPwd(e.target.value)}
+                    />
+                    <button
+                      type="button"
+                      className="pwd-eye"
+                      aria-label={showPwd ? "Hide password" : "Show password"}
+                      title={showPwd ? "Hide password" : "Show password"}
+                      onClick={() => setShowPwd(s => !s)}
+                    >
+                      {showPwd ? (
+                        <FaEye />
+                      ) : (
+                        <FaEyeSlash />
+                      )}
+                    </button>
+                  </div>
+                </label>
+
+                <label className="label">
+                  Confirm Password:
+                  <div className="pwd-row">
+                    <input
+                      className="input has-icon"
+                      type={showConfirmPwd ? "text" : "password"}
+                      value={confirm}
+                      onChange={e => setConfirm(e.target.value)}
+                    />
+                    <button
+                      type="button"
+                      className="pwd-eye"
+                      aria-label={showConfirmPwd ? "Hide password" : "Show password"}
+                      title={showConfirmPwd ? "Hide password" : "Show password"}
+                      onClick={() => setShowConfirmPwd(s => !s)}
+                    >
+                      {showConfirmPwd ? <FaEye /> : <FaEyeSlash />}
+                    </button>
+                  </div>
+                </label>
+
+                <div className="action-btns center">
                   <button
                     type="button"
-                    className="pwd-eye"
-                    aria-label={showPwd ? "Hide password" : "Show password"}
-                    title={showPwd ? "Hide password" : "Show password"}
-                    onClick={() => setShowPwd(s => !s)}
+                    className="btn-primary"
+                    onClick={() => navigate("/login")}
                   >
-                    {showPwd ? (
-                      <FaEye />
-                    ) : (
-                      <FaEyeSlash />
-                    )}
+                    Cancel
                   </button>
+                  <button type="submit" className="btn-primary">Reset</button>
                 </div>
-              </label>
 
-              <label className="label">
-                Confirm Password:
-                <div className="pwd-row">
-                  <input
-                    className="input has-icon"
-                    type={showConfirmPwd ? "text" : "password"}
-                    value={confirm}
-                    onChange={e => setConfirm(e.target.value)}
-                  />
-                  <button
-                    type="button"
-                    className="pwd-eye"
-                    aria-label={showConfirmPwd ? "Hide password" : "Show password"}
-                    title={showConfirmPwd ? "Hide password" : "Show password"}
-                    onClick={() => setShowConfirmPwd(s => !s)}
-                  >
-                    {showConfirmPwd ? <FaEye /> : <FaEyeSlash />}
-                  </button>
-                </div>
-              </label>
+                {message && <div className="msg msg-error">{message}</div>}
+              </form>
+            </div>
 
-              <div className="action-btns center">
-                <button
-                  type="button"
-                  className="btn-primary"
-                  onClick={() => navigate("/login")}
-                >
-                  Cancel
-                </button>
-                <button type="submit" className="btn-primary">Reset</button>
-              </div>
-
-              {message && <div className="msg msg-error">{message}</div>}
-            </form>
+            {/* Reset Password - Rules Overlay’ */}
+            <aside className="card card-rules-overlay">
+              <div className="rule-title">Password must:</div>
+              <ul className="rule-list">
+                {rules.map((rule) => {
+                  const isMet = validationState[rule.id];
+                  const statusClass = pwd.length === 0 ? "" : isMet ? "met" : "unmet";
+                  const tickSymbol = pwd.length > 0 && !isMet ? "✗" : "✓";
+                  return (
+                    <li key={rule.id}>
+                      <span className={`rule-check ${statusClass}`} aria-hidden="true">
+                        {tickSymbol}
+                      </span>
+                      <span>{rule.text}</span>
+                    </li>
+                  );
+                })}
+              </ul>
+            </aside>
           </div>
-
-          {/* Reset Password - Rules Overlay’ */}
-          <aside className="card card-rules-overlay">
-            <div className="rule-title">Password must:</div>
-            <ul className="rule-list">
-              {rules.map((rule) => {
-                const isMet = validationState[rule.id];
-                const statusClass = pwd.length === 0 ? "" : isMet ? "met" : "unmet";
-                const tickSymbol = pwd.length > 0 && !isMet ? "✗" : "✓";
-                return (
-                  <li key={rule.id}>
-                    <span className={`rule-check ${statusClass}`} aria-hidden="true">
-                      {tickSymbol}
-                    </span>
-                    <span>{rule.text}</span>
-                  </li>
-                );
-              })}
-            </ul>
-          </aside>
-        </div>
         )}
       </main>
     </div>

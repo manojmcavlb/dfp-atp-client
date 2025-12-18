@@ -1,17 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaCircle } from 'react-icons/fa';
+import { HealthStatusContext } from '../../contexts/HealthStatusContext';
 
-const HealthStatus = ({ healthStatus }) => {
+const HealthStatus = () => {
   const navigate = useNavigate();
+  const { healthStatusColorAtp } = useContext(HealthStatusContext);
 
   return (
-    <div style={{ display: 'flex', alignItems: 'center' }}>
-      <a href="#" onClick={() => navigate("/health-status")} style={{ color: 'white', textDecoration: 'none', marginRight: '10px' }}>
+    <>
+      <a href="#" onClick={() => navigate("/atp-health-status")} className="health-status-label">
         Health Status:
       </a>
-      <FaCircle color={healthStatus} size={20} />
-    </div>
+      <FaCircle color={healthStatusColorAtp} size={20} />
+    </>
   );
 };
 

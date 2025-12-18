@@ -19,10 +19,8 @@
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
-.popup-view-header {
-  padding-bottom: 1rem;
-  margin-bottom: 1rem;
-}
+/* .popup-view-header {
+} */
 
 .report-title {
   font-size: 1.5rem;
@@ -53,23 +51,23 @@
 .section-title {
   font-size: 18px;
   font-weight: 700;
-  margin-top: 1.5rem;
-  margin-bottom: 1rem;
 }
 
-.label {
-  display: flex;
-  align-items: center;
+ 
+.lbl-text {
+  /* display: flex;
+  align-items: center; */
   font-weight: 700;
 }
 
-.label-value {
+.lbl-value {
   font-weight: 500;
   padding-left: 10px;
 }
 
-/* .device-info {
-} */
+.device-info {
+  margin-bottom: 15px;
+}
 
 .btn-pass {
   background-color: #28a745;
@@ -92,4 +90,8 @@
 .results-table th {
     border-bottom: 2px solid #dee2e6;
     font-weight: 600;
+}
+
+.btn-right {
+  text-align: right;
 }
