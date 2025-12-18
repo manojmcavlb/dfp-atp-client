@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useMemo } from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Role } from "./utils";
 import { authenticationService } from "./services";
 import { PrivateRoute } from "./routes";
@@ -26,7 +27,7 @@ import AddEditTestSuite from "./components/pages/SelfTest/AddEditTestSuite";
 import HealthStatus from "./components/ui/HealthStatus";
 import CalibHealthStatus from "./components/ui/CalibHealthStatus";
 import Settings from "./components/pages/Settings/Settings";
-import { HealthStatusContext } from "./contexts/HealthStatusContext";
+import { setHealthStatusColorAtp, setHealthStatusColorCalib } from "./redux/actions";
 import ErrorLogDetails from "./components/pages/ErrorLog/ErrorLogDetails";
 import ReportHistory from "./components/pages/ReportHistory/ReportHistory";
 import ViewReport from "./components/pages/ViewReport/ViewReport";
@@ -41,8 +42,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [isAdmin, setIsAdmin] = useState(false);
   const [sessionExpired, setSessionExpired] = useState(false);
-  const [healthStatusColorAtp, setHealthStatusColorAtp] = useState("red");
-  const [healthStatusColorCalib, setHealthStatusColorCalib] = useState("red");
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const subscription = authenticationService.currentUser.subscribe((x) => {
@@ -72,8 +72,8 @@ function App() {
 
     const colorInterval = setInterval(() => {
       const colors = ['green', 'red'];
-      setHealthStatusColorAtp(colors[Math.floor(Math.random() * colors.length)]);
-      setHealthStatusColorCalib(colors[Math.floor(Math.random() * colors.length)]);
+      dispatch(setHealthStatusColorAtp(colors[Math.floor(Math.random() * colors.length)]));
+      dispatch(setHealthStatusColorCalib(colors[Math.floor(Math.random() * colors.length)]));
     }, 5000);
 
     return () => {
@@ -81,70 +81,61 @@ function App() {
       clearInterval(sessionInterval);
       clearInterval(colorInterval);
     };
-  }, [currentUser, sessionExpired]);
+  }, [currentUser, sessionExpired, dispatch]);
 
   const handleLoginRedirect = () => {
     authenticationService.logout();
     setSessionExpired(false);
   };
 
-  const healthStatusValue = useMemo(() => ({
-    healthStatusColorAtp,
-    setHealthStatusColorAtp,
-    healthStatusColorCalib,
-    setHealthStatusColorCalib,
-  }), [healthStatusColorAtp, healthStatusColorCalib]);
-
   return (
-    <HealthStatusContext.Provider value={healthStatusValue}>
-      <Router>
-        <div>
-          {sessionExpired && <SessionExpiredAlert onLoginRedirect={handleLoginRedirect} />}
-          <Header />
-          <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route path="/reset-password" element={<ResetPassword />} />
-            <Route path="/main-menu" element={<PrivateRoute><MainMenu /></PrivateRoute>} />
-            <Route path="/drivers" element={<PrivateRoute roles={[Role.Admin]}><Drivers /></PrivateRoute>} />
-            <Route path="/manage-user" element={<PrivateRoute roles={[Role.Admin]}><ManageUser /></PrivateRoute>} />
-            <Route path="/add-user" element={<PrivateRoute roles={[Role.Admin]}><AddEditUser /></PrivateRoute>} />
-            <Route path="/edit-user/:id" element={<PrivateRoute roles={[Role.Admin]}><AddEditUser /></PrivateRoute>} />
-            <Route path="/add-device" element={<PrivateRoute><AddEditDevice /></PrivateRoute>} />
-            <Route path="/edit-device/:id" element={<PrivateRoute><AddEditDevice /></PrivateRoute>} />
-            <Route path="/auto-test" element={<PrivateRoute><AutoTest /></PrivateRoute>} />
-            <Route path="/calibration" element={<PrivateRoute><Calibration /></PrivateRoute>} />
-            <Route path="/instrument" element={<PrivateRoute><Instrument /></PrivateRoute>} />
-            <Route path="/test-settings" element={<PrivateRoute><TestSettings /></PrivateRoute>} />
-            <Route path="/add-test-settings" element={<PrivateRoute><AddEditTestSettings /></PrivateRoute>} />
-            <Route path="/edit-test-settings/:id" element={<PrivateRoute><AddEditTestSettings /></PrivateRoute>} />
-            <Route path="/add-calibration" element={<PrivateRoute><AddEditCalibration /></PrivateRoute>} />
-            <Route path="/edit-calibration/:id" element={<PrivateRoute><AddEditCalibration /></PrivateRoute>} />
-            <Route path="/self-test" element={<PrivateRoute><SelfTest /></PrivateRoute>} />
-            <Route path="/settings" element={<Settings />} />
-            <Route path="/add-test-suite" element={<PrivateRoute><AddEditTestSuite /></PrivateRoute>} />
-            <Route path="/edit-test-suite/:id" element={<PrivateRoute><AddEditTestSuite /></PrivateRoute>} />
-            <Route path="/health-status" element={<PrivateRoute><AtpHealthStatus /></PrivateRoute>} />
-            <Route path="/error-log" element={<PrivateRoute><ErrorLog /></PrivateRoute>} />
-            <Route path="/error-log/details/:id" element={<PrivateRoute><ErrorLogDetails /></PrivateRoute>} />
-            <Route path="/report-history" element={<PrivateRoute><ReportHistory /></PrivateRoute>} />
-            <Route path="/view-report" element={<PrivateRoute><ViewReport /></PrivateRoute>} />
-          </Routes>
-          <div className="footer">
-            <div className="status-bar action-btns">
-              {currentUser && (
-                <>
-                  <HealthStatus />
-                  <CalibHealthStatus />
-                </>
-              )}
-            </div>
-            <div className="footer-copyright">
-              <span>DFP @Copyrights 2026</span>
-            </div>
+    <Router>
+      <div>
+        {sessionExpired && <SessionExpiredAlert onLoginRedirect={handleLoginRedirect} />}
+        <Header />
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
+          <Route path="/main-menu" element={<PrivateRoute><MainMenu /></PrivateRoute>} />
+          <Route path="/drivers" element={<PrivateRoute roles={[Role.Admin]}><Drivers /></PrivateRoute>} />
+          <Route path="/manage-user" element={<PrivateRoute roles={[Role.Admin]}><ManageUser /></PrivateRoute>} />
+          <Route path="/add-user" element={<PrivateRoute roles={[Role.Admin]}><AddEditUser /></PrivateRoute>} />
+          <Route path="/edit-user/:id" element={<PrivateRoute roles={[Role.Admin]}><AddEditUser /></PrivateRoute>} />
+          <Route path="/add-device" element={<PrivateRoute><AddEditDevice /></PrivateRoute>} />
+          <Route path="/edit-device/:id" element={<PrivateRoute><AddEditDevice /></PrivateRoute>} />
+          <Route path="/auto-test" element={<PrivateRoute><AutoTest /></PrivateRoute>} />
+          <Route path="/calibration" element={<PrivateRoute><Calibration /></PrivateRoute>} />
+          <Route path="/instrument" element={<PrivateRoute><Instrument /></PrivateRoute>} />
+          <Route path="/test-settings" element={<PrivateRoute><TestSettings /></PrivateRoute>} />
+          <Route path="/add-test-settings" element={<PrivateRoute><AddEditTestSettings /></PrivateRoute>} />
+          <Route path="/edit-test-settings/:id" element={<PrivateRoute><AddEditTestSettings /></PrivateRoute>} />
+          <Route path="/add-calibration" element={<PrivateRoute><AddEditCalibration /></PrivateRoute>} />
+          <Route path="/edit-calibration/:id" element={<PrivateRoute><AddEditCalibration /></PrivateRoute>} />
+          <Route path="/self-test" element={<PrivateRoute><SelfTest /></PrivateRoute>} />
+          <Route path="/settings" element={<Settings />} />
+          <Route path="/add-test-suite" element={<PrivateRoute><AddEditTestSuite /></PrivateRoute>} />
+          <Route path="/edit-test-suite/:id" element={<PrivateRoute><AddEditTestSuite /></PrivateRoute>} />
+          <Route path="/health-status" element={<PrivateRoute><AtpHealthStatus /></PrivateRoute>} />
+          <Route path="/error-log" element={<PrivateRoute><ErrorLog /></PrivateRoute>} />
+          <Route path="/error-log/details/:id" element={<PrivateRoute><ErrorLogDetails /></PrivateRoute>} />
+          <Route path="/report-history" element={<PrivateRoute><ReportHistory /></PrivateRoute>} />
+          <Route path="/view-report" element={<PrivateRoute><ViewReport /></PrivateRoute>} />
+        </Routes>
+        <div className="footer">
+          <div className="status-bar action-btns">
+            {currentUser && (
+              <>
+                <HealthStatus />
+                <CalibHealthStatus />
+              </>
+            )}
+          </div>
+          <div className="footer-copyright">
+            <span>DFP @Copyrights 2026</span>
           </div>
         </div>
-      </Router>
-    </HealthStatusContext.Provider>
+      </div>
+    </Router>
   );
 }
 
