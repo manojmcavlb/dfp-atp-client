@@ -100,3 +100,17 @@
   max-height: 400px;
   overflow-y: auto;
 }
+
+@media print {
+  .popup-view-overlay {
+    position: static;
+    background: none;
+  }
+  .action-btns {
+    display: none;
+  }
+  .scrollable-content {
+    max-height: none;
+    overflow: visible;
+  }
+}
