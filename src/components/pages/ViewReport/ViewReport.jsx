@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import './styles.css';
-import { downloadReportAsPDF, printReport } from '../../utils/reportUtils';
+import { downloadReportAsPDF, printReport } from '../../../utils/reportUtils';
 import { mockTestSuites as mockIotTestSuites } from '../../../utils/mock';
 import { mockTestSuites as mockRemoteHeadTestSuites } from '../../../utils/mockRemoteHead';
 

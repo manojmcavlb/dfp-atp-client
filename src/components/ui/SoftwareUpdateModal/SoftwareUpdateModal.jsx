@@ -21,8 +21,12 @@ const SoftwareUpdateModal = ({ step, onConfirm, onCancel, onComplete }) => {
             <p className="msg-success">Software update is available.</p>
             <p>Do you want to update the factory software (1.0.1)?</p>
             <div className="action-btns center">
-              <button className="btn-primary" onClick={onCancel}>No</button>
-              <button className="btn-primary" onClick={onConfirm}>Yes</button>
+              <button className="btn-primary" onClick={onCancel}>
+                No
+              </button>
+              <button className="btn-primary" onClick={onConfirm}>
+                Yes
+              </button>
             </div>
           </>
         );
@@ -42,8 +46,12 @@ const SoftwareUpdateModal = ({ step, onConfirm, onCancel, onComplete }) => {
             </p>
             <p>Do you want to install the factory software (1.0.1)?</p>
             <div className="action-btns center">
-              <button className="btn-primary" onClick={onCancel}>No</button>
-              <button className="btn-primary" onClick={onConfirm}>Yes</button>
+              <button className="btn-primary" onClick={onCancel}>
+                No
+              </button>
+              <button className="btn-primary" onClick={onConfirm}>
+                Yes
+              </button>
             </div>
           </>
         );
@@ -64,7 +72,9 @@ const SoftwareUpdateModal = ({ step, onConfirm, onCancel, onComplete }) => {
             <p>Software update completed.</p>
             <p>Please power cycle the device.</p>
             <div className="action-btns center">
-              <button className="btn-primary" onClick={onComplete}>OK</button>
+              <button className="btn-primary" onClick={onComplete}>
+                OK
+              </button>
             </div>
           </>
         );
@@ -75,8 +85,12 @@ const SoftwareUpdateModal = ({ step, onConfirm, onCancel, onComplete }) => {
             <p className="msg-error">Software update failed.</p>
             <p>Do you want to try the software update again?</p>
             <div className="action-btns center">
-              <button className="btn-primary" onClick={onCancel}>No</button>
-              <button className="btn-primary" onClick={onConfirm}>Yes</button>
+              <button className="btn-primary" onClick={onCancel}>
+                No
+              </button>
+              <button className="btn-primary" onClick={onConfirm}>
+                Yes
+              </button>
             </div>
           </>
         );
@@ -87,9 +101,7 @@ const SoftwareUpdateModal = ({ step, onConfirm, onCancel, onComplete }) => {
 
   return (
     <div className="popup-overlay">
-      <div className="popup-content-software-update">
-        {renderStepContent()}
-      </div>
+      <div className="popup-content-software-update">{renderStepContent()}</div>
     </div>
   );
 };
