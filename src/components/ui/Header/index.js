@@ -1,6 +1,7 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { authenticationService } from '../../../services';
 import { logout } from '../../../utils/auth-header';
+import logo from '../../../assets/dfp-logo-white.png';
 import '../../../assets/styles/main.css';
 import './styles.css';
 
@@ -11,11 +12,7 @@ function Header() {
 
   return (
     <header className="header">
-      <img
-        src={require('../../../assets/logo.svg').default}
-        alt="Delta Flight Products"
-        className="header-logo"
-      />
+      <img src={logo} alt="Delta Flight Products" className="header-logo" />
       <div className="header-title">IoT Eco-Sphere ATP Station</div>
       {currentUser && (
         <div className="user-info">
